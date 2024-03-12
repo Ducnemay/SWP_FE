@@ -24,7 +24,7 @@ nav {
   width: 100%; /* Đặt chiều rộng của .icons và .nav-list là 100% */
 }
 
-.icons img {
+.icons .logo-images {
   height: 30px;
   width: 40px;
   cursor: pointer;
@@ -33,9 +33,23 @@ nav {
   transition: transform 0.3s ease;
 }
 
-.icons img:hover {
-  transform: scale(1.2);
-}
+
+  .logo-images:hover {
+    /* Áp dụng hiệu ứng khi di chuột vào hình ảnh */
+    animation: bounce 0.5s;
+  }
+  
+  @keyframes bounce {
+    0% {
+      transform: translateY(0); /* Không di chuyển */
+    }
+    50% {
+      transform: translateY(-5px); /* Di chuyển lên */
+    }
+    100% {
+      transform: translateY(0); /* Trở về vị trí ban đầu */
+    }
+  }
 
 .search-container {
   display: flex;

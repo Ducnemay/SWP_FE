@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './AuthenticationPage.css';
 import api from '../../components/utils/requestAPI';
 import useAuth from '../../hooks/useAuth';
@@ -9,38 +9,41 @@ const UpdateInformationPage = () => {
     const [fullname, setFullname] = useState('');
     const [gender, setGender] = useState('');
     const [phone, setPhone] = useState('');
-    const [money, setMoney] = useState(0);
-    const [imageFile, setImageFile] = useState(null); // Store the file object
-    const [imageString, setImageString] = useState(''); // Store the base64 string representation of the image
+    const [address, setAddress] = useState('');
+    const [imageBase64, setImageBase64] = useState('');
+    const [imageUrl, setImageUrl] = useState('');
+    const [dateOfBirth, setDateOfBirth] = useState('');
     const navigate = useNavigate();
 
+    useEffect(() => {
+        if (auth.user.dateOfBird) {
+            const date = new Date(auth.user.dateOfBird);
+            const formattedDateOfBirth = `${date.getFullYear()}-${(date.getMonth() + 1).toString().padStart(2, '0')}-${date.getDate().toString().padStart(2, '0')}`;
+            setDateOfBirth(formattedDateOfBirth);
+        }
+    }, [auth.user.dateOfBird]);
+
     const handleImageChange = (event) => {
-        const file = event.target.files[0]; // Get the file from the onChange event
-
-        // Create a FileReader object
+        const file = event.target.files[0];
         const reader = new FileReader();
-
-        // Read the file as a data URL string
         reader.readAsDataURL(file);
-
-        // Called when the file reading process is completed
         reader.onload = () => {
-            const base64String = reader.result.split(',')[1]; // Get the base64 string representation
-            setImageFile(file); // Update the imageFile state with the new file
-            setImageString(base64String); // Update the imageString state with the base64 string
+            const imageUrl = reader.result;
+            setImageBase64(imageUrl);
+            setImageUrl(URL.createObjectURL(file));
         };
     };
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        
+
         const data = {
-            imgURL: "string", // Base64 string representation of the image
+            imgURL: imageBase64,
             fullName: fullname,
             gender: gender,
+            address: address,
             phone: phone,
-            money: money,
-            dateOfBirth: new Date().toISOString()
+            dateOfBird: dateOfBirth // Sử dụng dateOfBirth trực tiếp
         };
 
         try {
@@ -51,7 +54,6 @@ const UpdateInformationPage = () => {
                 alert('Failed to update user information. Please try again.');
         } catch (error) {
             console.error('Error:', error);
-            // Handle errors here
         }
     };
 
@@ -67,7 +69,7 @@ const UpdateInformationPage = () => {
                             onChange={(event) => setFullname(event.target.value)} />
                     </div>
                     <div className="authentication-input-container">
-<label htmlFor="gender" className='authentication-input-container-label'>Gender</label>
+                        <label htmlFor="gender" className='authentication-input-container-label'>Gender</label>
                         <input type="text" id="gender" name="gender" className='authentication-input' required
                             value={gender}
                             onChange={(event) => setGender(event.target.value)} />
@@ -79,16 +81,25 @@ const UpdateInformationPage = () => {
                             onChange={(event) => setPhone(event.target.value)} />
                     </div>
                     <div className="authentication-input-container">
-                        <label htmlFor="money" className='authentication-input-container-label'>Money</label>
-                        <input type="number" id="money" name="money" className='authentication-input' required
-                            value={money}
-                            onChange={(event) => setMoney(event.target.value)} />
+                        <label htmlFor="address" className='authentication-input-container-label'>Address</label>
+                        <input type="text" id="address" name="address" className='authentication-input' required
+                            value={address}
+                            onChange={(event) => setAddress(event.target.value)} />
+                    </div>
+                    <div className="authentication-input-container">
+                        <label htmlFor="dateOfBirth" className='authentication-input-container-label'>Date of Birth</label>
+                        <input type="date" id="dateOfBirth" name="dateOfBirth" className='authentication-input' required
+                            value={dateOfBirth}
+                            onChange={(event) => setDateOfBirth(event.target.value)} />
                     </div>
                     <div className="authentication-input-container">
                         <label htmlFor="image" className='authentication-input-container-label'>Image</label>
                         <input type="file" id="image" name="image" className='authentication-input' required
                             onChange={handleImageChange} />
                     </div>
+                    {imageUrl && (
+                        <img src={imageUrl} alt="Uploaded" style={{ width: '100px', height: '100px' }} />
+                    )}
                     <button type="submit" className='authentication-button'>Update</button>
                 </form>
             </div>

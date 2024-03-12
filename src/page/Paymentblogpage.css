@@ -13,7 +13,7 @@
   }
   
   .product-info,
-  .user-info {
+  .user-infos {
    
     margin-bottom: 20px;
     padding: 20px;
@@ -44,7 +44,7 @@
     transform: scale(1.2); /* Phóng to ảnh khi rê chuột vào */
 }
 
-  .user-info {
+  .user-infos {
     background-color: white;
     width: 100%;
     display: flex;
@@ -53,14 +53,14 @@
     justify-content: flex-start; /* Đặt .product-info ở lề trái */
     border: 2px solid black; /* Viền khung */
   }
-  .user-info .info-item {
+  .user-infos .info-item {
 
 margin-right: 50vh;
 
 
 
   }
-  .user-info .info-title {
+  .user-infos .info-title {
    
     margin-right: 50vh;
   }

@@ -14,9 +14,9 @@ const LogInPage = () => {
     const [showPassword, setShowPassword] = useState(false);
     const [loginError, setLoginError] = useState('');
 
-    const [username, setUsername] = useState();
-    const [password, setPassword] = useState();
-    const [authen, setAuthen] = useState();
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
+    const [authen, setAuthen] = useState('');
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -30,7 +30,7 @@ const LogInPage = () => {
             console.log(data);
             const response = await api.post(url, data);
             console.log(response.data)
-            localStorage.setItem('Authen', response.data);
+            localStorage.setItem('Authen', JSON.stringify(response.data));
             setAuthen(response.data)
         } catch (error) {
             console.error(error);
@@ -39,10 +39,25 @@ const LogInPage = () => {
         }
     }
 
-
     const togglePasswordVisibility = () => {
         setShowPassword(!showPassword);
     };
+
+    useEffect(() => {
+        const authData = localStorage.getItem('Authen');
+        if (authData) {
+            try {
+                const decodedAuth = JSON.parse(authData);
+                const decodedToken = jwtDecode(decodedAuth);
+                const currentTime = Date.now() / 1000;
+                if (decodedToken.exp > currentTime) {
+                    setAuthen(decodedAuth);
+                }
+            } catch (error) {
+                console.error(error);
+            }
+        }
+    }, []);
 
     useEffect(() => {
         async function fetchUserData() {
@@ -66,18 +81,23 @@ const LogInPage = () => {
                 }
                 if (user.roleId === '2') {
                     navigate('/admin-page');
-                } if (user.roleId === '4')
-                    
-			navigate('/content');
-                if (user.roleId === '3')
-                    navigate('/staff-page')
+                } 
+                if (user.roleId === '4') {
+                    navigate('/content');
+                }
+                if (user.roleId === '3') {
+                    navigate('/staff-page');
                     window.alert('Đăng nhập thành công');
+                }
             } catch (error) {
                 console.error(error);
+                localStorage.removeItem('Authen'); // Xóa thông tin đăng nhập khi có lỗi xảy ra
             }
         }
-        fetchUserData();
-    }, [authen])
+        if (authen) {
+            fetchUserData();
+        }
+    }, [authen, navigate]);
 
     return (
         <div className='authentication-section'>
@@ -86,12 +106,10 @@ const LogInPage = () => {
                 <h2>Đăng nhập</h2>
                 <form onSubmit={handleSubmit}>
                     <div className="authentication-input-container">
-                        
                         <input type="text" id="email" name="email" className='authentication-input' required onChange={(event) => setUsername(event.target.value)} />
                         <label htmlFor="email" className='authentication-input-container-label'>Email</label>
                     </div>
                     <div className="authentication-input-container">
-                        
                         <input type={showPassword ? "text" : "password"} id="password" name="password" className='authentication-input' required onChange={(event) => setPassword(event.target.value)} />
                         <label htmlFor="password" className='authentication-input-container-label'>Mật khẩu</label>
                         <button type="button" className="log-in-password-toggle-button" onClick={togglePasswordVisibility}>

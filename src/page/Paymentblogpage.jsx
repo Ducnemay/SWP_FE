@@ -64,7 +64,7 @@ const Paymentblogpage = () => {
                 </div>
             </div>
             <hr className="divider" />
-            <div className="user-info">
+            <div className="user-infos">
                 <h2 className="info-title">Thông tin người dùng</h2>
                 <p className="info-item">Tên người dùng: {userInfo.username}</p>
               

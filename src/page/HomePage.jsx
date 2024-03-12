@@ -9,6 +9,8 @@ import "./HomePage.css";
 const HomePage = () => {
   const [savedProducts, setSavedProducts] = useState([]);
   const [currentPage, setCurrentPage] = useState(0);
+  const [showNotification, setShowNotification] = useState(false); // Thêm state cho hiển thị thông báo
+  const [showRemoveNotification, setShowRemoveNotification] = useState(false); // Thêm state cho hiển thị thông báo khi unlove
   const productsPerPage = 6;
 
   const [artworkList, setArtworkList] = useState(null);
@@ -80,9 +82,9 @@ const HomePage = () => {
   }, [artworkList]);
 
   if (!artworkList || !Array.isArray(artworkList)) {
-    return <div>Loading...</div>;
-  }
-
+    return <span class="loader"></span>
+   }
+   
   const handlePageChange = ({ selected }) => {
     setCurrentPage(selected);
   };
@@ -99,26 +101,40 @@ const HomePage = () => {
 
   const handleLikeToggle = async (event, id, userId) => {
     event.preventDefault();
-
+  
     if (!auth.user) {
       navigate('/log-in');
       return;
     }
-
+  
     try {
+      const isLiked = !isProductLiked(id); // Xác định hành động là "love" hay "unlove"
       const requestData = {
         userId: auth.user.userId,
         artworkId: id,
-        time: new Date().toISOString()
+        time: new Date().toISOString() // Thêm trường thời gian
       };
-
-      await api.post(`https://localhost:7227/api/LikeCollection/Love`, requestData);
-      setSavedProducts(prevSavedProducts => [...prevSavedProducts, id]);
+  
+      if (isLiked) {
+        await api.post(`https://localhost:7227/api/LikeCollection/Love`, requestData);
+        setSavedProducts(prevSavedProducts => [...prevSavedProducts, id]);
+        setShowNotification(true); // Hiển thị thông báo
+        setTimeout(() => {
+          setShowNotification(false); // Ẩn thông báo sau 3 giây
+        }, 3000);
+      } else {
+        await api.delete(`https://localhost:7227/api/LikeCollection/Un-Love`, { data: { userId: auth.user.userId, artworkId: id }});
+        setSavedProducts(prevSavedProducts => prevSavedProducts.filter(productId => productId !== id));
+        setShowRemoveNotification(true); // Hiển thị thông báo khi unlove
+        setTimeout(() => {
+          setShowRemoveNotification(false); // Ẩn thông báo sau 3 giây
+        }, 3000);
+      }
     } catch (error) {
       console.error('Error toggling like:', error);
     }
   };
-
+  
   const handleReportSelect = (event, productId) => {
     const { value } = event.target;
     setProducts(prevProducts =>
@@ -145,9 +161,9 @@ const HomePage = () => {
                   <h3 className="product-title">{product.title}</h3>
                   <p>Giá: {product.price}</p>
                   <div className="button-heart">
-                    <button onClick={(event) => handleLikeToggle(event, product.artworkId, product.userId)} className={`like-button ${isProductLiked(product.artworkId) ? 'liked' : ''}`}>
+                  <button onClick={(event) => handleLikeToggle(event, product.artworkId, product.userId)} className={`like-button ${isProductLiked(product.artworkId) ? 'liked' : ''}`}>
                       {isProductLiked(product.artworkId) ? <FaHeart /> : <FaRegHeart />}
-                    </button><>&nbsp;</>
+                    </button>
                     <button value={product.reporting} onChange={(e) => handleReportSelect(e, product.id)}>
                       <Link to={`/artreport/${product.artworkId}`}>
                       Report
@@ -169,6 +185,16 @@ const HomePage = () => {
         containerClassName={'pagination'}
         activeClassName={'active'}
       />
+       {showNotification && ( // Hiển thị thông báo nếu showNotification là true
+        <div className="notification">
+          Artwork Saved
+        </div>
+      )}
+      {showRemoveNotification && ( // Hiển thị thông báo nếu showRemoveNotification là true
+        <div className="notification-remove">
+          Remove Artwork From Saved
+        </div>
+      )}
     </div>
   );
 };

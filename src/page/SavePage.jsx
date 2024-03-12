@@ -10,6 +10,7 @@ const SavePage = () => {
   const { auth } = useAuth();
   const [savedProducts, setSavedProducts] = useState([]);
   const [artworks, setArtworks] = useState({});
+  const [showRemoveNotification, setShowRemoveNotification] = useState(false); 
 
   useEffect(() => {
     if (auth.user) {
@@ -51,33 +52,47 @@ const SavePage = () => {
   };
 
   const handleUnLove = async (productId, userId) => {
-    try {
-      // Gọi API xử lý việc bỏ thích sản phẩm
-      // Ví dụ: await api.delete(`https://localhost:7227/api/LikeCollection/remove-like?userId=${userId}&artworkId=${productId}`);
-      // Sau đó cập nhật lại danh sách sản phẩm đã lưu
-      setSavedProducts(savedProducts.filter(id => id !== productId));
-    } catch (error) {
-      console.error('Error removing like:', error);
+    // Hỏi người dùng xác nhận trước khi xóa
+    const confirmed = window.confirm("Are you sure you want to remove this saved product?");
+    
+    // Nếu người dùng xác nhận muốn xóa
+    if (confirmed) {
+      try {
+        await api.delete(`https://localhost:7227/api/LikeCollection/Un-Love`, { data: { userId: auth.user.userId, artworkId: productId }});
+        setSavedProducts(savedProducts.filter(id => id !== productId));
+        setShowRemoveNotification(true);
+        setTimeout(() => {
+          setShowRemoveNotification(false);
+        }, 3000);
+      } catch (error) {
+        console.error('Error removing like:', error);
+      }
     }
   };
-
+  
+  
   return (
     <div>
       <Na className="Navuser" />
      
-      <div className="product-list">
+      <div className="product-lists">
         {/* Hiển thị danh sách sản phẩm đã lưu */}
         {savedProducts.map((productId) => (
-          <div key={productId} className="product-item">
+          <div key={productId} className="product-items">
             {/* Hiển thị thông tin sản phẩm */}
             <Link to={`/product/${productId}`}>
-              <img src={artworks[productId]?.imageUrl} alt={artworks[productId]?.title} className="product-image" />
-              <p className="product-name">{artworks[productId]?.title}</p>
-              <p className="product-price">{artworks[productId]?.price}</p>
+              <img src={artworks[productId]?.imageUrl} alt={artworks[productId]?.title} className="product-imagess" />
+              <p className="product-names">{artworks[productId]?.title}</p>
+              <p className="product-prices">{artworks[productId]?.price}</p>
             </Link>
-            <FaHeart className="heart-icon" onClick={() => handleUnLove(productId, auth.user.userId)} />
+            <FaHeart className="heart-icons" onClick={() => handleUnLove(artworks[productId]?.artworkId, auth.user.userId)} />
           </div>
         ))}
+         {showRemoveNotification && ( // Hiển thị thông báo nếu showRemoveNotification là true
+        <div className="notification-remove">
+          Remove Artwork From Saved
+        </div>
+      )}
       </div>
     </div>
   );

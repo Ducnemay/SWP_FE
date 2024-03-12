@@ -30,10 +30,10 @@ const NavPage = () => {
           <div className="user-info">
             <div
               className="user-image"
-              style={{ backgroundImage: `url("https://vivureviews.com/wp-content/uploads/2022/08/avatar-vo-danh-9.png")`, width: '50px', height: '50px', backgroundSize: 'cover', backgroundPosition: 'center', borderRadius: '50%', overflow: 'hidden' }}
+              style={{ backgroundImage:`url("${user.imageUrl}")`, width: '50px', height: '50px', backgroundSize: 'cover', backgroundPosition: 'center', borderRadius: '50%', overflow: 'hidden' }}
             ></div>
             <div className="user-details">
-              <h2>{user.username}</h2>
+              <h2>{user.fullname}</h2>
               <p>{user.address}</p>
             </div>
           </div>

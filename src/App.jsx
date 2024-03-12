@@ -157,6 +157,7 @@ const App = () => {
       {/* user routes */}
       <Route element={<RequireAuth allowedRoles={["1"]} />}>
         <Route element={<Layout />}>
+        <Route path="/edit" element={<Editpage />} />
         <Route path="/home" element={<HomePage />} />
           <Route path="/products/cages" element={<CagePage />} />
           <Route path="/products/food" element={<FoodPage />} />
@@ -188,7 +189,7 @@ const App = () => {
       <Route path="/update-info" element={<UpdateInformationPage />} />
       <Route path="/page-c" element={<Page />} />
       <Route path="/pre" element={<Premium />} />
-      <Route path="/edit" element={<Editpage />} />
+    
       <Route path="/pay" element={<PaymentPage />} />
       <Route path="/detail/:artworkId" element={<Detailpage />} />
       <Route path="/Artreport/:artworkId" element={<Artreport />} /> 
