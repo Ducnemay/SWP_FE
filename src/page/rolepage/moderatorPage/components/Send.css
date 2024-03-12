@@ -1,0 +1,59 @@
+.send-page {
+    padding: 50px;
+  }
+  
+  /* .history-item {
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: calc(33.33% - 20px);
+  } */ 
+  
+
+  .send-list {
+    display: flex; /* Cho phép các thẻ con sắp xếp ngang */
+    flex-wrap: wrap; /* Cho phép thẻ xuống dòng nếu không đủ khoảng trống chiều ngang*/
+    gap: 20px;
+    flex-direction: column;
+    align-content: center;
+  }
+  
+  .send-product-info{
+    display: flex;  /* Sắp xếp nội dung trong thẻ 'box' theo chiều ngang */
+    align-items: center; /* Căn giữa các thẻ con theo chiều dọc */
+    padding: 15px;
+    /* width: calc(15% - 30px); Giả định mỗi thẻ chiếm khoảng 25% chiều ngang */
+    
+  }
+  .send-product-infos1 {
+    display: flex;  /* Sắp xếp nội dung trong thẻ 'box' theo chiều ngang */
+    align-items: center; /* Căn giữa các thẻ con theo chiều dọc */
+    border: 1px solid #ccc; /* Thêm viền */
+  border-radius: 10px;
+height: 50px;
+
+justify-content: center;
+    
+  }
+  
+  .send-product-info { 
+    margin-left: 20px; /* Tạo khoảng cách với hình ảnh */
+    flex: 1;  /* Cho phép 'product-info' chiếm toàn bộ chiều ngang còn lại */
+    
+  }
+  .send-name, .send-time, .send-status, .send-titleR{
+    margin-left: 80px;
+    margin-right: 80px;
+    width: max-content;
+  }
+  .send-NameAtwork, .send-TimeApprove, .send-StatusApprove{
+    margin-left: 80px;
+    margin-right: 80px;
+    width: max-content;
+  }
+  .send-Actor{
+    margin-left: 80px;
+    margin-right: 80px;
+    width: max-content; 
+  }
