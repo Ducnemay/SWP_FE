@@ -70,4 +70,15 @@
   }
 .insight-order-details{
     text-align: left;
+}  .insight-image-collection .insight-order-overlay img.processing-false {
+  filter: brightness(10%);
+}
+.insight-order-overlay .waiting-text {
+  position: relative;
+  bottom: 70px;
+left: 50%;
+transform: translate(-50%, -50%);
+  /* bottom: 150px; */
+  color: rgb(255, 255, 255);
+  font-size: 20px;
 }

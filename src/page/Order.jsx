@@ -95,7 +95,9 @@ export default function Order() {
 
   return (
     <div>
-      <Na className="Navuser" />11:32/-strong/-heart:"&gt":o:-((:-h<div className="order-container">
+      <Na className="Navuser" />
+
+      <div className="order-container">
         <div className="order-row">
           <div className="atwork-order-mau1">
             <div className="order-atwork-mau">Atwork</div>

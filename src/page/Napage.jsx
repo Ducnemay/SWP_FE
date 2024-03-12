@@ -47,7 +47,7 @@ const NavPage = () => {
             <NavLink to="/page-m" className="sub-nav-link">My Collection</NavLink>
           </li>
           <li>
-            <NavLink to="/order" className="sub-nav-link">Insight</NavLink>
+            <NavLink to="/insight" className="sub-nav-link">Insight</NavLink>
           </li>
           <li>
             <NavLink to="/save" className="sub-nav-link">Save</NavLink>

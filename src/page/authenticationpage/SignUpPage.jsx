@@ -32,7 +32,7 @@ const SignUpPage = () => {
     try {
       const response = await api.post(url, formData);
       setAuth({ user: response.data, authen: true });
-      navigate('/update-info');
+      navigate('/log-in');
     } catch (error) {
       console.error(error);
       alert("Đã xảy ra lỗi khi đăng ký!");

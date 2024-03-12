@@ -48,6 +48,7 @@ export default function Cpage() {
       <Na className="Navuser" />
 
       <div className="upload-button-container">
+        {/* <Link to="/page-c"> */}
         <Link to="/page-c">
           <button className="upload-image">Upload image</button>
         </Link>

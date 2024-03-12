@@ -1,15 +1,15 @@
-.payment-blog-page {
+.paymentpremium-blog-page {
     font-family: Arial, sans-serif;
     display: flex;
     justify-content: center;
     align-items: stretch; /* Đảm bảo các phần tử con co giãn để bằng chiều cao của container */
     height: 50vh;
     margin-top: -30px ; 
-    margin-bottom:30px  ;
+    margin-bottom:100px  ;
 }
 
-.payment-product-info,
-.payment-user-info {
+.paymentpremium-product-info,
+.paymentpremium-user-info {
     border: 1px solid #ccc; /* Thêm viền 1px độ dày và màu xám nhạt */
     border-radius: 8px;
     display: flex;
@@ -19,31 +19,38 @@
     padding: 20px;
     margin: 10px;
     flex: 1; /* Đảm bảo các khung có cùng chiều rộng */
+    height: 400px;
 }
 
-.payment-product-info {
+.paymentpremium-product-info {
     max-width: 300px; /* Giới hạn chiều rộng của khung */
 }
 
-.payment-user-info {
+.paymentpremium-user-info {
     max-width: 300px; /* Giới hạn chiều rộng của khung */
 }
 
-.payment-product-image {
+.paymentpremium-product-image {
     width: 100px;
     height: auto;
     margin-bottom: 10px;
 }
 
-.payment-info-title {
+.paymentpremium-info-title {
     font-weight: bold;
     margin-bottom: 10px;
 }
 
-.payment-info-item {
+.paymentpremium-info-item {
     margin-bottom: 5px;
+     
 }
-.payment-blog-button-cofirm{
+.paymentpremium-info-itemss{
+    margin-bottom: 5px;
+    font-size: 30px;
+    font-weight: bold;  
+}
+.paymentpremium-blog-button-cofirm{
     display: inline-block;
     text-decoration: none;
     background-color: rgb(0, 0, 0);
@@ -54,9 +61,9 @@
     position: absolute;
     left: 15px;
   width: 130px;
-    top: 65px;
+    top: 20px;
 }
-.payment-blog-button-cancle{
+.paymentpremium-blog-button-cancle{
   display: inline-block;
   text-decoration: none;
   background-color: rgb(0, 0, 0);
@@ -67,15 +74,17 @@
   position: absolute;
   right: 15px;
   width: 130px;
-  top: 65px;
+  top: 20px;
 
 }
-.payment-blog-button-cofirm:hover, .payment-blog-button-cancle:hover{
+.paymentpremium-blog-button-cofirm:hover, .paymentpremium-blog-button-cancle:hover{
     background-color: rgb(255, 254, 254);
     color: rgb(0, 0, 0);
   }
-.position-button{
+.paymentpremium-position-button{
   display: flex;
-  height: 200px;
+  height: 100px;
   position: relative;
+  /* margin-left: 320px; */
+  top: 60px
 }

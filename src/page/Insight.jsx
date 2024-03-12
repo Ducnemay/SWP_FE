@@ -88,17 +88,21 @@ export default function Insight() {
           
           <div className="insight-order-box">
             {orders.map((ord) => (
-              artworkList[ord.artworkId] && ord.status &&  
+              artworkList[ord.artworkId] && 
               <div key={ord.$id} className="insight-image-collection">
                 
                 <div className="insight-order-overlay">  
-   <img src={artworkList[ord.artworkId].imageUrl} alt="insight-Artwork" />
+   <img src={artworkList[ord.artworkId].imageUrl2} alt="insight-Artwork" 
+   className={ord.status ? '' : 'processing-false'}
+   />
+   {!ord.status && <div className="waiting-text">Chờ duyệt</div>}
+   
                 </div>
                 <div className="insight-order-details">
                   <div className="insight-order-authors">{artworkList[ord.artworkId].description}</div>
                   <div className="insight-order-titles">{artworkList[ord.artworkId].title}</div>
                    
-                  
+                 <button>Refund Artwork</button> 
                 </div>
                 
               </div>

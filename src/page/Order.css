@@ -1,22 +1,25 @@
-/* src/components/Cpage.css */
-
-/* Grid container for the body */
+.order-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+}
 .image-collection {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: center;
+  display: flex;  /* Sắp xếp nội dung trong thẻ 'box' theo chiều ngang */
+  align-items: center; /* Căn giữa các thẻ con theo chiều dọc */
+  border: 1px solid #ccc; /* Thêm viền */
+  border-radius: 5px;
+  padding: 15px;
   }
   
-  /* Grid container for the images */
-  .box {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 20px;
-    padding: 20px;
-    margin-top: 20px;
-    align-items: start;
-  }
+  .order-box{
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: column;
+}
+
+
   
   /* Individual box styling */
   /* .image-collection {
@@ -26,16 +29,16 @@
   } */
   
   /* Styling for the image container within each box */
-  .image-collection .image-container {
+  /* .image-collection .image-container {
     flex: 1;
     overflow: hidden;
     border-radius: 10px;
-  }
+  } */
   
   /* Styling for the images within the image container */
- img {
+ .order-overlay img {
     display: block;
-    max-width: 100%;
+    width: 100px;
     height: auto;
     border-radius: 10px;
     transition: transform 0.3s ease; /* Smooth transition for the zoom effect */
@@ -60,9 +63,13 @@
   
   
   /* Zoom effect for the image on hover */
-  .image-collection .box:hover img {
+  /* .image-collection .box:hover img {
     transform: scale(1.05);
-  }
+  } */
+.order-details{
+  display: flex;  /* Sắp xếp nội dung trong thẻ 'box' theo chiều ngang */
+  align-items: center;
+}  
   
 .details .authors {
     font-size: 16px;
@@ -73,12 +80,63 @@
   .image-collection .overlay img.processing-false {
     filter: brightness(10%);
   }
-  .overlay .waiting-text {
-    position: absolute;
-    top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-    /* bottom: 150px; */
+.order-row{
+  padding: 30px;
+  width: max-content;
+}
+.order-authors, .order-totals{
+  margin-left: 80px;
+  margin-right: 80px;
+  width: max-content;
+  font-size: 16px;
+  color: black;
+}
+.order-titles{
+  margin-left: 80px;
+  margin-right: 80px;
+  width: 150px;
+  font-size: 16px;
+  color: black;
+  text-align: left;
+
+}
+.order-authors-mau, .order-titles-mau, .order-totals-mau{
+  margin-left: 80px;
+  margin-right: 80px;
+  width: max-content;
+}
+.order-action-mau{
+  margin-left: 30px;
+  /* margin-right: 55px; */
+}
+.order-atwork-mau{
+  margin-left: 20px;
+  margin-right: 55px;
+  width: max-content;
+}
+.order-titles-mau{
+  margin-left: 140px;
+  margin-right: 90px;
+  width: max-content;
+}
+.atwork-order-mau1{
+  display:flex;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 15px;
+  margin-bottom: 15px;
+}
+.order-confirm-button{
+  display: inline-block;
+    text-decoration: none;
+    background-color: rgb(0, 0, 0);
     color: rgb(255, 255, 255);
-    font-size: 20px;
-  }
+    border: 2px solid black;
+    padding: 12px 20px;
+    border-radius: 15px;
+    width: 100px;
+}
+.order-confirm-button:hover{
+  background-color: rgb(255, 254, 254);
+  color: rgb(0, 0, 0);
+}
