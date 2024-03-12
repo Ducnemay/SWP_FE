@@ -61,7 +61,7 @@ export default function Detailpage() {
       if (!auth || !auth.user) {
         // Nếu chưa đăng nhập, chuyển hướng đến trang đăng nhập
         // Ví dụ: Chuyển hướng đến /login
-        navigate('/login');
+        navigate('/log-in');
         return;
       }
 
@@ -73,7 +73,8 @@ export default function Detailpage() {
       };
 
       // Gửi yêu cầu để thêm order
-      await api.post("https://localhost:7227/api/Order/create-new-order", orderData);
+      const response = await api.post("https://localhost:7227/api/Order/create-new-order", orderData);
+      const orderId = response.data.orderId;
 
       // Cập nhật trạng thái nút Purchase sau khi thành công
       setCartBtn("Purchased");
@@ -82,7 +83,7 @@ export default function Detailpage() {
       alert('Order created successfully!');
 
       // Chuyển hướng sang trang order-detail
-      navigate('/home');
+      navigate(`/order/${orderId}`);
     } catch (error) {
       console.error('Error creating new order:', error);
       setCartBtn("Purchase"); // Đặt lại nút Purchase nếu có lỗi xảy ra
