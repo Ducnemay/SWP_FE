@@ -250,7 +250,7 @@ const App = () => {
         <Route path="/report" element={<Report />}/>
         <Route path="/productPageDetail/:productId" element={<ProductPageDetail />} />
         <Route path="/transfer" element={<Transfer />}/>
-        <Route path="/send" element={<Send />}/>
+        <Route path="/send" element={<Send />}/> 
         
 
         </Route>

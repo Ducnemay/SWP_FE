@@ -106,3 +106,14 @@
     /* left: 0; 
     top: 20px; Điều chỉnh khoảng cách từ trên xuống */
   }
+  .to-pre{
+    display: inline-block;
+    text-decoration: none;
+    background-color: rgb(34, 167, 7);
+    color: rgb(255, 255, 255);
+    border: 2px solid rgb(34, 167, 7);
+    padding: 12px 20px;
+    border-radius: 15px;
+    margin-right: 40px;
+    cursor: pointer;
+  } 
