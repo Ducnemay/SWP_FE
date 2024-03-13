@@ -3,6 +3,7 @@ import Na from "./Napage";
 import api from "../components/utils/requestAPI"; 
 import useAuth from "../hooks/useAuth";
  const TransactionHistory = () => {
+  const { auth } = useAuth();
   const [transactions, setTransactions] = useState([]);
 
   useEffect(() => {
