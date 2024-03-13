@@ -3,7 +3,7 @@ import Header from "./page/rolepage/moderatorPage/components/Header";
 import { Outlet } from "react-router-dom";
 import Body from "./page/rolepage/moderatorPage/components/Body";
 import ProductPageDetail from "./page/rolepage/moderatorPage/components/ProductPageDetail";
-import Report from "./page/rolepage/moderatorPage/components/Report";
+import ReportPage from "./page/rolepage/moderatorPage/components/Report";
 import RequireAuth from "./components/ReqAuth/RequireAuth";
 import Layout from "./components/layout/Layout";
 import Layoutguest from "./components/layout/Layoutguest";
@@ -63,6 +63,9 @@ import Transfer from "./page/rolepage/moderatorPage/components/Transfer";
 import PaymentBank from "./page/PaymentBank";
 import Send from "./page/rolepage/moderatorPage/components/Send";
 import PaymentPremium from "./page/PaymentPremium";
+import HistoryPage from "./page/rolepage/moderatorPage/components/HistoryOfModerate";
+import Artreport from "./page/Artreport";
+
 
 
 import React, { useState } from 'react';
@@ -151,6 +154,8 @@ const App = () => {
         <Route path="/order-info/:orderId" element={<Paymentblogpage />} />
         <Route path="/orderprumium-info/:orderPremiumId" element={<PaymentPremium />} />
         <Route path="/paymentbank/:userId/:artworkUserId/:orderId" element={<PaymentBank />} />
+        <Route path="/artreport/:artworkId" element={<Artreport />} />
+        <Route path="/detail/:artworkId" element={<Detailpage />} />
         
         
        
@@ -200,7 +205,7 @@ const App = () => {
       
       <Route path="/edit" element={<Editpage />} />
       <Route path="/pay" element={<PaymentPage />} />
-      <Route path="/detail/:artworkId" element={<Detailpage />} />
+      
       
 
       
@@ -247,10 +252,11 @@ const App = () => {
         {/* <Route path="/manager-page" element={<ManagerPage />} /> */}
       <Route path="/content" element={<Body />}/>
       {/* <Route element={<RoleLayout />}>   */}
-        <Route path="/report" element={<Report />}/>
+        <Route path="/report" element={<ReportPage />}/>
         <Route path="/productPageDetail/:productId" element={<ProductPageDetail />} />
         <Route path="/transfer" element={<Transfer />}/>
         <Route path="/send" element={<Send />}/>
+        <Route path="/history" element={<HistoryPage />}/>
         
 
         </Route>

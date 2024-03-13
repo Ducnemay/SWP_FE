@@ -72,6 +72,21 @@ const Page = () => {
   };
   const handleSubmit = async (event) => {
     event.preventDefault();
+
+    // Check if the user's status is already 0
+    if (auth.user.status === "0") {
+      window.alert("You have to upgrade to premium.");
+      return;
+    }
+    if (auth.user.premiumId === null) {
+      window.alert("You have to upgrade to premium.");
+      return;
+    }
+
+    if (!imageUrl && !imageUrl2) {
+      window.alert("Please upload both images before submitting.");
+      return;
+    }
     
     const artworkData = {
       userID:auth.user.userId,
@@ -113,12 +128,12 @@ const Page = () => {
       console.log("User post status updated successfully:", updateStatusResponse.data);
 
       // Handle success here, e.g., redirect user to another page
-      window.prompt("Artwork created successfully!");
+      window.alert("Artwork created successfully!");
 
     } catch (error) {
       console.error("Error creating artwork:", error);
       // Handle error here, e.g., show error message to the user
-      window.prompt("Error creating artwork. Please try again.");
+      window.alert("Error creating artwork. Please try again.");
     }
   };
  

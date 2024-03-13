@@ -52,6 +52,9 @@ export default function Cpage() {
         <Link to="/page-c">
           <button className="upload-image">Upload image</button>
         </Link>
+        <Link to="/pre">
+          <button className="to-pre"> Update to Premium</button>
+        </Link>
       </div>
       <div className='my-collection'>
         {artworkList.map((artwork) => (

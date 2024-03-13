@@ -16,6 +16,7 @@ const HomePage = () => {
   const [artworkList, setArtworkList] = useState(null);
   const [userMap, setUserMap] = useState({}); // State để lưu thông tin người dùng
   const { auth } = useAuth();
+  const [products, setProducts] = useState(null);
   const navigate = useNavigate(); // Sử dụng useNavigate để chuyển hướng
 
   useEffect(() => {
@@ -149,6 +150,7 @@ const HomePage = () => {
       <h1>Collect art and design online</h1>
       <div className="product-list">
         {currentProducts.map((product) => (
+          product.statusProcessing &&
           <div key={product.artworkId} className="product-itemm">
               <div className="product-card">
               <Link to={`/detail/${product.artworkId}`} className="product-link" key={product.artworkId}>

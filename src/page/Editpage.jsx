@@ -40,7 +40,7 @@ const Editpage = () => {
     };
 
     fetchUserData();
-  }, [auth.user.userId]);
+  }, [auth]);
 
   const handleSave = async () => {
     try {

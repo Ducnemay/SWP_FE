@@ -5,7 +5,7 @@ import api from "../components/utils/requestAPI";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import useAuth from '../hooks/useAuth';
 
-export default function Detailpage() {
+export default function Artreport() {
   const [product, setProduct] = useState(null);
   const [des, setdes] = useState(null);
   const [cartBtn, setCartBtn] = useState("confirmation Reports");
@@ -126,7 +126,7 @@ export default function Detailpage() {
             <option>Offensive or inappropriate<>&nbsp;&nbsp;&nbsp;&nbsp;</></option>
             <option>Violating ethical or moral standards<>&nbsp;&nbsp;&nbsp;&nbsp;</></option>
             </select>
-            
+
           </div>
         </div>
       </div>

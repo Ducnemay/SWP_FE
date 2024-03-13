@@ -7,6 +7,7 @@ import api from "../components/utils/requestAPI";
 const NavPage = () => {
   const { auth } = useAuth();
   const [user, setUser] = useState(null);
+ 
 
   useEffect(() => {
     const fetchUserData = async () => {
@@ -14,9 +15,10 @@ const NavPage = () => {
         if (auth.user) { // Kiểm tra xem auth.user đã được định nghĩa chưa
           const response = await api.post("https://localhost:7227/api/User/get-by-id", { userId: auth.user.userId });
           setUser(response.data);
-        }
+          
+    }
       } catch (error) {
-        console.error('Error fetching user data:', error);
+        console.error('Error fetching user data or premium order:', error);
       }
     };
 
@@ -27,14 +29,21 @@ const NavPage = () => {
     <div className="navbar-container">
       {user && (
         <div className="user-container">
-          <div className="user-info">
+          <div className="user-infos">
             <div
               className="user-image"
               style={{ backgroundImage:`url("${user.imageUrl}")`, width: '50px', height: '50px', backgroundSize: 'cover', backgroundPosition: 'center', borderRadius: '50%', overflow: 'hidden' }}
             ></div>
             <div className="user-details">
-              <h2>{user.fullname}</h2>
+              <h2>{user.username}</h2>
               <p>{user.address}</p>
+            </div>
+            <div className='user-premium'>
+            {user.premiumId ? (
+                <p>User has premium</p>
+              ) : (
+                <p>User does not have premium</p>
+              )}
             </div>
           </div>
           <a href="/edit" className="settings-button">Settings</a>

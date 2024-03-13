@@ -1,0 +1,90 @@
+.history-page {
+  padding: 50px;
+}
+
+/* .history-item {
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: calc(33.33% - 20px);
+} */
+.history-info {
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: calc(33.33% - 20px);
+}
+
+.history-info h3 {
+  margin-top: 0;
+}
+
+.history-action button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.history-action button:hover {
+  background-color: #0056b3;
+}
+
+.history-info{
+  position: relative;
+    display: flex;
+}
+
+.history-detail{
+  flex: 1;
+  padding: 20px 20px 20px 100px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.history-list {
+  display: flex; /* Cho phép các thẻ con sắp xếp ngang */
+  flex-wrap: wrap; /* Cho phép thẻ xuống dòng nếu không đủ khoảng trống chiều ngang*/
+  gap: 20px;
+  flex-direction: column;
+}
+
+.history-boxR{
+  display: flex;  /* Sắp xếp nội dung trong thẻ 'box' theo chiều ngang */
+  align-items: center; /* Căn giữa các thẻ con theo chiều dọc */
+  border: 1px solid #ccc; /* Thêm viền */
+  border-radius: 5px;
+  padding: 15px;
+  width: calc(15% - 30px); /* Giả định mỗi thẻ chiếm khoảng 25% chiều ngang */
+  
+}
+.history-product-infos1 {
+  display: flex;  /* Sắp xếp nội dung trong thẻ 'box' theo chiều ngang */
+  align-items: center; /* Căn giữa các thẻ con theo chiều dọc */
+
+  
+}
+
+.history-product-info { 
+  margin-left: 20px; /* Tạo khoảng cách với hình ảnh */
+  flex: 1;  /* Cho phép 'product-info' chiếm toàn bộ chiều ngang còn lại */
+  
+}
+.history-name, .history-time, .history-status, .history-titleR, .history-NameAtwork, .history-Actor, .history-TimeApprove, .history-StatusApprove{
+  margin-left: 80px;
+  margin-right: 80px;
+  width: max-content;
+}
+.history-Atwork{
+  margin-left: 80px;
+  margin-right: 100px;
+  width: max-content;
+}
+.history-boxR img{
+  max-width: 100%;
+}

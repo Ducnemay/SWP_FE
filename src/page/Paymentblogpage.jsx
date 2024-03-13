@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './Paymentblogpage.css'; // Import CSS file for styling
 import api from '../components/utils/requestAPI';
 import { useParams } from 'react-router-dom';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import useAuth from '../hooks/useAuth';
 
 const Paymentblogpage = () => {
@@ -13,6 +13,8 @@ const Paymentblogpage = () => {
     const [userArtworkInfo, setUserArtworkInfo] = useState(null);
     const [userInfo, setUserInfo] = useState(null);
     const [userNowInfo, setUserNowInfo] = useState(null);
+    const [approved, setApproved] = useState(false);
+    const navigate = useNavigate();
     // const orderId = "O2037b1"; // Đặt orderId vào đây
 
     useEffect(() => {
@@ -107,30 +109,22 @@ const Paymentblogpage = () => {
            
             // Thông tin truyền vào POST để cập nhật số tiền của người sở hữu tranh
             const data_userArtwok = {
-                imgURL : userArtworkInfo.imageUrl,
-                fullName: userArtworkInfo.fullname,
-                gender: userArtworkInfo.sex,
-                phone: userArtworkInfo.phoneNumber,
-                money: userArtworkInfo.money + productInfo.price,
-                dateOfBird: userArtworkInfo.dateOfBirth,
+                money: userArtworkInfo.money + productInfo.price, 
             };
 
             // Gửi yêu cầu POST để cập nhật số tiền của người morder
-            await api.post(`https://localhost:7227/api/User/update?id=${userArtworkInfo.userId}`, data_userArtwok);
+            await api.post(`https://localhost:7227/api/User/update-money?id=${userArtworkInfo.userId}`, data_userArtwok);
             
             // Thông tin truyền vào POST để cập nhật số tiền của người đang đăng nhập
             const data_userNow = {
-                imgURL :userNowInfo.imageUrl,
-                gender: userNowInfo.sex,
                 money: userNowInfo.money - productInfo.price,
-                phone: userNowInfo.phoneNumber,
-                dateOfBird:userNowInfo.dateOfBirth,
-                fullName: userNowInfo.fullname,
             };
 
             // Gửi yêu cầu POST để cập nhật số tiền của người đang đăng nhập
-            await api.post(`https://localhost:7227/api/User/update?id=${auth.user.userId}`, data_userNow);
+            await api.post(`https://localhost:7227/api/User/update-money?id=${auth.user.userId}`, data_userNow);
+            setApproved(true);
             alert('Chuyển tiền thành công');
+            
             navigate(`/transHis`);
             
         

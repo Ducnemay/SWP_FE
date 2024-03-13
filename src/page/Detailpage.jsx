@@ -4,6 +4,7 @@ import './DetailsPage.css';
 import api from "../components/utils/requestAPI";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import useAuth from '../hooks/useAuth';
+import Comments from './Comments';
 
 export default function Detailpage() {
   const [product, setProduct] = useState(null);
@@ -121,6 +122,7 @@ export default function Detailpage() {
             <i className="fa-regular fa-share-from-square"> Share</i>
           </div>
         </div>
+        <Comments currentUserId="1"/>
       </div>
     </div>
   );

@@ -104,22 +104,7 @@ export default function ProductPage (){
     // Đóng hoặc mở thông báo khi nhấn vào icon
     setIsNotificationVisible(!isNotificationVisible);
   };
-  const handleImageUpload = async() => {
-    try {
-      const url = `https://localhost:7227/api/Artwork/update-artwork-image?artworkId=${productId}`;
-      const data = {
-        imageUrl: approveImgurl        
-      };
-      const response = await api.post(url,data);
-      console.log(response.data);
-      console.log("Image Approve");
-      setApproved(true);
-      navigate("/content");
-    } catch (error) {
-      console.error("Error approving product:", error);
-    }
-    
-  };
+
   const handleEditImage = () => {
     window.open(CANVA_URL, '_blank');
   };
@@ -128,7 +113,8 @@ export default function ProductPage (){
     <div className="productdetail-page">
       <div className="body1">
      
-          <img src={product.imageUrl} alt="Product" />        
+          <img src={product.imageUrl} alt="Product" />
+          <img src={product.imageUrl2} alt="Product" />
         <div className="info-container">
         {/* <div className='Box-notification'>
         <div className="notification-icon" >
