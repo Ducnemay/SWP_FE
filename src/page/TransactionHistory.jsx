@@ -60,7 +60,7 @@ import useAuth from "../hooks/useAuth";
                 <td>{transaction.orderId}</td>
                 <td>{new Date(transaction.createDate).toLocaleString()}</td>
                 <td>{transaction.amount}</td>
-                <td>{transaction.status ? 'Success' : 'Fail'}</td>
+                <td>{transaction.status ? 'Success' : 'Waiting'}</td>
               </tr>
             ))}
           </tbody>
