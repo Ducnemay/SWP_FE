@@ -80,7 +80,7 @@ const Page = () => {
       return;
     }
     if(!UserAllowtoPost){
-      window.alert("Please Upgrade your account to premium.");
+      window.alert("Please upgrade your account to premium.");
       return;
     }
     const artworkData = {
@@ -128,7 +128,7 @@ const Page = () => {
     } catch (error) {
       console.error("Error creating artwork:", error);
       // Handle error here, e.g., show error message to the user
-      window.alert("Error creating artwork. Please try again.");
+      window.alert("Error creating artwork. Please upgrade your account to premium.");
     }
   };
  
