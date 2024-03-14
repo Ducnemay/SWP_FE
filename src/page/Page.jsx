@@ -70,6 +70,7 @@ const Page = () => {
       setImageUrl2(imageUrl2);
     };
   };
+  const UserAllowtoPost=auth.user.premiumId ===true || auth.user.premiumId !==null;
   const handleSubmit = async (event) => {
     event.preventDefault();
     
@@ -78,7 +79,7 @@ const Page = () => {
       window.alert("Please upload both images before submitting.");
       return;
     }
-    if(auth.user.premiumId !=="premiumID"){
+    if(!UserAllowtoPost){
       window.alert("Please Upgrade your account to premium.");
       return;
     }

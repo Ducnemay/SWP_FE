@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Na from "./Napage";
 import api from "../components/utils/requestAPI"; 
 import useAuth from "../hooks/useAuth";
+import "./TransactionHistory.css"
  const TransactionHistory = () => {
   const { auth } = useAuth();
   const [transactions, setTransactions] = useState([]);
