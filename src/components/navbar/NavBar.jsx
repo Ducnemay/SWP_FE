@@ -63,7 +63,7 @@ const NavBar = () => {
   };
 
   return (
-    <nav>
+    <nav className="Nav-main">
       <div className="icons">
         <Link to="/home">
           <img src="\nenart.jpg" alt="Logo"  className="logo-images" />
@@ -109,7 +109,7 @@ const NavBar = () => {
           {searchResults && searchResults.length > 0 ? (
             searchResults.map((result, index) => (
               <div key={index} className="search-result-item">
-                <div className="image-wrapper" onClick={() => navigate(`/artwork/${result.artworkid}`)}>
+                <div className="image-wrapper" onClick={() => navigate(`/detail/${result.artworkId}`)}>
                   <img src={result.imageUrl} alt={result.title} />
                 </div>
                 <div className="result-details">

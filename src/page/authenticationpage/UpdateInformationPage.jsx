@@ -13,6 +13,8 @@ const UpdateInformationPage = () => {
     const [imageBase64, setImageBase64] = useState('');
     const [imageUrl, setImageUrl] = useState('');
     const [dateOfBirth, setDateOfBirth] = useState('');
+    const [bank, setBank] = useState('');
+    const [bankAccount, setBankAccount] = useState('');
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -43,7 +45,9 @@ const UpdateInformationPage = () => {
             gender: gender,
             address: address,
             phone: phone,
-            dateOfBird: dateOfBirth // Sử dụng dateOfBirth trực tiếp
+            dateOfBird: dateOfBirth,
+            bannk: bank,
+            bankAccount: bankAccount
         };
 
         try {
@@ -91,6 +95,18 @@ const UpdateInformationPage = () => {
                         <input type="date" id="dateOfBirth" name="dateOfBirth" className='authentication-input' required
                             value={dateOfBirth}
                             onChange={(event) => setDateOfBirth(event.target.value)} />
+                    </div>
+                    <div className="authentication-input-container">
+                        <label htmlFor="bank" className='authentication-input-container-label'>Bank</label>
+                        <input type="text" id="bank" name="bank" className='authentication-input' required
+                            value={bank}
+                            onChange={(event) => setBank(event.target.value)} />
+                    </div>
+                    <div className="authentication-input-container">
+                        <label htmlFor="bankAccount" className='authentication-input-container-label'>Bank Account</label>
+                        <input type="text" id="bankAccount" name="bankAccount" className='authentication-input' required
+                            value={bankAccount}
+                            onChange={(event) => setBankAccount(event.target.value)} />
                     </div>
                     <div className="authentication-input-container">
                         <label htmlFor="image" className='authentication-input-container-label'>Image</label>

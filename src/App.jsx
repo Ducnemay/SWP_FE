@@ -169,6 +169,7 @@ const App = () => {
       <Route element={<RequireAuth allowedRoles={["1"]} />}>
         <Route element={<Layout />}>
         <Route path="/home" element={<HomePage />} />
+        <Route path="/edit" element={<Editpage />} />
           <Route path="/products/cages" element={<CagePage />} />
           <Route path="/products/food" element={<FoodPage />} />
           <Route path="/pre" element={<Premium />} />

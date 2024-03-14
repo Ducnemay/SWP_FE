@@ -104,16 +104,17 @@ a {
   transition: color 0.3s;
 }
 
-a::after {
+ .Nav-main a::after {
   content: '';
-  display: block;
+   
+  
   height: 2px;
   width: 0;
   background-color: black;
   transition: width 0.3s;
 }
 
-a:hover {
+.Nav-main a:hover {
   color: blue;
 }
 

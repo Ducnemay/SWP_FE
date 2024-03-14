@@ -54,7 +54,7 @@ const SavePage = () => {
   const handleUnLove = async (productId, userId) => {
     // Hỏi người dùng xác nhận trước khi xóa
     const confirmed = window.confirm("Are you sure you want to remove this saved product?");
-
+    
     // Nếu người dùng xác nhận muốn xóa
     if (confirmed) {
       try {
@@ -74,13 +74,13 @@ const SavePage = () => {
   return (
     <div>
       <Na className="Navuser" />
-
+     
       <div className="product-lists">
         {/* Hiển thị danh sách sản phẩm đã lưu */}
         {savedProducts.map((productId) => (
           <div key={productId} className="product-items">
             {/* Hiển thị thông tin sản phẩm */}
-            <Link to={`/product/${productId}`}>
+            <Link to={`/detail/${productId}`}>
               <img src={artworks[productId]?.imageUrl} alt={artworks[productId]?.title} className="product-imagess" />
               <p className="product-names">{artworks[productId]?.title}</p>
               <p className="product-prices">{artworks[productId]?.price}</p>
