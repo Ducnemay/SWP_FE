@@ -58,6 +58,7 @@ import Editpage from "./page/Editpage";
 import PaymentPage from "./page/PaymentPage";
 import Detailpage from "./page/Detailpage";
 import Paymentblogpage from "./page/Paymentblogpage";
+import Artreport from "./page/Artreport"
 import Insight from "./page/Insight";
 import Transfer from "./page/rolepage/moderatorPage/components/Transfer";
 import PaymentBank from "./page/PaymentBank";
@@ -151,7 +152,8 @@ const App = () => {
         <Route path="/order-info/:orderId" element={<Paymentblogpage />} />
         <Route path="/orderprumium-info/:orderPremiumId" element={<PaymentPremium />} />
         <Route path="/paymentbank/:userId/:artworkUserId/:orderId" element={<PaymentBank />} />
-        
+        <Route path="/detail/:artworkId" element={<Detailpage />} />
+      <Route path="/artreport/:artworkId" element={<Artreport />} />
         
        
       
@@ -201,6 +203,7 @@ const App = () => {
       <Route path="/edit" element={<Editpage />} />
       <Route path="/pay" element={<PaymentPage />} />
       <Route path="/detail/:artworkId" element={<Detailpage />} />
+      <Route path="/artreport/:artworkId" element={<Artreport />} />
       
 
       

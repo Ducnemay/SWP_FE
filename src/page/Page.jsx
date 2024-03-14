@@ -72,22 +72,16 @@ const Page = () => {
   };
   const handleSubmit = async (event) => {
     event.preventDefault();
-
-    // Check if the user's status is already 0
-    if (auth.user.status === "0") {
-      window.alert("You have to upgrade to premium.");
-      return;
-    }
-    if (auth.user.premiumId === null) {
-      window.alert("You have to upgrade to premium.");
-      return;
-    }
-
+    
+    
     if (!imageUrl && !imageUrl2) {
       window.alert("Please upload both images before submitting.");
       return;
     }
-    
+    if(auth.user.premiumId !=="premiumID"){
+      window.alert("Please Upgrade your account to premium.");
+      return;
+    }
     const artworkData = {
       userID:auth.user.userId,
       title: title,
