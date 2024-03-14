@@ -70,7 +70,7 @@ const Page = () => {
       setImageUrl2(imageUrl2);
     };
   };
-  const UserAllowtoPost=auth.user.premiumId ===true || auth.user.premiumId !==null;
+  const UserAllowtoPost=auth.user.statusPost ===true || auth.user.premiumId !==null;
   const handleSubmit = async (event) => {
     event.preventDefault();
     
