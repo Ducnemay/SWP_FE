@@ -3,7 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import './DetailsPage.css'; // Import your custom styles
 import api from "../components/utils/requestAPI";
 import useAuth from '../hooks/useAuth';
-import { FaRegCommentDots,FaReply } from "react-icons/fa";
+import { FaRegCommentDots, FaReply } from "react-icons/fa";
 
 export default function Detailpage() {
   const [product, setProduct] = useState(null);
@@ -61,27 +61,27 @@ export default function Detailpage() {
   const handlePurchase = async () => {
     try {
       setCartBtn("Loading...");
-  
+
       if (!auth || !auth.user) {
         navigate('/log-in');
         return;
       }
-  
+
       if (auth.user.userId === product.userId) {
         // Người dùng đang cố gắng mua sản phẩm mà họ đã tạo
         alert('You cannot purchase your own artwork.');
         return;
       }
-  
+
       const orderData = {
         userID: auth.user.userId,
         artwokID: artworkId,
         createDate: new Date().toISOString()
       };
-  
+
       const response = await api.post("https://localhost:7227/api/Order/create-new-order", orderData);
       const orderId = response.data.orderId;
-  
+
       setCartBtn("Purchased");
       alert('Order created successfully!');
       navigate(`/order/${orderId}`);
@@ -90,7 +90,7 @@ export default function Detailpage() {
       setCartBtn("Purchase");
     }
   };
-  
+
   const toggleCommentSection = () => {
     setShowComment(!showComment);
   };
@@ -100,27 +100,27 @@ export default function Detailpage() {
       if (!commentInput.trim()) {
         return;
       }
-  
+
       if (!auth || !auth.user) {
         navigate('/log-in');
         return;
       }
-  
+
       const commentData = {
         content: commentInput,
         userId: auth.user.userId,
         artWorkId: artworkId
       };
-  
+
       const response = await api.post("https://localhost:7227/api/Comment/create-new", commentData);
-  
+
       const newComment = {
         text: commentInput,
         user: auth.user
       };
-  
+
       let updatedComments = [...comments];
-      
+
       if (replyIndex !== null && replyIndex !== undefined) {
         // If replying to a specific comment, insert the new comment below it
         updatedComments.splice(replyIndex + 1, 0, newComment);
@@ -128,7 +128,7 @@ export default function Detailpage() {
         // Otherwise, add the new comment at the end
         updatedComments.push(newComment);
       }
-  
+
       setComments(updatedComments);
       setCommentInput('');
       setReplyingTo(null);
@@ -136,35 +136,35 @@ export default function Detailpage() {
       console.error('Error creating new comment:', error);
     }
   };
-  
+
   const handleReply = (index) => {
     const commentToReply = comments[index];
     setReplyingTo({ ...commentToReply, index }); // Lưu index của comment đang reply
     setShowComment(true); // Mở phần comment
     window.scrollTo(0, document.body.scrollHeight); // Cuộn đến cuối trang
   };
-  
+
 
   const fetchAllComments = async () => {
     try {
       const url = `https://localhost:7227/api/Comment/get-all-comment-By-Artwork-Id?id=${artworkId}`;
       const response = await api.get(url);
       const commentsData = response.data;
-  
+
       if (commentsData && commentsData.$values && Array.isArray(commentsData.$values)) {
         const commentsArray = commentsData.$values;
-  
+
         // Extract userIds from comments
         const userIds = commentsArray.map(comment => comment.userId);
-  
+
         // Fetch user information for each userId
         const userPromises = userIds.map(userId =>
           api.post("https://localhost:7227/api/User/get-by-id", { userId })
         );
-  
+
         // Wait for all user information requests to resolve
         const userResponses = await Promise.all(userPromises);
-  
+
         // Map userIds to usernames and imageUrls
         const userMap = {};
         userResponses.forEach((response, index) => {
@@ -175,13 +175,13 @@ export default function Detailpage() {
             imageUrl: userData.imageUrl
           };
         });
-  
+
         // Update comments with usernames and imageUrls
         const commentsWithUserinfo = commentsArray.map(comment => ({
           ...comment,
           ...userMap[comment.userId]
         }));
-  
+
         // Set comments state
         setComments(commentsWithUserinfo);
       } else {
@@ -191,7 +191,7 @@ export default function Detailpage() {
       console.error('Error fetching comments:', error);
     }
   };
-  
+
   if (!product) {
     return <div>Loading...</div>;
   }
@@ -208,7 +208,7 @@ export default function Detailpage() {
         <div className="col-md-6">
           <div className="d-flex flex-column justify-content-between h-100">
             <div>
-              <h1 className="display-5 fw-bold text-underline" style={{ fontSize: '4em', marginTop: '0.5em'}}>{product.title}</h1>
+              <h1 className="display-5 fw-bold text-underline" style={{ fontSize: '4em', marginTop: '0.5em' }}>{product.title}</h1>
               <p className="lead" style={{ fontSize: '1.4em', marginTop: '0', marginRight: '10em' }}>{product.desc}</p>
               <p className="lead" style={{ fontSize: '1.5em', marginRight: '11em', position: 'relative' }}>{userMap[product.userId]?.username}
                 <div className="line"></div>
@@ -244,18 +244,32 @@ export default function Detailpage() {
                       )}
                       <p>{comment.fullname}</p>
                       <div className="text-comment">
-                      <p className="comment-text">{comment.text}</p>
+                        <p className="comment-text">{comment.text}</p>
                       </div>
                       {/* Nút reply */}
                       <button onClick={() => handleReply(index)} className="btn btn-sm btn-outline-primary">
-      <FaReply /> 
-    </button>
+                        <FaReply />
+                      </button>
+                      {/* Conditional rendering of reply text box */}
+                      {replyingTo && replyingTo.index === index && (
+                        <div className="reply-text-box">
+                          <input
+                            type="text"
+                            value={commentInput}
+                            onChange={(e) => setCommentInput(e.target.value)}
+                            placeholder="Write a reply..."
+                            className="reply-text"
+                          />
+                          <button onClick={() => addComment(index)} className="btn btn-sm btn-primary">Send</button>
+                        </div>
+                      )}
                     </div>
+
                   ))}
                 </div>
               </div>
             )}
-            <i className="fa-regular fa-heart" style={{marginTop:'1em'}}> Save</i><>&nbsp;&nbsp;&nbsp;&nbsp;</>
+            <i className="fa-regular fa-heart" style={{ marginTop: '1em' }}> Save</i><>&nbsp;&nbsp;&nbsp;&nbsp;</>
             <i className="fa-regular fa-eye"> View</i><>&nbsp;&nbsp;&nbsp;&nbsp;</>
             <i className="fa-regular fa-share-from-square"> Share</i>
           </div>
