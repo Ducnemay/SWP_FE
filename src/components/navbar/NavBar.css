@@ -1,10 +1,11 @@
 /* Navbar.css */
 
 nav {
+
   display: flex;
   justify-content: space-between;
   flex-direction: column; /* Chuyển sang kiểu dọc */
-  
+  padding: 10px;
   background-color: white;
   width: 100%; /* Đặt chiều rộng của nav là 100% */
   border-bottom: 1px solid black; /* Thêm border bottom */
@@ -19,12 +20,13 @@ nav {
 
 
 .icons, .nav-list {
+  color: black;
   display: flex;
   align-items: center;
   width: 100%; /* Đặt chiều rộng của .icons và .nav-list là 100% */
 }
 
-.icons .logo-images {
+.icons img {
   height: 30px;
   width: 40px;
   cursor: pointer;
@@ -33,23 +35,9 @@ nav {
   transition: transform 0.3s ease;
 }
 
-
-  .logo-images:hover {
-    /* Áp dụng hiệu ứng khi di chuột vào hình ảnh */
-    animation: bounce 0.5s;
-  }
-  
-  @keyframes bounce {
-    0% {
-      transform: translateY(0); /* Không di chuyển */
-    }
-    50% {
-      transform: translateY(-5px); /* Di chuyển lên */
-    }
-    100% {
-      transform: translateY(0); /* Trở về vị trí ban đầu */
-    }
-  }
+.icons img:hover {
+  transform: scale(1.2);
+}
 
 .search-container {
   display: flex;
@@ -81,7 +69,8 @@ nav {
   width : 100%; /* Đặt chiều rộng của input là 100% */
 }
 
-.main-nav-list {
+.nav-list ul {
+  gap: 30px;
   list-style: none;
   padding: 0;
   display: flex;
@@ -89,10 +78,10 @@ nav {
   flex-wrap: wrap; /* Cho phép các mục xuống dòng khi không đủ không gian */
   justify-content: flex-start; /* Canh giữa theo chiều ngang */
   align-self: flex-start; /* Đặt align-self là flex-start để .nav-list nằm sát bên trái */
-  width: 100%; /* Đặt chiều rộng của ul là 100% */
+  width: 50%; /* Đặt chiều rộng của ul là 100% */
 }
 
-.nav-link {
+.nav-list li {
   margin-bottom: 10px; /* Khoảng cách giữa các dòng */
   margin-left: 35px; /* Khoảng cách giữa các mục */
 }
@@ -104,17 +93,16 @@ a {
   transition: color 0.3s;
 }
 
- .Nav-main a::after {
+a::after {
   content: '';
-   
-  
+  display: block;
   height: 2px;
   width: 0;
   background-color: black;
   transition: width 0.3s;
 }
 
-.Nav-main a:hover {
+a:hover {
   color: blue;
 }
 
@@ -136,149 +124,56 @@ a:active::after {
 
 }
 .icon{
-  height: 20px;
+  height: 25px;
   width: 30px;
 }
 .icon-button:hover{
   transform: scale(1.2);
 }
-.login-button {
-  background-color: white; /* Blue color */
-  color: black; /* White text color */
-  border: 2px solid black; /* Add a transparent border */
-  padding: 10px 20px;
-  font-size: 16px;
-  cursor: pointer;
-  margin-left: 30px; /* Add some spacing between login/signup buttons */
-  transition: border-color 0.3s ease; /* Add transition for smooth effect */
-  border-radius: 20px; /* Add border-radius for curved border */
-}
-.signup-button {
-  background-color: white; /* Blue color */
-  color: black; /* White text color */
-  border: 2px solid black; /* Add a transparent border */
-  padding: 10px 20px;
-  font-size: 16px;
-  cursor: pointer;
-  margin-left: 20px; /* Add some spacing between login/signup buttons */
-  transition: border-color 0.3s ease; /* Add transition for smooth effect */
-  border-radius: 20px; /* Add border-radius for curved border */
+
+.filter-section {
+  margin-left: 600px;
 }
 
+.nav-list li span {
+  position: relative; /* Cần có vị trí tương đối để đặt dòng kẻ */
+}
+.nav-list li span::after {
+    color: black;
+    content: '';
+    display: block;
+    height: 2px;
+    width: 0;
+    background-color: black;
+    transition: width 0.3s;
+  }
+.dropdown {
+  /* position: absolute; */
+  /* top: 100%; Đặt dropdown bên dưới thẻ li */
+  /* left: 0; */
+  background-color: #fff; /* Màu nền của dropdown */
+  border: 1px solid #ccc; /* Viền của dropdown */
+  min-width: 150px; /* Chiều rộng tối thiểu của dropdown */
+  z-index: 1; /* Đảm bảo dropdown hiển thị trên các phần khác */
+}
 
-.login-button:hover,
-.signup-button:hover {
-  background-color: blue; /* Change background to transparent */
-  color: white; /* Change text color to blue */
-  border-color: black; /* Change border color to blue */
-}
-.search-button {
-  background-color: #007bff; /* Màu xanh dương */
-  color: #fff; /* Màu chữ trắng */
-  border: none;
-  border-radius: 5px;
-  padding: 5px 10px;
-  margin-left: 10px;
-  cursor: pointer;
-}
-
-.search-button:hover {
-  background-color: #0056b3; /* Màu xanh dương nhạt khi di chuột */
-}
-h3{
-  color: black;
-
-}
-.search-result-item {
-  align-items: center; /* Căn giữa các thông tin sản phẩm theo chiều dọc */
+.dropdown li {
   padding: 10px;
-  border-bottom: 1px solid #ccc;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Thêm khung trắng */
-  width: calc(50% - 10px); /* Đặt chiều rộng của mỗi thông tin sản phẩm là 50% với khoảng cách 10px */
-  display: flex;
-  transition: box-shadow 0.3s; /* Tạo hiệu ứng chuyển động cho box-shadow */
-  width: 100%;
+  margin: 10px;
 }
 
-.search-result-item:last-child {
-  border-bottom: none;
+.dropdown li:hover {
+  background-color: rgb(223, 223, 223); /* Màu nền khi hover */
 }
 
-.search-result-item img {
-  width: 80px; /* Đặt chiều rộng của hình ảnh */
-  height: 80px; /* Đặt chiều cao của hình ảnh */
-  margin-right: 10px;
-  border-radius: 50%; /* Làm cho ảnh tròn */
+.nav-list li {
+  position: relative; /* Cần có vị trí tương đối để dropdown xuất hiện đúng vị trí */
 }
 
-.search-result-item h3 {
-  margin: 0; /* Loại bỏ margin top và bottom */
+.dropdown {
+  display: none; /* Mặc định ẩn dropdown */
 }
 
-.search-result-item p {
-  margin-left: 20px; /* Loại bỏ margin top và bottom */
-}
-
-.result-details {
-  display: flex;
-}
-
-/* Hiệu ứng khi di chuột vào */
-.search-result-item:hover {
-  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2); /* Hiệu ứng nổi lên khi di chuột vào */
-}
-.sub-nav {
-margin-left:30px;
-  top: calc(100% + 5px); /* Vị trí phía dưới icon user */
-  right: 0; /* Đảm bảo nằm bên phải icon user */
-  background-color: #ffffff;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  display: none; /* Ẩn ban đầu */
-}
-
-.sub-nav ul {
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
-}
-
-.sub-nav li {
-  padding: 8px 16px;
-}
-
-.sub-nav li:first-child {
-  border-top: 1px solid #ccc;
-}
-
-.sub-nav li:last-child {
-  border-bottom: 1px solid #ccc;
-}
-
-.sub-nav li a {
-  text-decoration: none;
-  color: #333333;
-  display: block;
-}
-
-.sub-nav li a:hover {
-  background-color: #f5f5f5;
-}
-
-.sub-nav button {
-  background-color: transparent;
-  border: none;
-  cursor: pointer;
-  padding: 8px 16px;
-  text-decoration: none;
-  color: #333333;
-  display: block;
-}
-
-.sub-nav button:hover {
-  background-color: #f5f5f5;
-}
-.logout-icon{
-  margin-right: 10px;
+.nav-list li:hover .dropdown {
+  display: block; /* Hiển thị dropdown khi di chuột vào */
 }
