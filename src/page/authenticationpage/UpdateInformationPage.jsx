@@ -1,90 +1,122 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './AuthenticationPage.css';
 import api from '../../components/utils/requestAPI';
 import useAuth from '../../hooks/useAuth';
 import { useNavigate } from 'react-router-dom';
 
-
 const UpdateInformationPage = () => {
     const { auth } = useAuth();
-    const [fullname, setFullname] = useState();
-    const [sex, setSex] = useState();
-    const [birthday, setBirthday] = useState('');
-    const [address, setAddress] = useState();
-    const [phonenumber, setPhonenumber] = useState();
-
+    const [fullname, setFullname] = useState('');
+    const [gender, setGender] = useState('');
+    const [phone, setPhone] = useState('');
+    const [address, setAddress] = useState('');
+    const [imageBase64, setImageBase64] = useState('');
+    const [imageUrl, setImageUrl] = useState('');
+    const [dateOfBirth, setDateOfBirth] = useState('');
+    const [bank, setBank] = useState('');
+    const [bankAccount, setBankAccount] = useState('');
     const navigate = useNavigate();
-    const validateDateOfBirth = (event) => {
-        const selectedDate = new Date(event.target.value);
-        const today = new Date();
-        if (selectedDate >= today) {
-            alert("Please select a valid date of birth.");
-            event.target.value = ""; // Clear the input field
+
+    useEffect(() => {
+        if (auth.user.dateOfBird) {
+            const date = new Date(auth.user.dateOfBird);
+            const formattedDateOfBirth = `${date.getFullYear()}-${(date.getMonth() + 1).toString().padStart(2, '0')}-${date.getDate().toString().padStart(2, '0')}`;
+            setDateOfBirth(formattedDateOfBirth);
         }
-    }
+    }, [auth.user.dateOfBird]);
+
+    const handleImageChange = (event) => {
+        const file = event.target.files[0];
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = () => {
+            const imageUrl = reader.result;
+            setImageBase64(imageUrl);
+            setImageUrl(URL.createObjectURL(file));
+        };
+    };
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        const url = '/api/User/update';
+
         const data = {
-            userID: auth.user.userId,
+            imgURL: imageBase64,
             fullName: fullname,
+            gender: gender,
             address: address,
-            phone: phonenumber,
-            gender: sex,
-            dateOfBird: birthday,
+            phone: phone,
+            dateOfBird: dateOfBirth,
+            bannk: bank,
+            bankAccount: bankAccount
+        };
+
+        try {
+            const response = await api.post(`https://localhost:7227/api/User/update?id=${auth.user.userId}`, data);
+            if (response.data != null)
+                navigate('/log-in');
+            else
+                alert('Failed to update user information. Please try again.');
+        } catch (error) {
+            console.error('Error:', error);
         }
-        console.log(auth.user.userId);
-        console.log(sex);
-        const response = await api.put(url, data);
-        if (response.data != null)
-            navigate('/user-page');
-        else
-            alert('Kiểm tra lại');
-    }
+    };
 
     return (
         <div className='authentication-section'>
-            <a href='/sign-up' className='homepage-link'> Về trang đăng kí</a>
             <div className="authentication-container">
-                <h2>Điền thông tin</h2>
+                <h2>Update User Information</h2>
                 <form onSubmit={handleSubmit}>
                     <div className="authentication-input-container">
-                        <label htmlFor="name" className='authentication-input-container-label'>Họ và Tên</label>
-                        <input type="text" id="name" name="name" className='authentication-input' required
+                        <label htmlFor="fullname" className='authentication-input-container-label'>Full Name</label>
+                        <input type="text" id="fullname" name="fullname" className='authentication-input' required
+                            value={fullname}
                             onChange={(event) => setFullname(event.target.value)} />
                     </div>
-                    <div className="authentication-check-container">
-                        <div className="authentication-check-sex">
-                            <label htmlFor="sex" className='authentication-input-container-label'>Giới tính</label>
-                            <input type="radio" name="sex" value={true} className='authentication-check-sex-button'
-                                onChange={(event) => setSex(event.target.value)} />
-                            <span className='button-title'>
-                                Nam
-                            </span>
-                            <input type="radio" name="sex" value={false} className='authentication-check-sex-button'
-                                onChange={(event) => setSex(event.target.value)} />
-                            <span className='button-title'>
-                                Nữ
-                            </span>
-                        </div>
-                        <div className="authentication-check-dob">
-                            <label htmlFor="dob" className='authentication-input-container-label'>Ngày sinh</label>
-                            <input type="date" name="dob" className='authentication-date' value={birthday}
-                                onChange={(event) => setBirthday(event.target.value)} onBlur={validateDateOfBirth} required />
-                        </div>
+                    <div className="authentication-input-container">
+                        <label htmlFor="gender" className='authentication-input-container-label'>Gender</label>
+                        <input type="text" id="gender" name="gender" className='authentication-input' required
+                            value={gender}
+                            onChange={(event) => setGender(event.target.value)} />
                     </div>
                     <div className="authentication-input-container">
-                        <label htmlFor="address" className='authentication-input-container-label'>Địa chỉ</label>
+                        <label htmlFor="phone" className='authentication-input-container-label'>Phone</label>
+                        <input type="text" id="phone" name="phone" className='authentication-input' required
+                            value={phone}
+                            onChange={(event) => setPhone(event.target.value)} />
+                    </div>
+                    <div className="authentication-input-container">
+                        <label htmlFor="address" className='authentication-input-container-label'>Address</label>
                         <input type="text" id="address" name="address" className='authentication-input' required
+                            value={address}
                             onChange={(event) => setAddress(event.target.value)} />
                     </div>
                     <div className="authentication-input-container">
-                        <label htmlFor="phone-number" className='authentication-input-container-label'>Số điện thoại</label>
-                        <input type="number" id="phone-number" name="phone-number" className='authentication-input' required
-                            onChange={(event) => setPhonenumber(event.target.value)} />
+                        <label htmlFor="dateOfBirth" className='authentication-input-container-label'>Date of Birth</label>
+                        <input type="date" id="dateOfBirth" name="dateOfBirth" className='authentication-input' required
+                            value={dateOfBirth}
+                            onChange={(event) => setDateOfBirth(event.target.value)} />
                     </div>
-                    <button type="submit" className='authentication-button'>Xác nhận</button>
+                    <div className="authentication-input-container">
+                        <label htmlFor="bank" className='authentication-input-container-label'>Bank</label>
+                        <input type="text" id="bank" name="bank" className='authentication-input' required
+                            value={bank}
+                            onChange={(event) => setBank(event.target.value)} />
+                    </div>
+                    <div className="authentication-input-container">
+                        <label htmlFor="bankAccount" className='authentication-input-container-label'>Bank Account</label>
+                        <input type="text" id="bankAccount" name="bankAccount" className='authentication-input' required
+                            value={bankAccount}
+                            onChange={(event) => setBankAccount(event.target.value)} />
+                    </div>
+                    <div className="authentication-input-container">
+                        <label htmlFor="image" className='authentication-input-container-label'>Image</label>
+                        <input type="file" id="image" name="image" className='authentication-input' required
+                            onChange={handleImageChange} />
+                    </div>
+                    {imageUrl && (
+                        <img src={imageUrl} alt="Uploaded" style={{ width: '100px', height: '100px' }} />
+                    )}
+                    <button type="submit" className='authentication-button'>Update</button>
                 </form>
             </div>
         </div>

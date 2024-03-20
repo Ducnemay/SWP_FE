@@ -1,8 +1,14 @@
 import { Navigate, Routes, Route } from "react-router-dom";
+import Header from "./page/rolepage/moderatorPage/components/Header";
+import { Outlet } from "react-router-dom";
+import Body from "./page/rolepage/moderatorPage/components/Body";
+import ProductPageDetail from "./page/rolepage/moderatorPage/components/ProductPageDetail";
+import Report from "./page/rolepage/moderatorPage/components/Report";
 import RequireAuth from "./components/ReqAuth/RequireAuth";
 import Layout from "./components/layout/Layout";
 import Layoutguest from "./components/layout/Layoutguest";
 import HomePage from "./page/HomePage";
+import Order from "./page/Order";
 import CagePage from "./page/productpage/CagePage";
 import FoodPage from "./page/productpage/FoodPage";
 import AccessoriesToysPage from "./page/productpage/AccessoriesToysPage";
@@ -45,10 +51,24 @@ import ConfirmPage from "./page/ConfirmPage";
 import WaitingOrderPage from "./page/WaitingOrderPage";
 import Page from "./page/Page";
 import Premium from "./page/Premium";
+<<<<<<< HEAD
 import Na from "./page/Napage";
+=======
+import TransactionHistory from "./page/TransactionHistory"
+import Napage from "./page/Napage";
+>>>>>>> 2bc1cb9ee827b10fc0b57a0a465a6a47dc738e18
 import Cpage from "./page/Cpage";
 import Editpage from "./page/Editpage";
 import PaymentPage from "./page/PaymentPage";
+import Detailpage from "./page/Detailpage";
+import Paymentblogpage from "./page/Paymentblogpage";
+import Artreport from "./page/Artreport"
+import Insight from "./page/Insight";
+import Transfer from "./page/rolepage/moderatorPage/components/Transfer";
+import PaymentBank from "./page/PaymentBank";
+import Send from "./page/rolepage/moderatorPage/components/Send";
+import PaymentPremium from "./page/PaymentPremium";
+
 
 import React, { useState } from 'react';
 
@@ -93,16 +113,25 @@ const App = () => {
    
   ]);
   return (
+    
+    // <div className="container">
+    //   <Header />
+    //   {/* <ProductPage/> */}
+    //   <Outlet/>
+    // </div>
+    
 
     <Routes>
       {/* public routes */}
      
      <Route element={<Layoutguest />}> 
         <Route path="/" element={<Navigate to="/home" />} />
+        {/* <Route path="/order" element={<Order />} /> */}
         <Route path="/home" element={<HomePage />} />
         <Route path="/products/cages" element={<CagePage />} />
         <Route path="/products/food" element={<FoodPage />} />
-        <Route path="/na" element={<Na />} />
+	<Route path="/insight" element={<Insight />} />
+       
         
         
         
@@ -122,7 +151,14 @@ const App = () => {
         <Route path="/custom-products-end" element={<TotalPage />} />
         <Route path="/order-confirm" element={<ConfirmPage />} />
         <Route path="/order-waiting" element={<WaitingOrderPage />} />
-        <Route path="/page-m" element={<Cpage />} />
+        {/* <Route path="/order-info" element={<Paymentblogpage />} /> */}
+        <Route path="/order/:orderId" element={<Order />} />
+        <Route path="/order-info/:orderId" element={<Paymentblogpage />} />
+        <Route path="/orderprumium-info/:orderPremiumId" element={<PaymentPremium />} />
+        <Route path="/paymentbank/:userId/:artworkUserId/:orderId" element={<PaymentBank />} />
+        <Route path="/detail/:artworkId" element={<Detailpage />} />
+      <Route path="/artreport/:artworkId" element={<Artreport />} />
+        
        
       
         
@@ -134,11 +170,13 @@ const App = () => {
       </Route>
 
       {/* user routes */}
-      <Route element={<RequireAuth allowedRoles={["2"]} />}>
+      <Route element={<RequireAuth allowedRoles={["1"]} />}>
         <Route element={<Layout />}>
         <Route path="/home" element={<HomePage />} />
+        <Route path="/edit" element={<Editpage />} />
           <Route path="/products/cages" element={<CagePage />} />
           <Route path="/products/food" element={<FoodPage />} />
+          <Route path="/pre" element={<Premium />} />
           <Route
             path="/products/accessories-toys"
             element={<AccessoriesToysPage />}
@@ -149,6 +187,14 @@ const App = () => {
           <Route path="/about-us" element={<AboutPage />} />
           <Route path="/cart" element={<CartPage />} />
           <Route path="/save" element={<SavePage savedProducts={savedProducts} />} />
+          <Route path="/transHis" element={<TransactionHistory/>} />
+          <Route path="/page-m" element={<Cpage />} />
+          <Route path="/na" element={<Napage />} />
+          {/* <Route path="/content" element={<Body />}/>
+        
+        <Route path="/report" element={<Report />}/>
+        <Route path="/productPageDetail/:productId" element={<ProductPageDetail />} /> */}
+
         </Route>
       </Route>
 
@@ -158,16 +204,23 @@ const App = () => {
       <Route path="/sign-up" element={<SignUpPage />} />
       <Route path="/update-info" element={<UpdateInformationPage />} />
       <Route path="/page-c" element={<Page />} />
+<<<<<<< HEAD
       <Route path="/pre" element={<Premium />} />
       <Route path="/page-n" element={<Na />} />
+=======
+      
+>>>>>>> 2bc1cb9ee827b10fc0b57a0a465a6a47dc738e18
       <Route path="/edit" element={<Editpage />} />
       <Route path="/pay" element={<PaymentPage />} />
+      <Route path="/detail/:artworkId" element={<Detailpage />} />
+      <Route path="/artreport/:artworkId" element={<Artreport />} />
+      
 
       
       
 
       {/* admin routes */}
-      <Route element={<RequireAuth allowedRoles={["1"]} />}>
+      <Route element={<RequireAuth allowedRoles={["2"]} />}>
         <Route path="/admin-page" element={<AdminPage />} />
         <Route element={<RoleLayout />}>
           <Route path="/manage-account" element={<ManageAccount />} />
@@ -177,7 +230,7 @@ const App = () => {
       </Route>
 
       {/* manager routes */}
-      <Route element={<RequireAuth allowedRoles={["4"]} />}>
+      {/* <Route element={<RequireAuth allowedRoles={["4"]} />}>
         <Route path="/manager-page" element={<ManagerPage />} />
         <Route element={<RoleLayout />}>
           <Route
@@ -188,7 +241,7 @@ const App = () => {
           <Route path="/product/:action" element={<ProductPage />} />
           <Route path="/voucher/:action" element={<VoucherPage />} />
         </Route>
-      </Route>
+      </Route> */}
 
       {/* staff routes */}
       <Route element={<RequireAuth allowedRoles={["3"]} />}>
@@ -202,6 +255,21 @@ const App = () => {
           <Route path="/announce-order" element={<AnnounceOrderPage />} />
         </Route>
       </Route>
+      {/* moderator routes */}
+      <Route element={<RequireAuth allowedRoles={["4"]} />}>
+        {/* <Route path="/manager-page" element={<ManagerPage />} /> */}
+      <Route path="/content" element={<Body />}/>
+      {/* <Route element={<RoleLayout />}>   */}
+        <Route path="/report" element={<Report />}/>
+        <Route path="/productPageDetail/:productId" element={<ProductPageDetail />} />
+        <Route path="/transfer" element={<Transfer />}/>
+        <Route path="/send" element={<Send />}/> 
+        
+
+        </Route>
+        {/* </Route> */}
+      
+
       <Route element={<Layoutguest />}> </Route>
       <Route path="/" element={<Navigate to="/home" />} />
         <Route path="/home" element={<HomePage />} />

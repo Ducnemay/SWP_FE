@@ -1,137 +1,224 @@
 /* HomePage.css */
 
-.product-page h1 {
-    font-size: 30px; /* Set the desired font size */
-    border-bottom: 1px solid #888; /* Add a bottom border with a light gray color */
-    padding-bottom: 8px; /* Optional: Add padding to create space between text and border */
-    width: 100%; /* Set the width to 100% */
 
-    margin-right: 900px;;
-  }
-  
-  .product-list {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    padding: 20px;
-    box-sizing: border-box;
-  }
-  
-  .product-itemm {
-    flex: 0 0 calc(30% - 20px); /* Adjust the percentage as needed */
-    margin: 10px; /* Updated margin for better spacing */
-    padding: 20px;
-    
-    text-align: left;
-    transition: transform 0.3s ease-in-out;
-    overflow: hidden;
-  }
-  
-  .product-card {
-    border: 2px solid #ccc;
-    border-radius: 8px;
-    overflow: hidden;
-    transition: box-shadow 0.3s ease;
-  }
-  
-  .product-card:hover {
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  }
-  
-  /* HomePage.css */
 
-/* HomePage.css */
+.main-tieude {
+  color: transparent; /* Đặt màu văn bản thành trong suốt */
+  font-size: 100px;
+  border-bottom: 1px solid #888;
+  padding-bottom: 8px;
+  width: 100%;
+  background-image: url('https://static.vinwonders.com/2022/12/rung-viet-nam-0.jpg'); 
+  background-size: cover;
+  -webkit-background-clip: text; /* Cho phép chèn hình ảnh vào văn bản */
+  background-clip: text;
+}
+
+
+.product-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.product-itemm {
+  width: calc(33.33% - 20px); /* Chiều rộng của mỗi sản phẩm trong một hàng */
+  margin-bottom: 20px; /* Khoảng cách dưới giữa các sản phẩm */
+}
+
+.product-card {
+  width: 25rem;
+  height: auto;
+  background: #fff;
+  border-radius: 1.5rem;
+  padding: 1.5rem;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Thay đổi box shadow khi hover */
+}
+
+.product-card:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Thay đổi box shadow khi hover */
+}
+
 
 .product-images {
-    width: 100%;
-    height: 200px; /* Set the desired height */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-  }
-  
-  .product-imagee {
-    margin-top: 20px;
-    width: 50%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.3s ease-in-out;
-  }
-  
-  .product-itemm:hover .product-imagee {
-    transform: scale(1.1);
-  }
-  
-  
-  
-  .product-content {
-    padding: 10px;
-    box-sizing: border-box;
-  }
-  
- /* HomePage.css */
+  overflow: hidden;
+
+  width: 100%;
+  height: auto;
+  position: relative;
+}
+
+.product-imagee {
+  width: 100%;
+  height: auto;
+  max-height: 15rem;
+  object-fit: cover;
+  border-radius: 1.5rem;
+  transition: transform 0.3s ease;
+}
+
+.product-itemm:hover .product-imagee {
+  transform: scale(1.2);
+}
+
+.product-content {
+  padding: 10px;
+}
 
 .product-title {
-    color: #888; /* Light gray color */
-    font-size: 14px; /* Set the desired font size */
-    text-align: left;
-    margin-bottom: 8px;
+  text-align: left;
+  padding: 1rem 0;
+  color: #22215B80;
+  font-size: 1rem;
+}
+
+
+
+.product-prices {
+  text-align: left; /* Căn chữ giá tiền sang lề trái */
+  padding: 1rem 0;
+  color: black;
+  font-size: 1rem;
+  
+}
+.button-heart .Report-button{
+  color: black; /* Đảm bảo màu của icon là đen */
+  background: none;
+  border: none;
+  padding: 0;
+  outline: none;
+  margin-left: 2vh;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  padding: 0;
+  margin: 20px 0;
+}
+
+.pagination li {
+  display: inline-block;
+  margin: 0 5px;
+  cursor: pointer;
+}
+
+.pagination li.active {
+  font-weight: bold;
+}
+
+.pagination li a {
+  text-decoration: none;
+  color: #333;
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.pagination li a:hover {
+  background-color: #f2f2f2;
+}
+.button-heart {
+  text-align: right;
+}
+
+.button-heart button.liked {
+  color: red;
+}
+
+.button-heart .like-button {
+  color: black;
+  background: none;
+  border: none;
+  padding: 0;
+  outline: none;
+}
+.notification {
+  position: fixed;
+  bottom: 10px; 
+  left: 50%; 
+  transform: translateX(-50%); 
+  background-color: rgba(46, 204, 113, 0.8); 
+  color: black; 
+  padding: 10px 150px; 
+  border-radius: 5px; 
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); 
+  z-index: 9999; 
+}
+.notification-remove {
+  position: fixed;
+  bottom: 10px; 
+  left: 50%; 
+  transform: translateX(-50%); 
+  background-color: #000; 
+  color: #fff; 
+  padding: 10px 20px; 
+  border-radius: 5px; 
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); 
+  z-index: 9999;
+}
+
+.loader {
+  position: fixed; /* Đảm bảo loader luôn hiển thị ở trên cùng */
+  top: 17%; /* Đặt top ở giữa màn hình */
+  left: 50%; /* Đặt left ở giữa màn hình */
+  transform: translate(-50%, -50%); /* Dịch chuyển loader ngược lại 50% của kích thước của nó để căn giữa */
+  perspective: 1000px;
+  border-radius: 50%;
+  width: 48px;
+  height: 48px;
+  color: black;
+}
+
+.loader:before,
+.loader:after {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: inherit;
+  height: inherit;
+  border-radius: 50%;
+  transform: rotateX(70deg);
+  animation: 1s spin linear infinite;
+}
+
+.loader:after {
+  color: #FF3D00;
+  transform: rotateY(70deg);
+  animation-delay: .4s;
+}
+
+@keyframes spin {
+  0%,
+  100% {
+    box-shadow: .2em 0px 0 0px currentcolor;
   }
-  
-  
-  
-  .pagination {
-    display: flex;
-    justify-content: center;
-    list-style: none;
-    padding: 0;
-    margin: 20px 0;
+  12% {
+    box-shadow: .2em .2em 0 0 currentcolor;
   }
-  
-  .pagination {
-    display: flex;
-    justify-content: center;
-    list-style: none;
-    padding: 0;
-  
-    li {
-      display: inline-block;
-      margin: 0 5px;
-      cursor: pointer;
-  
-      &.active {
-        font-weight: bold;
-      }
-  
-      a {
-        text-decoration: none;
-        color: #333;
-        padding: 8px 12px;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        display: block;
-  
-        &:hover {
-          background-color: #f2f2f2;
-        }
-      }
-    }
+  25% {
+    box-shadow: 0 .2em 0 0px currentcolor;
   }
-  
-  .button-heart {
-    text-align: right;
+  37% {
+    box-shadow: -.2em .2em 0 0 currentcolor;
   }
-  
-  .button-heart button.liked {
-    color: red;
+  50% {
+    box-shadow: -.2em 0 0 0 currentcolor;
   }
-  
-  .button-heart button {
-    color: black;
-    background: none;
-    border: none;
-    padding: 0;
-    outline: none;
+  62% {
+    box-shadow: -.2em -.2em 0 0 currentcolor;
   }
-  
+  75% {
+    box-shadow: 0px -.2em 0 0 currentcolor;
+  }
+  87% {
+    box-shadow: .2em -.2em 0 0 currentcolor;
+  }
+}

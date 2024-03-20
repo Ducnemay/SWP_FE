@@ -16,31 +16,36 @@ const NavPage = () => {
           setUser(response.data);
         }
       } catch (error) {
-        console.error('Error fetching user data:', error);
+        console.error('Error fetching user data or premium order:', error);
       }
     };
 
     fetchUserData();
   }, [auth]);
-
   return (
     <div className="navbar-container">
       {user && (
         <div className="user-container">
-          <div className="user-info">
+          <div className="user-infos">
             <div
               className="user-image"
-              style={{ backgroundImage: `url("https://vivureviews.com/wp-content/uploads/2022/08/avatar-vo-danh-9.png")`, width: '50px', height: '50px', backgroundSize: 'cover', backgroundPosition: 'center', borderRadius: '50%', overflow: 'hidden' }}
+              style={{ backgroundImage: `url("${user.imageUrl}")`, width: '50px', height: '50px', backgroundSize: 'cover', backgroundPosition: 'center', borderRadius: '50%', overflow: 'hidden' }}
             ></div>
             <div className="user-details">
               <h2>{user.username}</h2>
               <p>{user.address}</p>
             </div>
+            <div className='user-premium'>
+              {user.premiumId ? (
+                <p>Pro</p>
+              ) : (
+                <p>User does not have premium</p>
+              )}
+            </div>
           </div>
           <a href="/edit" className="settings-button">Settings</a>
         </div>
       )}
-
       <nav className="nav-container">
         <ul className="sub-nav-list">
           <li>
@@ -50,10 +55,10 @@ const NavPage = () => {
             <NavLink to="/insight" className="sub-nav-link">Insight</NavLink>
           </li>
           <li>
-            <NavLink to="/save" className="sub-nav-link">Saves</NavLink>
+            <NavLink to="/save" className="sub-nav-link">Save</NavLink>
           </li>
           <li>
-            <NavLink to="/follow" className="sub-nav-link">Follow</NavLink>
+            <NavLink to="/transHis" className="sub-nav-link">Transaction History </NavLink>
           </li>
         </ul>
       </nav>

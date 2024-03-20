@@ -1,0 +1,48 @@
+/* DetailsPage.css */
+
+.container {
+    font-family: Arial, sans-serif;
+  }
+  
+  .product {
+    margin-top: 2em;
+  }
+  
+  .product img {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  .product-content {
+    margin-top: 1em;
+  }
+  
+  .product-content p {
+    margin-bottom: 1em;
+  }
+  
+  .product-content .lead {
+    font-size: 1.2em;
+  }
+  
+  .product-content h2 {
+    margin-top: 0.5em;
+  }
+  
+  .button-heart button {
+    margin-top: 1em;
+  }
+  
+  .fa-regular {
+    margin-right: 1em;
+  }
+  
+  .line {
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: #000;
+  }
+  

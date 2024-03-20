@@ -1,0 +1,93 @@
+/* DetailsPage.css */
+
+.container {
+  font-family: Arial, sans-serif;
+}
+
+.product {
+  margin-top: 2em;
+}
+
+.product img {
+  max-width: 100%;
+  height: auto;
+}
+
+.product-content {
+  margin-top: 1em;
+}
+
+.product-content p {
+  margin-bottom: 1em;
+}
+
+.product-content .lead {
+  font-size: 1.2em;
+}
+
+.product-content h2 {
+  margin-top: 0.5em;
+}
+
+.button-heart button {
+  margin-top: 1em;
+}
+
+.fa-regular {
+  margin-right: 1em;
+}
+
+.line {
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: #000;
+}
+.comment-input {
+  background-color: white;
+  width:20vh ;
+  height: 40px;
+  padding: 10px;
+  /* text-align: center; */
+  border: 2px solid black;
+  border-radius: 5px;
+  /* box-shadow: 3px 3px 2px rgb(249, 255, 85); */
+}
+
+.comment-input:focus {
+  color: rgb(0, 255, 255);
+  background-color: #212121;
+  outline-color: rgb(0, 255, 255);
+  box-shadow: -3px -3px 15px rgb(0, 255, 255);
+  transition: .1s;
+  transition-property: box-shadow;
+}
+
+.comment-list {
+max-height: 300px; 
+overflow-y: auto; 
+}
+
+.comment {
+display: flex;
+align-items: center;
+margin-bottom: 20px; /* Khoảng cách giữa các comment */
+}
+
+.user-avatar {
+width: 40px; /* Điều chỉnh kích thước hình ảnh người dùng */
+height: 40px;
+border-radius: 50%; /* Làm cho hình ảnh tròn */
+margin-right: 10px; /* Khoảng cách giữa hình ảnh người dùng và nội dung comment */
+}
+
+.fullname {
+font-weight: bold;
+margin-right: 10px; /* Khoảng cách giữa tên người dùng và nội dung comment */
+}
+
+.text-comment {
+margin-left: 50px; /* Khoảng cách giữa hình ảnh người dùng và nội dung comment */
+}

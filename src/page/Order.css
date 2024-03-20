@@ -1,0 +1,142 @@
+.order-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+}
+.image-collection {
+  display: flex;  /* Sắp xếp nội dung trong thẻ 'box' theo chiều ngang */
+  align-items: center; /* Căn giữa các thẻ con theo chiều dọc */
+  border: 1px solid #ccc; /* Thêm viền */
+  border-radius: 5px;
+  padding: 15px;
+  }
+  
+  .order-box{
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: column;
+}
+
+
+  
+  /* Individual box styling */
+  /* .image-collection {
+    border-radius: 10px;
+    box-sizing: border-box;
+    height: max-content;
+  } */
+  
+  /* Styling for the image container within each box */
+  /* .image-collection .image-container {
+    flex: 1;
+    overflow: hidden;
+    border-radius: 10px;
+  } */
+  
+  /* Styling for the images within the image container */
+ .order-overlay img {
+    display: block;
+    width: 100px;
+    height: auto;
+    border-radius: 10px;
+    transition: transform 0.3s ease; /* Smooth transition for the zoom effect */
+  }
+  
+  /* Styling for the overlay on hover */
+/* .overlay {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.5);
+    z-index: 1;
+    transition: background-color 0.3s ease; /* Smooth transition for the overlay */
+  /* } */ */
+  
+  /* Styling for details section within each box */
+.image-collection .details {
+    margin-top: 20px;
+  }
+  
+  
+  /* Zoom effect for the image on hover */
+  /* .image-collection .box:hover img {
+    transform: scale(1.05);
+  } */
+.order-details{
+  display: flex;  /* Sắp xếp nội dung trong thẻ 'box' theo chiều ngang */
+  align-items: center;
+}  
+  
+.details .authors {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .image-collection .overlay img.processing-false {
+    filter: brightness(10%);
+  }
+.order-row{
+  padding: 30px;
+  width: max-content;
+}
+.order-authors, .order-totals{
+  margin-left: 80px;
+  margin-right: 80px;
+  width: max-content;
+  font-size: 16px;
+  color: black;
+}
+.order-titles{
+  margin-left: 80px;
+  margin-right: 80px;
+  width: 150px;
+  font-size: 16px;
+  color: black;
+  text-align: left;
+
+}
+.order-authors-mau, .order-titles-mau, .order-totals-mau{
+  margin-left: 80px;
+  margin-right: 80px;
+  width: max-content;
+}
+.order-action-mau{
+  margin-left: 30px;
+  /* margin-right: 55px; */
+}
+.order-atwork-mau{
+  margin-left: 20px;
+  margin-right: 55px;
+  width: max-content;
+}
+.order-titles-mau{
+  margin-left: 140px;
+  margin-right: 90px;
+  width: max-content;
+}
+.atwork-order-mau1{
+  display:flex;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 15px;
+  margin-bottom: 15px;
+}
+.order-confirm-button{
+  display: inline-block;
+    text-decoration: none;
+    background-color: rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
+    border: 2px solid black;
+    padding: 12px 20px;
+    border-radius: 15px;
+    width: 100px;
+}
+.order-confirm-button:hover{
+  background-color: rgb(255, 254, 254);
+  color: rgb(0, 0, 0);
+}

@@ -1,6 +1,10 @@
 /* Page.css */
 
+<<<<<<< HEAD
 .artwork-form {
+=======
+.add-artwork-form {
+>>>>>>> 2bc1cb9ee827b10fc0b57a0a465a6a47dc738e18
   max-width: 1200px;
   margin: 0 auto;
   display: flex;
@@ -10,33 +14,59 @@
   padding: 2em;
 }
 
+<<<<<<< HEAD
 .form-title {
+=======
+.cus-form-title {
+  font-weight: bold;
+>>>>>>> 2bc1cb9ee827b10fc0b57a0a465a6a47dc738e18
   text-align: center;
   margin-bottom: 20px;
   color: #333;
   font-size: 24px;
 }
+<<<<<<< HEAD
 .form-column-left {
   width: 500px;
   float: left;
 }
 .form-column-right {
+=======
+.img-column-left {
+  width: 500px;
+  float: left;
+}
+.img-column-right {
+>>>>>>> 2bc1cb9ee827b10fc0b57a0a465a6a47dc738e18
   width: 500px;
   float: right;
 }
 
+<<<<<<< HEAD
 .form-label {
   
   
+=======
+.cus-form-label {
+  
+  display:grid;
+>>>>>>> 2bc1cb9ee827b10fc0b57a0a465a6a47dc738e18
   position: relative;
   margin-bottom: 20px;
   color: #333;
 }
 
+<<<<<<< HEAD
 .form-input,
 .form-select,
 .form-textarea,
 .file-upload-input {
+=======
+.cus-form-input,
+.cus-form-select,
+.cus-form-textarea,
+.cus-image-upload {
+>>>>>>> 2bc1cb9ee827b10fc0b57a0a465a6a47dc738e18
   width: 100%;
   padding: 10px;
 
@@ -49,6 +79,7 @@
   color: #333;
 }
 
+<<<<<<< HEAD
 .form-input:focus,
 .form-input:valid,
 .form-select:focus,
@@ -60,11 +91,25 @@
   border-color: #000000; 
 }
 .form-label select {
+=======
+.cus-form-input:focus,
+.cus-form-input:valid,
+.cus-form-select:focus,
+.cus-form-select:valid,
+.cus-form-textarea:focus,
+.cus-form-textarea:valid,
+.cus-image-upload:focus,
+.image-upload-input:valid {
+  border-color: #000000; 
+}
+.cus-form-label select {
+>>>>>>> 2bc1cb9ee827b10fc0b57a0a465a6a47dc738e18
   width: 100%;
   padding: 8px; /* Adjust the padding as needed for spacing */
   font-size: 16px; /* Adjust the font size as needed */
 }
 
+<<<<<<< HEAD
 
 .unit-radio {
   display: flex;
@@ -76,6 +121,9 @@
 }
 
 .submit-button {
+=======
+.cus-submit-button {
+>>>>>>> 2bc1cb9ee827b10fc0b57a0a465a6a47dc738e18
   width: 600px;
   padding: 10px;
   font-size: 16px;
@@ -126,3 +174,11 @@
   background-color: #f4f4f4;
 }
 
+<<<<<<< HEAD
+=======
+.upload-information{
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+>>>>>>> 2bc1cb9ee827b10fc0b57a0a465a6a47dc738e18

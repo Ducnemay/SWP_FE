@@ -1,0 +1,90 @@
+.paymentpremium-blog-page {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: stretch; /* Đảm bảo các phần tử con co giãn để bằng chiều cao của container */
+    height: 50vh;
+    margin-top: -30px ; 
+    margin-bottom:100px  ;
+}
+
+.paymentpremium-product-info,
+.paymentpremium-user-info {
+    border: 1px solid #ccc; /* Thêm viền 1px độ dày và màu xám nhạt */
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column; /* Hiển thị theo cột */
+    justify-content: center; /* Căn giữa các phần tử theo chiều dọc */
+    align-items: center; /* Căn giữa các phần tử theo chiều ngang */
+    padding: 20px;
+    margin: 10px;
+    flex: 1; /* Đảm bảo các khung có cùng chiều rộng */
+    height: 400px;
+}
+
+.paymentpremium-product-info {
+    max-width: 300px; /* Giới hạn chiều rộng của khung */
+}
+
+.paymentpremium-user-info {
+    max-width: 300px; /* Giới hạn chiều rộng của khung */
+}
+
+.paymentpremium-product-image {
+    width: 100px;
+    height: auto;
+    margin-bottom: 10px;
+}
+
+.paymentpremium-info-title {
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.paymentpremium-info-item {
+    margin-bottom: 5px;
+     
+}
+.paymentpremium-info-itemss{
+    margin-bottom: 5px;
+    font-size: 30px;
+    font-weight: bold;  
+}
+.paymentpremium-blog-button-cofirm{
+    display: inline-block;
+    text-decoration: none;
+    background-color: rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
+    border: 2px solid black;
+    padding: 12px 20px;
+    border-radius: 15px;
+    position: absolute;
+    left: 15px;
+  width: 130px;
+    top: 20px;
+}
+.paymentpremium-blog-button-cancle{
+  display: inline-block;
+  text-decoration: none;
+  background-color: rgb(0, 0, 0);
+  color: rgb(255, 255, 255);
+  border: 2px solid black;
+  padding: 12px 20px;
+  border-radius: 15px;
+  position: absolute;
+  right: 15px;
+  width: 130px;
+  top: 20px;
+
+}
+.paymentpremium-blog-button-cofirm:hover, .paymentpremium-blog-button-cancle:hover{
+    background-color: rgb(255, 254, 254);
+    color: rgb(0, 0, 0);
+  }
+.paymentpremium-position-button{
+  display: flex;
+  height: 100px;
+  position: relative;
+  /* margin-left: 320px; */
+  top: 60px
+}
