@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import Na from "./Napage";
-import api from "../components/utils/requestAPI"; 
+import api from "../components/utils/requestAPI";
 import useAuth from "../hooks/useAuth";
 import "./TransactionHistory.css"
- const TransactionHistory = () => {
+
+
+const TransactionHistory = () => {
   const { auth } = useAuth();
   const [transactions, setTransactions] = useState([]);
+
 
   useEffect(() => {
     const fetchUserData = async () => {
@@ -14,10 +17,10 @@ import "./TransactionHistory.css"
           const response = await api.post("https://localhost:7227/api/User/get-by-id", { userId: auth.user.userId });
           const userOrdersResponse = await api.get("https://localhost:7227/api/Order/get-all");
           const allOrders = userOrdersResponse.data.$values;
-
+          const userOrders = allOrders.filter(order => order.userId === auth.user.userId);
           const transactionsData = [];
 
-          for (const order of allOrders) {
+          for (const order of userOrders) {
             try {
               const paymentResponse = await api.get(`https://localhost:7227/api/Payment/get-payment-by-order-id?id=${order.orderId}`);
               const paymentData = paymentResponse.data;
@@ -29,6 +32,11 @@ import "./TransactionHistory.css"
             }
           }
 
+
+          // Sort transactions by date and time
+          transactionsData.sort((a, b) => new Date(b.createDate) - new Date(a.createDate));
+
+
           setTransactions(transactionsData);
         }
       } catch (error) {
@@ -36,6 +44,7 @@ import "./TransactionHistory.css"
         // Handle the error (e.g., log it, display a message to the user)
       }
     };
+
 
     fetchUserData();
   }, [auth]);

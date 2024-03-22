@@ -5,26 +5,39 @@ import api from "../components/utils/requestAPI";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import useAuth from '../hooks/useAuth';
 
+
 export default function Artreport() {
   const [product, setProduct] = useState(null);
   const [des, setdes] = useState(null);
   const [cartBtn, setCartBtn] = useState("confirmation Reports");
   const [userMap, setUserMap] = useState({});
+  const [reportCount, setReportCount] = useState({}); // Lưu trữ số lần report cho mỗi userId
   const { auth } = useAuth(); // Lấy thông tin người dùng từ hook useAuth
   const navigate = useNavigate(); // Sử dụng useNavigate để chuyển hướng
 
+
   // Sử dụng useParams để lấy artworkId từ URL
   const { artworkId } = useParams();
+
 
   useEffect(() => {
     const fetchProductById = async () => {
       // Sử dụng artworkId để tạo URL cho API request
       const url = `https://localhost:7227/api/Artwork/get-by-id?id=${artworkId}`;
 
+      if (product) {
+        const initialReportCount = {};
+        initialReportCount[auth.user.userId] = {};
+        initialReportCount[auth.user.userId][artworkId] = 0;
+        setReportCount(initialReportCount);
+      }
+
+
       try {
         const response = await api.get(url);
         const productData = response.data;
         setProduct(productData);
+
 
         // Lấy thông tin về người dùng sau khi nhận dữ liệu của tác phẩm nghệ thuật
         fetchUsers([productData.userId]);
@@ -33,8 +46,10 @@ export default function Artreport() {
       }
     };
 
+
     fetchProductById();
-  }, [artworkId]); // Đảm bảo useEffect được gọi lại khi artworkId thay đổi
+  }, [product, auth.user.userId, artworkId]); // Đảm bảo useEffect được gọi lại khi artworkId thay đổi
+
 
   const fetchUsers = async (userIds) => {
     try {
@@ -54,9 +69,11 @@ export default function Artreport() {
     }
   };
 
+
   const handleReport = async () => {
     try {
       setCartBtn("Loading...");
+
 
       // Kiểm tra xem người dùng đã đăng nhập chưa
       if (!auth || !auth.user) {
@@ -65,23 +82,47 @@ export default function Artreport() {
         navigate('/login');
         return;
       }
+      const userId = auth.user.userId;
+
+
+      // Kiểm tra số lần report đã thực hiện cho userId
+      const currentReportCount = reportCount[userId] || 0;
+      if (currentReportCount >= 3) {
+        alert('Bạn đã đạt số lần report tối đa.');
+        return;
+      }
+
 
       // Tạo dữ liệu order
       const orderData = {
         userID: auth.user.userId,
-        description : des,
+        description: des,
         artworkID: artworkId,
         date: new Date().toISOString()
       };
 
+
       // Gửi yêu cầu để thêm order
       await api.post(`https://localhost:7227/api/Report/create-new-report?UserId=${auth.user.userId}`, orderData);
 
+
+      // Cập nhật số lần report
+      setReportCount(prevState => ({
+        ...prevState,
+        [userId]: {
+          ...(prevState[userId] || {}),
+          [artworkId]: currentReportCount + 1
+        }
+      }), () => {
+        console.log('Updated reportCount:', reportCount);
+      });
       // Cập nhật trạng thái nút Purchase sau khi thành công
       setCartBtn("confirmation Report");
 
+
       // Hiển thị thông báo thành công
       alert('report created successfully!');
+
 
       // Chuyển hướng sang trang order-detail
       navigate('/home');
@@ -91,9 +132,11 @@ export default function Artreport() {
     }
   };
 
+
   if (!product) {
     return <div>Loading...</div>;
   }
+
 
   return (
     <div className="container my-5 py-3">
@@ -104,10 +147,11 @@ export default function Artreport() {
           </div>
         </div>
 
+
         <div className="col-md-6">
           <div className="d-flex flex-column justify-content-between h-100">
             <div>
-              <h1 className="display-5 fw-bold text-underline" style={{ fontSize: '4em', marginTop: '0.5em'}}>{product.title}</h1>
+              <h1 className="display-5 fw-bold text-underline" style={{ fontSize: '4em', marginTop: '0.5em' }}>{product.title}</h1>
               <p className="lead" style={{ fontSize: '1.4em', marginTop: '0', marginRight: '10em' }}>{product.desc}</p>
               <p className="lead" style={{ fontSize: '1.5em', marginRight: '11em', position: 'relative' }}>{userMap[product.userId]?.username}
                 <div className="line"></div>
@@ -118,15 +162,16 @@ export default function Artreport() {
               <button onClick={handleReport} className="btn btn-outline-primary" style={{ fontSize: '1.8rem', background: 'black', color: 'white', width: '450px' }}>{cartBtn}</button>
             </div>
             <select
-            value={des}
-            onChange={(e) => setdes(e.target.value)}
-          >
-            <option style={{marginTop:'1em'}}>choose reason of report<>&nbsp;&nbsp;&nbsp;&nbsp;</></option> 
-            <option>Violation of copyright regulations<>&nbsp;&nbsp;&nbsp;&nbsp;</></option> 
-            <option>Offensive or inappropriate<>&nbsp;&nbsp;&nbsp;&nbsp;</></option>
-            <option>Violating ethical or moral standards<>&nbsp;&nbsp;&nbsp;&nbsp;</></option>
+              value={des}
+              onChange={(e) => setdes(e.target.value)}
+            >
+              <option style={{ marginTop: '1em' }}>choose reason of report<>&nbsp;&nbsp;&nbsp;&nbsp;</></option>
+              <option>Violation of copyright regulations<>&nbsp;&nbsp;&nbsp;&nbsp;</></option>
+              <option>Offensive or inappropriate<>&nbsp;&nbsp;&nbsp;&nbsp;</></option>
+              <option>Violating ethical or moral standards<>&nbsp;&nbsp;&nbsp;&nbsp;</></option>
             </select>
-            
+
+
           </div>
         </div>
       </div>
