@@ -1,0 +1,81 @@
+.blog-page {
+    margin: 20px;
+}
+
+.blog-page-heading {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.blog-item {
+    text-decoration: none;
+}
+
+.role-page-edit-button {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.update-button {
+    background-color: white;
+    color: black;
+    font-size: 18px;
+    padding: 9px 13px;
+    padding-right: 9px;
+    padding-bottom: 7px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+}
+
+.update-button:hover {
+    background-color: rgba(225, 225, 225, 0.5);
+}
+
+.blog-item-detail {
+    display: flex;
+    width: 100%;
+    border-bottom: 1px solid #ccc;
+    padding: 20px;
+    border-radius: 15px;
+    margin-bottom: 30px;
+    text-decoration: none;
+}
+
+.blog-item-image {
+    width: 30%;
+}
+
+.blog-item-image img {
+    border-radius: 15px;
+    width: 60%;
+    height: auto;
+}
+
+.blog-item-information {
+    width: 60%;
+}
+
+.blog-title {
+    color: black;
+    text-align: justify;
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.blog-meta {
+    text-align: justify;
+    font-size: 14px;
+    color: #888;
+    margin-bottom: 10px;
+}
+
+.blog-description {
+    color: black;
+    text-align: justify;
+    font-size: 16px;
+    line-height: 1.5;
+}

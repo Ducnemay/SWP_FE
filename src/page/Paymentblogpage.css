@@ -1,0 +1,94 @@
+
+  .payment-blog-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 80vh; /* Điều chỉnh kích thước tối đa của khung nếu cần */
+    margin: 0 auto; /* Căn giữa khung */
+    padding: 20px; /* Khoảng cách giữa nội dung và viền khung */
+    border: 2px solid black; /* Viền khung */
+    border-radius: 10px; /* Độ cong của góc khung */
+    margin-bottom: 20vh;
+    height:80vh;
+  }
+  
+  .product-info,
+  .user-infos {
+   
+    margin-bottom: 20px;
+    padding: 20px;
+    
+    border-radius: 8px;
+  }
+  
+  .product-info {
+    background-color: white;
+    width: 100%;
+    display: flex;
+    border: 2px solid black; /* Viền khung */
+    align-items: center; /* Căn giữa các phần tử theo chiều ngang */
+    text-align: center; /* Căn giữa nội dung văn bản */
+    justify-content: flex-start; /* Đặt .product-info ở lề trái */
+    height:30vh;
+  }
+  
+  .product-imagez {
+    width: 30vh; /* Điều chỉnh kích thước ảnh sản phẩm */
+    height: 20vh;
+    margin-top: 10px; /* Khoảng cách giữa ảnh và thông tin sản phẩm */
+    margin-right: 55vh;
+    transition: transform 0.3s ease; /* Tạo hiệu ứng smooth khi zoom */
+}
+
+.product-imagez:hover {
+    transform: scale(1.2); /* Phóng to ảnh khi rê chuột vào */
+}
+
+  .user-infos {
+    background-color: white;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    text-align: center; /* Căn giữa nội dung văn bản */
+    justify-content: flex-start; /* Đặt .product-info ở lề trái */
+    border: 2px solid black; /* Viền khung */
+  }
+  .user-infos .info-item {
+
+margin-right: 50vh;
+
+
+
+  }
+  .user-infos .info-title {
+   
+    margin-right: 50vh;
+  }
+  
+  .info-item {
+    margin-bottom: 5px;
+  }
+  
+  .divider {
+    width: 100%; /* Đảm bảo chiều rộng của đường ngang bằng với phần tử cha */
+    height: 2px; /* Độ dày của đường ngang */
+    background-color: black; /* Màu sắc của đường ngang */
+    margin: 20px 0; /* Khoảng cách giữa đường ngang và các phần tử xung quanh */
+  }
+  .product-info-content{
+margin-top: 10vh;
+margin-right: 45vh;
+
+  }
+  .product-info-image{
+    width:60%;
+  }
+  .product-info-content{
+    width:40%;
+  }
+  .product-info-content .info-item{
+width:25vh;
+  }
+  .success-text p{
+    color: rgb(8, 197, 8); /* Đặt màu chữ là màu xanh */
+}

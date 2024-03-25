@@ -1,0 +1,84 @@
+/* src/components/Cpage.css */
+
+/* Grid container for the body */
+.image-collection {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+  }
+  
+  /* Grid container for the images */
+  .box {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    padding: 20px;
+    margin-top: 20px;
+    align-items: start;
+  }
+  
+  /* Individual box styling */
+  /* .image-collection {
+    border-radius: 10px;
+    box-sizing: border-box;
+    height: max-content;
+  } */
+  
+  /* Styling for the image container within each box */
+  .image-collection .image-container {
+    flex: 1;
+    overflow: hidden;
+    border-radius: 10px;
+  }
+  
+  /* Styling for the images within the image container */
+ img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    transition: transform 0.3s ease; /* Smooth transition for the zoom effect */
+  }
+  
+  /* Styling for the overlay on hover */
+/* .overlay {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.5);
+    z-index: 1;
+    transition: background-color 0.3s ease; /* Smooth transition for the overlay */
+  /* } */ */
+  
+  /* Styling for details section within each box */
+.image-collection .details {
+    margin-top: 20px;
+  }
+  
+  
+  /* Zoom effect for the image on hover */
+  .image-collection .box:hover img {
+    transform: scale(1.05);
+  }
+  
+.details .authors {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .image-collection .overlay img.processing-false {
+    filter: brightness(10%);
+  }
+  .overlay .waiting-text {
+    position: absolute;
+    top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+    /* bottom: 150px; */
+    color: rgb(255, 255, 255);
+    font-size: 20px;
+  }

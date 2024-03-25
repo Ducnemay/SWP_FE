@@ -1,0 +1,5 @@
+https://www.figma.com/file/8F1jEUKzAd8kVAZBHLyVwC/Tini-Design-System-(Community)?type=design&node-id=2447-23145&mode=design
+
+git remote add origin git@github.com:SWP391-bird-farm-shop/frontend.git
+git branch -M main
+git push -u origin main

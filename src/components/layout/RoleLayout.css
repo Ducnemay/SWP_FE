@@ -1,0 +1,27 @@
+.layout-manage-navbar {
+    position: fixed;
+    top: 0;
+    z-index: 1;
+}
+
+#content-role-page {
+    margin-top: 55px;
+}
+
+.content-role-page-search {
+    display: flex;
+    justify-content: center;
+    padding-top: 30px;
+    padding-left: 20vw;
+    z-index: 1;
+}
+
+.content-outlet-role-page {
+    background-color: white;
+    color: rgb(111, 109, 109);
+    position: relative;
+    z-index: 0;
+    margin: 0 5vw;
+    margin-left: 20vw;
+    padding-top: 30px;
+}

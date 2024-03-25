@@ -1,0 +1,53 @@
+/* src/components/Header.css */
+
+/* Styling for the main header container */
+.header {
+  display: flex;
+  flex-direction: column;
+  height: 100px;
+  background-color: #ffffff;
+  color: rgb(0, 0, 0);
+}
+
+/* Styling for the top section of the header */
+.top-section {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 60px; /* Adjusted font size for better readability */
+  font-family: cursive;
+}
+
+/* Styling for the bottom section of the header */
+.bottom-section {
+  display: flex;
+  height: 50px;
+  background-color: #000000;
+  font-family: cursive;
+  color:#ffffff
+}
+
+/* Styling for each menu item */
+.menu-item {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid white;
+}
+
+/* Styling for links within the bottom section */
+.menu-item a {
+  color: inherit;
+  text-decoration: none;
+  padding: 8px 50px; /* Added padding for better clickability */
+}
+
+/* Hover effect for the menu items */
+.menu-item a:hover {
+  background-color: white;
+  color: #000000;
+  border: 1px solid #000000;
+  border-radius: 4px;
+}

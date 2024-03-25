@@ -1,0 +1,48 @@
+.feedback-page {
+    border: 1px solid black;
+    padding: 5px 40px;
+    margin: 40px;
+    margin-right: 0;
+    margin-bottom: 20px;
+}
+
+.feedback-product {
+    font-size: 20px;
+    text-align: justify;
+    color: black;
+    margin: 2px;
+}
+
+.feedback-info {
+    display: flex;
+    align-items: center;
+}
+
+.feedback-user-avatar {
+    width: 70px;
+    height: 70px;
+}
+
+.feedback-user-avatar img {
+    width: 100%;
+    border-radius: 15px;
+}
+
+.username-and-feedback {
+    text-align: justify;
+    color: black;
+    font-size: 18px;
+    padding: 5px 0;
+    margin: 0 30px;
+}
+
+.username-and-feedback p{
+    font-size: 18px;
+    padding: 5px 0;
+    margin: 0;
+}
+
+.author {
+    font-weight: 600;
+    color: #4CAF50;
+}

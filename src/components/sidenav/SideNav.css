@@ -1,0 +1,31 @@
+/* SideNav.css */
+
+.side-navbar {
+    position: fixed;
+    top: 63px;
+    left: 0;
+    width: 20vw;
+    height: 100vh;
+    background-color: #f7f7f7;
+    border-right: 1px solid #ccc;
+    z-index: 1;
+}
+
+.side-navbar-link {
+    display: block;
+    color: black;
+    text-align: justify;
+    text-decoration: none;
+    padding: 20px 10px;
+    border: 1px solid #ccc;
+    border-radius: 15px;
+    margin: 30px 20px;
+}
+
+.side-navbar-link:hover {
+    background-color: white;
+}
+
+.side-navbar-link-icon {
+    margin: 0 10px;
+}

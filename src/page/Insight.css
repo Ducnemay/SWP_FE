@@ -1,0 +1,73 @@
+/* src/components/Cpage.css */
+
+/* Grid container for the body */
+.insight-image-collection {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+  }
+  
+  /* Grid container for the images */
+  .insight-order-box {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    padding: 20px;
+    margin-top: 20px;
+    align-items: start;
+  }
+  
+  /* Individual box styling */
+  /* .image-collection {
+    border-radius: 10px;
+    box-sizing: border-box;
+    height: max-content;
+  } */
+  
+  /* Styling for the image container within each box */
+  .insight-image-collection .image-container {
+    flex: 1;
+    overflow: hidden;
+    border-radius: 10px;
+  }
+  
+  /* Styling for the images within the image container */
+ .insight-order-overlay img {
+    display: block;
+    max-width: 100%;
+    height: 300px;
+    border-radius: 10px;
+    transition: transform 0.3s ease; /* Smooth transition for the zoom effect */
+  }
+  
+  /* Styling for the insight-order-overlay on hover */
+/* .insight-order-overlay {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.5);
+    z-index: 1;
+    transition: background-color 0.3s ease; /* Smooth transition for the insight-order-overlay */
+  /* } */ */
+  
+  /* Styling for insight-order-details section within each box */
+.insight-image-collection .insight-order-details {
+    margin-top: 20px;
+  }
+  
+  /* Zoom effect for the image on hover */
+  .insight-image-collection .box:hover img {
+    transform: scale(1.05);
+  }
+  
+.insight-order-details .insight-order-authors {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+.insight-order-details{
+    text-align: left;
+}

@@ -1,0 +1,189 @@
+.setting-homepage-link-bar {
+    background-color: white;
+    position: fixed;
+    width: 100vw;
+    top: 0;
+    border-bottom: 2px solid #ccc;
+}
+
+.setting-homepage-link {
+    color: rgb(0, 0, 0);
+    text-decoration: none;
+    float: left;
+    font-size: 16px;
+    font-weight: 500;
+    margin: 8px 50px;
+    margin-bottom: 10px;
+}
+
+.setting-homepage-link:hover {
+    opacity: 0.8;
+}
+
+.setting-homepage-link::before {
+    content: '\2190';
+    font-size: 24px;
+}
+
+.update-info-page {
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.update-info-container {
+    background-color: rgba(225, 225, 225, 0.2);
+    width: 70vw;
+    padding: 50px;
+    border-radius: 5px;
+}
+
+.update-info-container-title {
+    font-size: 22px;
+    margin: 20px 0;
+}
+
+.update-info-container h2 {
+    color: #4CAF50;
+    text-align: center;
+}
+
+.update-info-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.update-info-of-img,
+.update-info-of-profile {
+    flex: 1;
+    height: 371px;
+    margin: 30px;
+    padding: 20px 40px;
+    background-color: white;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+}
+
+.update-info-of-img h2,
+.update-info-of-profile h2 {
+    margin: 0;
+}
+
+.avatar {
+    width: 325px;
+    height: 270px;
+    border-radius: 50%;
+    margin: 20px;
+}
+
+.custom-file-upload {
+    color: grey;
+    text-align: center;
+    font-size: 16px;
+    padding: 10px 0;
+    cursor: pointer;
+}
+
+.custom-file-upload:hover {
+    color: black;
+}
+  
+.update-info-input-container {
+    margin-bottom: 10px;
+}
+
+.update-info-input-container-label {
+    display: block;
+    color: #4CAF50;
+    text-align: left;
+    padding-left: 15px;
+    margin-bottom: 5px;
+}
+
+.update-info-input {
+    background-color: aliceblue;
+    color: black;
+    width: 96%;
+    height: 18.4px;
+    font-size: 16px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 15px;
+    margin: 0;
+    outline: none;
+}
+
+.update-info-input::-webkit-inner-spin-button,
+.update-info-input::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+    display: none;
+    padding: 0;
+}
+
+.update-info-check-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.update-info-check-sex-button {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    border-radius: 50%;
+    width: 12px;
+    height: 12px;
+    border: 1px solid black;
+    background-color: #fff;
+    padding: 0;
+    outline: none;
+    cursor: pointer;
+}
+
+.update-info-check-sex-button:checked {
+    background-color: black;
+    border: 2px solid #ccc;
+}
+
+.button-title {
+    color: black;
+    margin: 0 20px;
+    margin-left: 5px;
+}
+
+.update-info-date {
+    background-color: aliceblue;
+    color: black;
+    width: 90%;
+    height: 18.4px;
+    font-size: 16px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 15px;
+    margin: 0;
+    outline: none;
+}
+
+.update-info-date::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+}
+
+.update-info-button {
+    width: 40%;
+    font-size: 16px;
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    margin: 30px 0;
+    cursor: pointer;
+}
+
+.update-info-button:hover {
+    background-color: #45a049;
+}

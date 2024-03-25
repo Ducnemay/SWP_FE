@@ -1,0 +1,70 @@
+.create-voucher-page {
+  width: 40%;
+  padding: 20px 50px;
+  background-color: white;
+  border-radius: 15px;
+  border: 1px solid #ccc;
+  color: black;
+  margin: 30px auto;
+}
+
+.create-voucher-title {
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #4CAF50;
+  text-align: center;
+}
+
+.create-voucher-input-container {
+  margin-bottom: 10px;
+}
+
+.create-voucher-input-label {
+  display: block;
+  color: #4CAF50;
+  text-align: left;
+  padding-left: 15px;
+  margin-bottom: 5px;
+}
+
+.create-voucher-input-field {
+  background-color: aliceblue;
+  color: black;
+  width: 96%;
+  height: 18.4px;
+  font-size: 16px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 15px;
+  margin: 0;
+  outline: none;
+}
+
+.create-voucher-input-field::-webkit-inner-spin-button,
+.create-voucher-input-field::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+  display: none;
+  padding: 0;
+}
+
+.create-voucher-input-field::-webkit-calendar-picker-indicator {
+  filter: invert(1);
+}
+
+.add-button {
+  width: 40%;
+  font-size: 16px;
+  padding: 10px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  margin: 30px 0;
+  margin-bottom: 0;
+  cursor: pointer;
+}
+
+.add-button:hover {
+  background-color: #45a049;
+}

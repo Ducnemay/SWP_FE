@@ -1,0 +1,112 @@
+/* CSS */
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: white;
+    margin-left: 0; /* Thêm lề trái */
+    width: 100%; /* Chiếm toàn bộ chiều rộng */
+  }
+  .sub-nav-list {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    align-items: center; /* Căn giữa theo chiều dọc */
+    width: 100%;
+    justify-content: flex-end; /* Đưa các mục về phía bên phải */
+  }
+  
+  .sub-nav-link {
+    margin-right: 440px; /* Điều chỉnh khoảng cách giữa các mục */
+    width: auto; /* Sửa chiều rộng của các mục link */
+  }
+  
+  .nav-container a {
+    text-decoration: none;
+    color: black;
+    position: relative;
+    transition: color 0.3s; /* Thêm transition cho màu chữ */
+  }
+  
+  .nav-container a::after {
+    content: '';
+    display: block;
+    height: 2px;
+    width: 0;
+    background-color: black; /* Đổi màu thành đen */
+    transition: width 0.3s;
+  }
+  
+  nav a:hover {
+    color:blue ; /* Màu xanh khi đưa chuột vào */
+  }
+  
+  nav a:hover::after,
+  nav a:focus::after,
+  nav a:active::after {
+    width: 100%;
+  }
+  .user-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Align items to the start and end */
+    width: 100%;
+    background-color: white;
+    padding: 10px;
+    margin-left: 0;
+  }
+  
+  .user-info {
+    display: flex;
+    align-items: center;
+  }
+  
+  .user-info h2,
+  .user-info p {
+    margin: 0;
+    color: black;
+    font-size: 1rem;
+    margin-left: 10px;
+  }
+  /* NavBar.css */
+
+/* NavBar.css */
+
+/* NavBar.css */
+
+.settings-button {
+  display: inline-block;
+  text-decoration: none;
+  background-color: white;
+  color: black;
+  border: 2px solid black;
+  padding: 12px 20px;
+  border-radius: 15px;
+  margin-right: 50px;
+  cursor: pointer;
+}
+
+.settings-button:hover {
+  background-color: blue;
+  color: white;
+  /* Add any additional styles for hover state */
+}
+
+/* Keep the existing styles as it is */
+
+
+
+/* Keep the existing styles as it is */
+
+  .navbar-container{
+    height:200px;
+    width:100%; /* Chiếm toàn bộ chiều rộng */
+    margin-left: 20px;
+    margin-top: 20px;
+  }
+  .nav-container{
+    margin-top: 30px;
+    width:1860px; /* Chiếm toàn bộ chiều rộng */
+    
+  }

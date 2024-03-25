@@ -1,0 +1,64 @@
+.product-lists {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); /* Căn cột tự động */
+  gap: 20px; /* Khoảng cách giữa các sản phẩm */
+  padding: 20px; /* Khoảng cách bên trong của danh sách sản phẩm */
+}
+
+.product-items {
+  position: relative; /* Đặt vị trí tương đối cho card sản phẩm */
+  background-color: #fff;
+  border: 2px solid black; /* Đường viền của sản phẩm */
+  border-radius: 5px; /* Bo tròn các góc */
+  padding: 10px; /* Khoảng cách bên trong của sản phẩm */
+  transition: all 0.5s ease; /* Hiệu ứng chuyển động */
+  transform-style: preserve-3d; /* Bảo toàn trạng thái 3D của phần tử */
+  perspective: 1000px; /* Khoảng cách từ mắt người nhìn đến mặt phẳng 3D */
+}
+
+.product-items:hover {
+  transform: rotateY(20deg) rotateX(-20deg); /* Lật card nghiêng */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Hiệu ứng bóng */
+}
+
+.product-items .front,
+.product-items .back {
+  position: absolute; /* Đặt vị trí tuyệt đối cho mặt trước và mặt sau */
+  width: 100%; /* Chiều rộng bằng 100% của card */
+  height: 100%; /* Chiều cao bằng 100% của card */
+  backface-visibility: hidden; /* Ẩn mặt sau khi lật */
+}
+
+.product-items .front {
+  z-index: 2; /* Đặt mặt trước ở trên cùng */
+}
+
+.product-items .back {
+  transform: rotateY(180deg) rotateX(-180deg); /* Lật mặt sau */
+}
+
+.product-imagess {
+  width: 100%; /* Đảm bảo hình ảnh chiếm toàn bộ kích thước của khung */
+  height: auto; /* Chiều cao tự động */
+  border-radius: 10px; /* Bo tròn các góc của hình ảnh */
+}
+
+.product-names {
+  margin: 5px 0; /* Khoảng cách giữa tên sản phẩm và giá */
+  font-size: 14px; /* Kích thước font cho tên sản phẩm */
+  font-weight: bold; /* Chữ đậm cho tên sản phẩm */
+}
+
+.product-prices {
+  font-size: 14px; /* Kích thước font cho giá sản phẩm */
+  font-weight: bold; /* Chữ đậm cho giá sản phẩm */
+}
+
+.heart-icons {
+  position: absolute; /* Đặt vị trí tuyệt đối cho biểu tượng trái tim */
+  bottom: 5px; /* Cách dưới 5px */
+  right: 5px; /* Cách phải 5px */
+  cursor: pointer; /* Con trỏ thành hình cắt */
+  color: red; /* Màu đỏ cho biểu tượng trái tim */
+  z-index: 3; /* Đảm bảo biểu tượng trái tim hiển thị trên cùng */
+}

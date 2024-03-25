@@ -1,0 +1,56 @@
+.species-carousel {
+    margin: 5px 0;
+    position: relative;
+}
+
+.bird-carousel-item {
+    display: block;
+    height: 270px;
+    margin: 0 3%;
+    text-decoration: none;
+}
+
+.bird-carousel-item img {
+    width: 100%;
+    height: 80%;
+    border: 1px solid #ccc;
+    border-radius: 15px;
+}
+
+.bird-carousel-item h4 {
+    position: relative;
+    height: 20%;
+    color: #0366D6;
+    margin: 20px;
+    font-size: 17px;
+    font-weight: 550;
+}
+
+.switch-icon-prev,
+.switch-icon-next {
+    font-size: 30px;
+    display: block;
+    color: black;
+    background-color: aliceblue;
+    height: 40px;
+    width: 42px;
+    border-radius: 100%;
+    border: none;
+    margin: -15px 10px;
+    padding: 1px 0;
+    padding-bottom: 5px;
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.switch-icon-prev {
+    padding-right: 2px;
+    left: 10px;
+}
+
+.switch-icon-next {
+    padding-left: 2px;
+    right: 10px;
+}

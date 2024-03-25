@@ -1,0 +1,36 @@
+.about-container {
+    display: flex;
+    align-items: flex-start;
+  }
+  
+  .image-container {
+    width: 40%;
+    margin-right: 40px;
+  }
+  
+  .image-container img {
+    width: 50%;
+    height: auto;
+    border-radius: 15px;
+  }
+  
+  .description-container {
+    background-color: rgba(128, 128, 128, 0.1);
+    width: 40%;
+    padding: 0 40px;
+    border-radius: 15px;
+  }
+  
+  .description-container h2 {
+    color: #1B8600;
+    font-size: 30px;
+    margin: 0;
+    margin-bottom: 10px;
+  }
+  
+  .description-container p {
+    font-size: 16px;
+    text-align: justify;
+    line-height: 1.7;
+  }
+  

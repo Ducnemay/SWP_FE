@@ -1,0 +1,63 @@
+.order-page {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    border: 1px solid black;
+    padding: 20px;
+    margin: 40px;
+    margin-right: 0;
+    margin-bottom: 20px;
+}
+
+.order-customer-info-section,
+.order-product-info-section,
+.summary-section {
+    background-color: #fff;
+    color: black;
+    border-radius: 5px;
+}
+
+.order-customer-info-section p,
+.order-product-info-section p,
+.summary-title {
+    text-align: left;
+    font-size: 18px;
+    padding: 5px 0;
+    margin: 0;
+}
+
+.process-section-label {
+    color: black;
+    font-size: 18px;
+}
+
+.process-section-date {
+    background-color: aliceblue;
+    color: black;
+    width: 50%;
+    height: 18.4px;
+    font-size: 16px;
+    padding: 10px 20px;
+    border: 1px solid #ccc;
+    border-radius: 15px;
+    margin: 20px 0;
+    outline: none;
+}
+
+.process-section-date::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+}
+
+.finish-button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.finish-button:hover {
+    background-color: #45a049;
+}

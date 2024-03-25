@@ -1,0 +1,186 @@
+/* AuthenticationPage.css */
+
+/* AuthenticationPage.css */
+
+.authentication-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; /* Center content vertically */
+  margin-top: 0; /* Remove top margin to make the image cover the entire viewport */
+  height: 100vh; /* Set the height to 100% of the viewport height */
+  background-image: url('/nen (2).jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed; /* Ensure the background remains fixed while scrolling */
+}
+
+
+/* Rest of your existing styles */
+
+.homepage-link {
+  margin: 20px; /* Adjust margin as needed */
+  text-decoration: none;
+  color: white;
+  position: fixed; /* Fixed position to keep it in place while scrolling */
+  top: 0; /* Align to the top of the viewport */
+  left: 0; /* Align to the left of the viewport */
+}
+.homepage-link:hover{
+  color: yellowgreen;
+}
+  
+  .authentication-container {
+    width: 400px;
+    padding: 20px;
+    background-color: black; /* Use an rgba background color with some transparency */
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px); /* Apply a blur effect with a 10px radius */
+  }
+  
+  .authentication-container h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color:white;
+  }
+  
+  .authentication-input-container {
+    position: relative;
+    
+  }
+  
+  .authentication-input {
+   font-size: 16px;
+ padding: 10px 10px 10px 5px;
+ display: block;
+ width: 200px;
+ border: none;
+ border-bottom: 1px solid #515151;
+ background: transparent;
+  }
+  
+  
+  .authentication-input:focus,
+  .authentication-input:valid {
+    outline: none; /* Green color on focus or valid input */
+  }
+  
+  .authentication-input-container-label {
+    color: #999;
+    font-size: 18px;
+    font-weight: normal;
+    position: absolute;
+    pointer-events: none;
+    left: 5px;
+    top: 10px;
+    transition: 0.2s ease all;
+    -moz-transition: 0.2s ease all;
+    -webkit-transition: 0.2s ease all;
+  }
+  
+  .authentication-input:focus + .authentication-input-container-label,
+  .authentication-input:valid + .authentication-input-container-label {
+    top: -20px;
+    font-size: 14px;
+    color: #5264AE;
+  }
+  
+  .log-in-password-toggle-button {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    color: white;
+  }
+  
+  .forgot-password-link {
+    display: block;
+    margin-bottom: 20px;
+    text-align: right;
+    text-decoration: none;
+    color: #666;
+  }
+  
+  .authentication-button {
+    width: 100%; /* Make the button as wide as the input */
+    padding: 10px;
+    font-size: 16px;
+    background-color: #4caf50;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    outline: none;
+    transition: background-color 0.3s;
+  }
+  
+  .authentication-button:hover {
+    background-color: #45a049; /* Darker green color on hover */
+  }
+  p{
+    color :black;
+  }
+  .confirm-password-toggle-button {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    color: black;
+  }
+  .bar:before, .bar:after {
+    content: '';
+    height: 2px;
+    width: 0;
+    bottom: 1px;
+    position: absolute;
+    background: #5264AE;
+    transition: 0.2s ease all;
+    -moz-transition: 0.2s ease all;
+    -webkit-transition: 0.2s ease all;
+   }
+   
+   .bar:before {
+    left: 50%;
+   }
+   
+   .bar:after {
+    right: 50%;
+   }
+   
+   .input:focus ~ .bar:before, .input:focus ~ .bar:after {
+    width: 50%;
+   }
+   
+   .highlight {
+    position: absolute;
+    height: 60%;
+    width: 100px;
+    top: 25%;
+    left: 0;
+    pointer-events: none;
+    opacity: 0.5;
+   }
+   .authentication-input:focus ~ .highlight {
+    animation: inputHighlighter 0.3s ease;
+   }
+   
+   @keyframes inputHighlighter {
+    from {
+     background: #5264AE;
+    }
+   
+    to {
+     width: 0;
+     background: transparent;
+    }
+   }   
