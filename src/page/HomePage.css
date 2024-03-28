@@ -68,6 +68,12 @@
 .product-content {
   padding: 10px;
 }
+.product-content p{
+  text-align: left;
+  padding: 1rem 0;
+  color: black;
+  font-size: 1rem;
+}
 
 .product-title {
   text-align: left;
@@ -167,7 +173,9 @@
 .product-card {
   position: relative; 
 }
-
+.artist-card{
+  position: relative; 
+}
 .button-heart {
   position: absolute; 
   bottom: 2vh; /* Đặt vị trí từ trên xuống */

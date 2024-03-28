@@ -63,6 +63,7 @@ import Insight from "./page/Insight";
 
 import Transfer from "./page/rolepage/moderatorPage/components/Transfer";
 import Artistpage from "./page/Artistpage";
+import Toplikepage from "./page/Toplikepage";
 
 import React, { useState } from 'react';
 
@@ -160,6 +161,7 @@ const App = () => {
       <Route element={<RequireAuth allowedRoles={["1"]} />}>
         <Route element={<Layout />}>
         <Route path="/edit" element={<Editpage />} />
+        <Route path="/top-likes" element={<Toplikepage />} />
         <Route path="/artist/:userId" element={<Artistpage />} />
         <Route path="/home" element={<HomePage />} />
           <Route path="/products/cages" element={<CagePage />} />

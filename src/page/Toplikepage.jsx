@@ -7,7 +7,7 @@ import api from "../components/utils/requestAPI"; // Import the api module
 import useAuth from "../hooks/useAuth";
 import "./HomePage.css";
 
-const HomePage = () => {
+const Toplikepage = () => {
   const [savedProducts, setSavedProducts] = useState([]);
   const [currentPage, setCurrentPage] = useState(0);
   const [showNotification, setShowNotification] = useState(false); // Thêm state cho hiển thị thông báo
@@ -21,7 +21,7 @@ const HomePage = () => {
 
   useEffect(() => {
     const fetchArtworks = async () => {
-      const url = "https://localhost:7227/api/Artwork/get-all";
+      const url = "https://localhost:7227/api/Artwork/get-top-artwork_like";
       try {
         const response = await api.get(url);
         const extractedArtworks = response.data.$values || [];
@@ -162,7 +162,7 @@ const HomePage = () => {
 
   return (
     <div className="product-page">
-      <h1 className="main-tieude">Collect art and design online</h1>
+      <h1 className="main-tieude">TOP LIKES ARTWORKS</h1>
       <div className="product-list">
         {currentProducts.map((product) => (
           <div key={product.artworkId} className="product-itemm">
@@ -217,4 +217,4 @@ const HomePage = () => {
   );
 };
 
-export default HomePage;
+export default Toplikepage;
