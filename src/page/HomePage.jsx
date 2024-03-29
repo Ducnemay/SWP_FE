@@ -14,10 +14,17 @@ const HomePage = () => {
   const [showRemoveNotification, setShowRemoveNotification] = useState(false); // Thêm state cho hiển thị thông báo khi unlove
   const productsPerPage = 6;
 
+  const [dateFilter, setDateFilter] = useState('');
+  // const [purchaseFilter, setPurchaseFilter] = useState('');
+  const [priceFilter, setPriceFilter] = useState('');
+  const [showFilters, setShowFilters] = useState(false); // Trạng thái để xác định liệu nên hiển thị bộ lọc hay không
+  const [showRightSideBox, setShowRightSideBox] = useState(false); // Trạng thái để xác định liệu nên hiển thị hộp bên phải hay không
+
   const [artworkList, setArtworkList] = useState(null);
   const [userMap, setUserMap] = useState({}); // State để lưu thông tin người dùng
   const { auth } = useAuth();
   const navigate = useNavigate(); // Sử dụng useNavigate để chuyển hướng
+  const [purchaseFilter, setPurchaseFilter] = useState('');
 
   useEffect(() => {
     const fetchArtworks = async () => {
@@ -144,6 +151,28 @@ const HomePage = () => {
       )
     );
   };
+
+  // const handleApplyFilters = () => {
+  //   setShowFilters(true); // Hiển thị bộ lọc khi người dùng nhấp vào nút "Apply Filters"
+  //   setShowRightSideBox(true); // Hiển thị hộp bên phải khi nhấp vào nút "Filter"
+  // };
+
+  // const handlePriceFilterChange = (event) => {
+  //   setPriceFilter(event.target.value);
+  // };
+
+  // const handleDateFilterChange = (event) => {
+  //   setDateFilter(event.target.value);
+  // };
+
+  // const handlePurchaseFilterChange = (event) => {
+  //   setPurchaseFilter(event.target.value);
+  // };
+
+  // const handleSubmit = () => {
+  //   // Xử lý logic khi click vào nút "Submit"
+  //   console.log("Submit button clicked");
+  // };
 
   return (
     <div className="product-page">

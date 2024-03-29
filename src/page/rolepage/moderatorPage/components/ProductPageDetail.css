@@ -26,6 +26,7 @@
   img {
     /* width: 100%; */
     height: auto;
+    padding: 10px;
     
   }
   .body1 img{
@@ -44,6 +45,7 @@
   
   .details {
     margin-bottom: 0px;
+    padding-left: 15px;
     text-align: left;
   }
   

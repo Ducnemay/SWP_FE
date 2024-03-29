@@ -101,10 +101,10 @@ export default function Insight() {
                 <div className="insight-order-details">
                   <div className="insight-order-authors">{artworkList[ord.artworkId].description}</div>
                   <div className="insight-order-titles">{artworkList[ord.artworkId].title}</div>
-                   
+                <div className="refund-button">   
                  <button>Refund Artwork</button> 
                 </div>
-                
+                </div>
               </div>
             ))}
           </div>

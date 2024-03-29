@@ -14,10 +14,6 @@ const NavBar = () => {
   const [searchResults, setSearchResults] = useState([]);
   const [showSubNav, setShowSubNav] = useState(false); // State để kiểm soát hiển thị của subnavitem
   const [showDropdown, setShowDropdown] = useState(false);
-  const [priceFilter, setPriceFilter] = useState('');
-  const [dateFilter, setDateFilter] = useState('');
-  const [purchaseFilter, setPurchaseFilter] = useState('');
-  const [showFilters, setShowFilters] = useState(false); // Trạng thái để xác định liệu nên hiển thị bộ lọc hay không
 
   const handleInputChange = (event) => {
     const inputValue = event.target.value;
@@ -71,28 +67,14 @@ const NavBar = () => {
     setShowDropdown(!showDropdown);
   };
 
-  const handlePriceFilterChange = (event) => {
-    setPriceFilter(event.target.value);
-  };
-
-  const handleDateFilterChange = (event) => {
-    setDateFilter(event.target.value);
-  };
-
-  const handlePurchaseFilterChange = (event) => {
-    setPurchaseFilter(event.target.value);
-  };
-
-  const handleApplyFilters = () => {
-    setShowFilters(true); // Hiển thị bộ lọc khi người dùng nhấp vào nút "Filter"
-  };
-
   return (
     <nav className="Nav-main">
       <div className="icons">
+        <div className="sidebar-nav">
         <Link to="/home">
           <img src="\nenart.jpg" alt="Logo"  className="logo-images" />
         </Link>
+        </div>
         <div className="search-container">
           <img src="https://www.thinkafrica.fi/wp-content/uploads/2019/04/search-icon.png" alt="Search" />
           <input type="text" placeholder="Search..." className="search-input" onChange={handleInputChange} />
@@ -160,15 +142,10 @@ const NavBar = () => {
 
       <div className="nav-list">
         <ul>
-          <li><NavLink to="/artworks" style={{ color: "black", textDecoration:"none"}}>Artworks</NavLink></li>
-          <li><NavLink to="/auction" style={{ color: "black", textDecoration:"none"}}>Auction</NavLink></li>
-          <li><NavLink to="/viewing-room" style={{ color: "black", textDecoration:"none"}}>Viewing Room</NavLink></li>
-          <li><NavLink to="/galleries" style={{ color: "black", textDecoration:"none"}}>Galleries</NavLink></li>
-          <li><NavLink to="/fairs-shows" style={{ color: "black", textDecoration:"none"}}>Fairs Shows</NavLink></li>
           <li onMouseEnter={toggleDropdown} onMouseLeave={toggleDropdown}>
             <span style={{
               color: "black",
-              }}>BXH</span>
+              }}>Rankings</span>
             {showDropdown && (
               <ul className="dropdown" 
                 style={{ display: showDropdown ? 'block' : 'none' }}>
@@ -184,38 +161,6 @@ const NavBar = () => {
             )}
           </li>
         </ul>
-              {/* Bộ lọc */}
-          <div className="filter-section">
-            <button onClick={handleApplyFilters}>Filter</button>
-          </div>
-          {showFilters && (
-            <>
-              <div className="filter-section">
-                <label htmlFor="price-filter">Price:</label>
-                <select id="price-filter" style={{ color: "black" }} value={priceFilter} onChange={handlePriceFilterChange}>
-                  <option value="">All</option>
-                  <option value="low-to-high">Low to High</option>
-                  <option value="high-to-low">High to Low</option>
-                </select>
-              </div>
-              <div className="filter-section">
-                <label htmlFor="date-filter" style={{ color: "black" }}>Date:</label>
-                <select id="date-filter" value={dateFilter} onChange={handleDateFilterChange}>
-                  <option value="">All</option>
-                  <option value="newest-first">Newest First</option>
-                  <option value="oldest-first">Oldest First</option>
-                </select>
-              </div>
-              <div className="filter-section">
-                <label htmlFor="purchase-filter" style={{ color: "black" }}>Purchase:</label>
-                <select id="purchase-filter" value={purchaseFilter} onChange={handlePurchaseFilterChange}>
-                  <option value="">All</option>
-                  <option value="most-purchased">Most Purchased</option>
-                  <option value="least-purchased">Least Purchased</option>
-                </select>
-              </div>
-            </>
-          )}
       </div>
     </nav>
   );

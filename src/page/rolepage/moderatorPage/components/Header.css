@@ -11,12 +11,16 @@
 
 /* Styling for the top section of the header */
 .top-section {
+  background-color: rgb(206, 206, 206);
   flex: 1;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 60px; /* Adjusted font size for better readability */
-  font-family: cursive;
+  font-size: 49px; /* Adjusted font size for better readability */
+  padding-right: 78px;
+  padding-top: 40px;
+  padding-bottom: 70px;
+  /* font-family: cursive; */
 }
 
 /* Styling for the bottom section of the header */
@@ -25,7 +29,7 @@
   height: 50px;
   background-color: #000000;
   font-family: cursive;
-  color:#ffffff
+  color:#ffffff;
 }
 
 /* Styling for each menu item */
@@ -37,17 +41,63 @@
   border: 1px solid white;
 }
 
+.menu-item {
+  position: relative; /* Đặt vị trí tương đối */
+}
 /* Styling for links within the bottom section */
 .menu-item a {
   color: inherit;
   text-decoration: none;
+  align-items: center;
+  justify-content: center;
+  width: 450px;
   padding: 8px 50px; /* Added padding for better clickability */
 }
 
 /* Hover effect for the menu items */
 .menu-item a:hover {
-  background-color: white;
+  background-color: rgb(255, 255, 255);
   color: #000000;
-  border: 1px solid #000000;
-  border-radius: 4px;
+  /* border: 1px solid #000000; */
+  width: 450px;
+  border-radius: 2px;
+}
+.menu-subitem {
+  display: flex;
+  width: 470px;
+}
+
+.menu-subitem.active {
+  display: block; /* Hiển thị các tùy chọn chuyển tiền khi được kích hoạt */
+}
+
+.img-admin {
+  margin-top: -85px;
+  width: 400px;
+  height: 115px;
+}
+
+.transfer-options {
+  position: absolute; /* Đặt vị trí tuyệt đối */
+  top: 100%; /* Hiển thị ngay dưới mục TRANSFER HISTORY */
+  left: 0; /* Canh trái */
+  background-color: #fff; /* Màu nền */
+  color: black;
+  border: 1px solid #ccc; /* Viền */
+  border-radius: 4px; /* Đường viền cong */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Đổ bóng */
+  z-index: 1; /* Đảm bảo hiển thị trên các phần tử khác */
+  display: none; /* Mặc định ẩn đi */
+}
+
+.menu-item:hover .transfer-options {
+  display: block; /* Hiển thị khi di chuột vào TRANSFER HISTORY */
+}
+
+.menu-subitem {
+  padding: 8px 12px; /* Khoảng cách giữa các mục */
+}
+
+.menu-subitem:hover {
+  background-color: #dadada; /* Màu nền khi di chuột vào mục con */
 }

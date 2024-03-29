@@ -76,8 +76,20 @@ const Premium = () => {
     <div className="premium">
       <h1>Premium</h1>
       <p>Showcase your artwork with premium features. Start sharing your creativity!</p>
-      <h2>Pay frequency after the first trial</h2>
-      <div className='form-label'>
+      <h2
+        style={{
+          marginTop:"20px"
+        }}
+        >Pay frequency after the first trial</h2>
+      <h3><i class="fa-solid fa-crown"></i>&nbsp;<i class="fa-solid fa-crown"></i>&nbsp;<i class="fa-solid fa-crown"></i></h3>
+      <div className='form-label'
+        style={{
+          marginTop: "30px",
+          fontSize: "35px",
+          fontWeight: "bold",
+          color: "black",
+          fontFamily: "-moz-initial"
+        }}>
         {loadingPremium && <p>Loading premium plans...</p>}
         {errorPremium && <p>{errorPremium}</p>}
         {Array.isArray(premiumData) && premiumData.length > 0 && !loadingPremium && !errorPremium && (

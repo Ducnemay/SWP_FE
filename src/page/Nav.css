@@ -5,8 +5,9 @@
   align-items: center;
   padding: 10px;
   background-color: white;
-  margin-left: 0; /* Thêm lề trái */
+  margin-left: 20px; /* Thêm lề trái */
   width: 100%; /* Chiếm toàn bộ chiều rộng */
+  
 }
 .sub-nav-list {
   list-style: none;
@@ -52,14 +53,13 @@ nav a:active::after {
   align-items: center;
   justify-content: space-between; /* Align items to the start and end */
   width: 100%;
-  background-color: white;
+  background-color: rgb(211, 211, 211);
   padding: 10px;
   margin-left: 0;
 }
 
-.user-info {
-  display: flex;
-  align-items: center;
+.user-infos {
+  padding-left: 100px;
 }
 
 .user-info h2,
@@ -83,7 +83,7 @@ color: black;
 border: 2px solid black;
 padding: 12px 20px;
 border-radius: 15px;
-margin-right: 50px;
+margin-right: 28px;
 cursor: pointer;
 }
 
@@ -102,11 +102,14 @@ color: white;
 .navbar-container{
   height:200px;
   width:100%; /* Chiếm toàn bộ chiều rộng */
-  margin-left: 20px;
   margin-top: 20px;
 }
 .nav-container{
   margin-top: 30px;
   width:1860px; /* Chiếm toàn bộ chiều rộng */
   
+}
+
+.user-premium {
+  margin-top: -15px;
 }

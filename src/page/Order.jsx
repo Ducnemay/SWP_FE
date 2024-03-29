@@ -100,28 +100,29 @@ export default function Order() {
       <div className="order-container">
         <div className="order-row">
           <div className="atwork-order-mau1">
-            <div className="order-atwork-mau">Atwork</div>
             <div className="order-authors-mau">Actor</div>
             <div className="order-titles-mau">Name of Atwork</div>
             <div className="order-totals-mau">Total</div>
-            <div className="order-action-mau">Action</div>
+            <div className="order-atwork-mau">Atwork</div>
+            {/* <div className="order-action-mau">Action</div> */}
           </div>
 
           <div className="order-box">
             {artworkList.map((artwork) => (
               <div key={artwork.id} className="image-collection">
-                <div className="order-overlay">
-                  <img src={artwork.imageUrl} alt="Artwork" />
-                </div>
                 <div className="order-details">
                   <div className="order-authors">{artwork.description}</div>
                   <div className="order-titles">{artwork.title}</div>
                   <div className="order-totals">{order.total}</div>
+                  <div className="order-overlay">
+                  <img src={artwork.imageUrl} alt="Artwork" />
                 </div>
-                <div>
-                  <button onClick={createPayment} className="order-confirm-button">
+
+                </div>
+                <button onClick={createPayment} className="order-confirm-button">
                     PAY
                   </button>
+                <div>
                 </div>
               </div>
             ))}

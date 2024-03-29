@@ -197,28 +197,33 @@ export default function Detailpage() {
   }
 
   return (
-    <div className="container my-5 py-3">
+    <div className="container-custom">
       <div className="row">
+        <div className="row-detail">
         <div className="col-md-6">
           <div className="d-flex justify-content-center mx-auto product">
-            <img src={product.imageUrl} alt={product.title} height="400px" style={{ margin: '4em' }} />
+            <img src={product.imageUrl} alt={product.title} height="400px" style={{ margin: '20px' }} />
           </div>
         </div>
 
-        <div className="col-md-6">
-          <div className="d-flex flex-column justify-content-between h-100">
+        <div className="col-md-6" style={{paddingTop:"50px", paddingBottom:"30px", paddingLeft:"100px"}}>
+          <div className="d-flex flex-column justify-content-between h-70">
             <div>
-              <h1 className="display-5 fw-bold text-underline" style={{ fontSize: '4em', marginTop: '0.5em' }}>{product.title}</h1>
+              <h1 className="display-5 fw-bold text-underline" style={{ fontSize: '40px', marginTop: '0.5em', textAlign:"left", marginLeft: "224px"}}>{product.title}</h1>
               <p className="lead" style={{ fontSize: '1.4em', marginTop: '0', marginRight: '10em' }}>{product.desc}</p>
               <p className="lead" style={{ fontSize: '1.5em', marginRight: '11em', position: 'relative' }}>{userMap[product.userId]?.username}
                 <div className="line"></div>
               </p>
             </div>
             <div className="d-flex flex-column align-items-start">
-              <h2 className="my-4" style={{ fontSize: '3em', marginTop: '0', marginRight: '5em' }}>${product.price}</h2>
-              <button onClick={handlePurchase} className="btn btn-outline-primary" style={{ fontSize: '1.8rem', background: 'black', color: 'white', width: '450px' }}>{cartBtn}</button>
+              <h2 className="my-4" style={{ fontSize: '4em', marginTop: '0', marginRight: '5em', color:"black" }}>$&nbsp;{product.price}</h2>
+              <button onClick={handlePurchase} className="btn btn-outline-primary" style={{ fontSize: '1.8rem', background: 'black', color: 'white', width: '37.3rem' }}>{cartBtn}</button>
             </div>
-            <div className="d-flex align-items-center mt-3">
+          </div>
+        </div>
+      </div>
+      </div>
+      <div className="d-flex align-items-center mt-3">
               <FaRegCommentDots onClick={toggleCommentSection} style={{ cursor: 'pointer' }} />
               <span className="ms-2">Comments</span>
             </div>
@@ -235,8 +240,8 @@ export default function Detailpage() {
                   <button onClick={() => addComment(replyingTo ? replyingTo.index : null)} className="btn btn-primary send-button">Send</button>
                 </div>
                 {/* Hiển thị danh sách comment */}
+                <h3 className="my-3">Comments</h3>
                 <div className="comment-list">
-                  <h3 className="my-3">Comments</h3>
                   {comments.map((comment, index) => (
                     <div key={index} className="comment">
                       {comment.imageUrl && (
@@ -255,6 +260,7 @@ export default function Detailpage() {
                         <div className="reply-text-box">
                           <input
                             type="text"
+                            style={{backgroundColor:"white", color:"black"}}
                             value={commentInput}
                             onChange={(e) => setCommentInput(e.target.value)}
                             placeholder="Write a reply..."
@@ -269,12 +275,6 @@ export default function Detailpage() {
                 </div>
               </div>
             )}
-            <i className="fa-regular fa-heart" style={{ marginTop: '1em' }}> Save</i><>&nbsp;&nbsp;&nbsp;&nbsp;</>
-            <i className="fa-regular fa-eye"> View</i><>&nbsp;&nbsp;&nbsp;&nbsp;</>
-            <i className="fa-regular fa-share-from-square"> Share</i>
-          </div>
-        </div>
-      </div>
     </div>
   );
 }

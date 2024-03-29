@@ -2,6 +2,8 @@
 
 .transaction-history {
     margin: 20px;
+    padding-top: 75px;
+    padding-bottom: 20px;
   }
   
   table {
@@ -13,7 +15,7 @@
   th, td {
     border: 1px solid #ddd;
     padding: 10px;
-    text-align: left;
+    text-align: center;
   }
   
   th {

@@ -10,9 +10,11 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@emotion/styled": "^11.11.0",
+    "@mui/material": "^5.15.14",
     "@types/jquery": "^3.5.20",
     "@types/owl.carousel": "^2.3.4",
-    "@vitejs/plugin-react": "^4.1.0",
+    "@vitejs/plugin-react": "^4.2.1",
     "axios": "^1.5.1",
     "bootstrap": "^5.3.3",
     "firebase": "^10.5.0",

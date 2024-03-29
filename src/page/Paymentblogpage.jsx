@@ -148,19 +148,21 @@ const Paymentblogpage = () => {
         <div className="payment-blog-page">
             <div className="payment-product-info">
                 <img src={productInfo.imageUrl} alt="Sản phẩm" className="payment-product-image" />
-                <h2 className="payment-info-title">Thông tin sản phẩm</h2>
-                <div className="payment-info-item">Tên sản phẩm: {productInfo.name}</div>
-                <div className="payment-info-item">Giá: {productInfo.price}</div>
+                <h2 className="payment-info-title">Product Information</h2>
+                <div className="payment-info-item">Product: {productInfo.name}</div>
+                <div className="payment-info-item">Price: {productInfo.price}</div>
             </div>
             <div className="payment-user-info">
-                <h2 className="payment-info-title">Thông tin người dùng</h2>
-                <div className="payment-info-item">Tên người dùng: {userInfo.username}</div>
+                <h2 className="payment-info-title">User Information</h2>
+                <div className="payment-info-item">User Name: {userInfo.username}</div>
                 
-                <div><button onClick={() => handleConfirmPayment()} className="payment-blog-button-cofirm">CONFIRM</button>
+                <div><button onClick={() => handleConfirmPayment()}
+                    className="payment-blog-button-cofirm"
+                    // style={{
+                        
+                    // }}
+                    >CONFIRM</button>
                        </div>
-                       
-                
-                
             </div>
         </div>
     );

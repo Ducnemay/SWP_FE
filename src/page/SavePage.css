@@ -1,14 +1,15 @@
 .product-lists {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); /* Căn cột tự động */
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Căn cột tự động */
   gap: 20px; /* Khoảng cách giữa các sản phẩm */
   padding: 20px; /* Khoảng cách bên trong của danh sách sản phẩm */
+  padding-top: 100px;
 }
 
 .product-items {
   position: relative; /* Đặt vị trí tương đối cho card sản phẩm */
   background-color: #fff;
-  border: 2px solid black; /* Đường viền của sản phẩm */
+  border: 0.5px solid black; /* Đường viền của sản phẩm */
   border-radius: 5px; /* Bo tròn các góc */
   padding: 10px; /* Khoảng cách bên trong của sản phẩm */
   transition: all 0.5s ease; /* Hiệu ứng chuyển động */
@@ -17,7 +18,6 @@
 }
 
 .product-items:hover {
-  transform: rotateY(20deg) rotateX(-20deg); /* Lật card nghiêng */
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Hiệu ứng bóng */
 }
 
@@ -50,8 +50,9 @@
 }
 
 .product-prices {
-  font-size: 14px; /* Kích thước font cho giá sản phẩm */
+  font-size: 20px; /* Kích thước font cho giá sản phẩm */
   font-weight: bold; /* Chữ đậm cho giá sản phẩm */
+  padding-left: 20px;
 }
 
 .heart-icons {

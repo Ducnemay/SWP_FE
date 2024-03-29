@@ -154,7 +154,7 @@ const Page = () => {
   return (
     <div className="add-artwork-form">
       <Link to ="/page-m"><button className="cus-submit-button">Back to home</button></Link>
-      <h1 className="cus-form-title">Create Artwork</h1>
+      <h1 className="cus-form-title">CREATE ARTWORK</h1>
 
       <form onSubmit={handleSubmit}>
 

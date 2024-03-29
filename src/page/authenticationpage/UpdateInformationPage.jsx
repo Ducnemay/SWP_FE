@@ -67,49 +67,56 @@ const UpdateInformationPage = () => {
                 <h2>Update User Information</h2>
                 <form onSubmit={handleSubmit}>
                     <div className="authentication-input-container">
-                        <label htmlFor="fullname" className='authentication-input-container-label'>Full Name</label>
+                        <label htmlFor="fullname" className='authentication-input-container-label'></label>
                         <input type="text" id="fullname" name="fullname" className='authentication-input' required
                             value={fullname}
+                            placeholder="Full Name"
                             onChange={(event) => setFullname(event.target.value)} />
                     </div>
                     <div className="authentication-input-container">
-                        <label htmlFor="gender" className='authentication-input-container-label'>Gender</label>
+                        <label htmlFor="gender" className='authentication-input-container-label'></label>
                         <input type="text" id="gender" name="gender" className='authentication-input' required
                             value={gender}
+                            placeholder="Gender"
                             onChange={(event) => setGender(event.target.value)} />
                     </div>
                     <div className="authentication-input-container">
-                        <label htmlFor="phone" className='authentication-input-container-label'>Phone</label>
+                        <label htmlFor="phone" className='authentication-input-container-label'></label>
                         <input type="text" id="phone" name="phone" className='authentication-input' required
                             value={phone}
+                            placeholder="Phone"
                             onChange={(event) => setPhone(event.target.value)} />
                     </div>
                     <div className="authentication-input-container">
-                        <label htmlFor="address" className='authentication-input-container-label'>Address</label>
+                        <label htmlFor="address" className='authentication-input-container-label'></label>
                         <input type="text" id="address" name="address" className='authentication-input' required
                             value={address}
+                            placeholder="Address"
                             onChange={(event) => setAddress(event.target.value)} />
                     </div>
                     <div className="authentication-input-container">
-                        <label htmlFor="dateOfBirth" className='authentication-input-container-label'>Date of Birth</label>
+                        <label htmlFor="dateOfBirth" className='authentication-input-container-label'></label>
                         <input type="date" id="dateOfBirth" name="dateOfBirth" className='authentication-input' required
                             value={dateOfBirth}
+                            // placeholder="Date of Birth"
                             onChange={(event) => setDateOfBirth(event.target.value)} />
                     </div>
                     <div className="authentication-input-container">
-                        <label htmlFor="bank" className='authentication-input-container-label'>Bank</label>
+                        <label htmlFor="bank" className='authentication-input-container-label'></label>
                         <input type="text" id="bank" name="bank" className='authentication-input' required
                             value={bank}
+                            placeholder="Bank"
                             onChange={(event) => setBank(event.target.value)} />
                     </div>
                     <div className="authentication-input-container">
-                        <label htmlFor="bankAccount" className='authentication-input-container-label'>Bank Account</label>
+                        <label htmlFor="bankAccount" className='authentication-input-container-label'></label>
                         <input type="text" id="bankAccount" name="bankAccount" className='authentication-input' required
                             value={bankAccount}
+                            placeholder="Bank Account"
                             onChange={(event) => setBankAccount(event.target.value)} />
                     </div>
                     <div className="authentication-input-container">
-                        <label htmlFor="image" className='authentication-input-container-label'>Image</label>
+                        <label htmlFor="image" className='authentication-input-container-label'></label>
                         <input type="file" id="image" name="image" className='authentication-input' required
                             onChange={handleImageChange} />
                     </div>

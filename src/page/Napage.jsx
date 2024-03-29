@@ -37,7 +37,10 @@ const NavPage = () => {
             </div>
             <div className='user-premium'>
               {user.premiumId ? (
-                <p>Pro</p>
+                <p style={{
+                    fontSize: "25px"
+                }}
+                ><i class="fa-solid fa-crown"></i>&nbsp;<i class="fa-solid fa-crown"></i>&nbsp;<i class="fa-solid fa-crown"></i></p>
               ) : (
                 <p>User does not have premium</p>
               )}

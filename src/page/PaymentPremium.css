@@ -18,6 +18,7 @@
     align-items: center; /* Căn giữa các phần tử theo chiều ngang */
     padding: 20px;
     margin: 10px;
+    padding-bottom: 25px;
     flex: 1; /* Đảm bảo các khung có cùng chiều rộng */
     height: 400px;
 }
@@ -27,7 +28,9 @@
 }
 
 .paymentpremium-user-info {
-    max-width: 300px; /* Giới hạn chiều rộng của khung */
+    max-width: 2000px; /* Giới hạn chiều rộng của khung */
+    height: 550px;
+    margin-top: -10px;
 }
 
 .paymentpremium-product-image {
@@ -38,7 +41,8 @@
 
 .paymentpremium-info-title {
     font-weight: bold;
-    margin-bottom: 10px;
+    margin-bottom: 50px;
+    font-size: 50px;
 }
 
 .paymentpremium-info-item {
@@ -47,8 +51,10 @@
 }
 .paymentpremium-info-itemss{
     margin-bottom: 5px;
-    font-size: 30px;
+    font-size: 38px;
     font-weight: bold;  
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
 }
 .paymentpremium-blog-button-cofirm{
     display: inline-block;
@@ -57,10 +63,11 @@
     color: rgb(255, 255, 255);
     border: 2px solid black;
     padding: 12px 20px;
-    border-radius: 15px;
+    border-radius: 5px;
     position: absolute;
+    padding: 10px;
     left: 15px;
-  width: 130px;
+    width: 190px;
     top: 20px;
 }
 .paymentpremium-blog-button-cancle{
@@ -70,15 +77,16 @@
   color: rgb(255, 255, 255);
   border: 2px solid black;
   padding: 12px 20px;
-  border-radius: 15px;
+  border-radius: 5px;
   position: absolute;
+  padding: 10px;
   right: 15px;
-  width: 130px;
+  width: 190px;
   top: 20px;
 
 }
 .paymentpremium-blog-button-cofirm:hover, .paymentpremium-blog-button-cancle:hover{
-    background-color: rgb(255, 254, 254);
+    background-color: rgb(231, 231, 231);
     color: rgb(0, 0, 0);
   }
 .paymentpremium-position-button{

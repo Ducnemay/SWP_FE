@@ -3,7 +3,9 @@
 .container {
   font-family: Arial, sans-serif;
 }
-
+.container-custom{
+  margin-top: -50px;
+}
 .product {
   margin-top: 2em;
 }
@@ -11,6 +13,8 @@
 .product img {
   max-width: 100%;
   height: auto;
+  box-shadow: 0 0 100px rgba(0, 0, 0, 0.5);
+  opacity: 0.8;
 }
 
 .product-content {
@@ -34,6 +38,7 @@
 }
 
 .fa-regular {
+  display: flex;
   margin-right: 1em;
 }
 
@@ -41,53 +46,54 @@
   position: absolute;
   bottom: -10px;
   left: 0;
-  width: 100%;
+  width: 680px;
   height: 2px;
   background-color: #000;
 }
-.comment-input {
-  background-color: white;
-  width:20vh ;
-  height: 40px;
-  padding: 10px;
-  /* text-align: center; */
-  border: 2px solid black;
-  border-radius: 5px;
-  /* box-shadow: 3px 3px 2px rgb(249, 255, 85); */
+
+.fa-icon {
+  display: flex;
+  gap: 20px;
+  padding-left: 12.7rem;
+  margin-top: 20px;
 }
 
-.comment-input:focus {
-  color: rgb(0, 255, 255);
-  background-color: #212121;
-  outline-color: rgb(0, 255, 255);
-  box-shadow: -3px -3px 15px rgb(0, 255, 255);
-  transition: .1s;
-  transition-property: box-shadow;
-}
-
-.comment-list {
-max-height: 300px; 
-overflow-y: auto; 
+.mt-3 {
+  justify-content: center;
+  padding-bottom: 50px;
+  font-size: 1.5em;
 }
 
 .comment {
-display: flex;
-align-items: center;
-margin-bottom: 20px; /* Khoảng cách giữa các comment */
+  text-align: left;
+  padding-left: 250px;
+  margin-top: -15px;
+}
+.comment-list {
+  display: grid;
+  gap: 60px;
+  margin: 10px;
+}
+.comment-input-container {
+  margin-left: 200px;
+  margin-right: 200px;
 }
 
-.user-avatar {
-width: 40px; /* Điều chỉnh kích thước hình ảnh người dùng */
-height: 40px;
-border-radius: 50%; /* Làm cho hình ảnh tròn */
-margin-right: 10px; /* Khoảng cách giữa hình ảnh người dùng và nội dung comment */
+.comment-input {
+  background-color: white;
+  color: black;
 }
 
-.fullname {
-font-weight: bold;
-margin-right: 10px; /* Khoảng cách giữa tên người dùng và nội dung comment */
+.reply-text-box {
+  margin-right: 200px;
 }
 
-.text-comment {
-margin-left: 50px; /* Khoảng cách giữa hình ảnh người dùng và nội dung comment */
+.row-detail {
+  display: flex;
+  width: 90%;
+  height: auto;
+  margin-top: 50px;
+  margin-bottom: 40px;
+  background-color: rgb(232, 232, 232);
+  box-shadow: 15px 15px 8px rgba(0, 0, 0, 0.3);
 }

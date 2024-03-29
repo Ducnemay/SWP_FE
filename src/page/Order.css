@@ -2,23 +2,20 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 10px;
+  margin-top: 85px;
 }
 .image-collection {
-  display: flex;  /* Sắp xếp nội dung trong thẻ 'box' theo chiều ngang */
-  align-items: center; /* Căn giữa các thẻ con theo chiều dọc */
-  border: 1px solid #ccc; /* Thêm viền */
+  display: flex;  /* Sáº¯p xáº¿p ná»™i dung trong tháº» 'box' theo chiá»u ngang */
+  align-items: center; /* CÄƒn giá»¯a cĂ¡c tháº» con theo chiá»u dá»c */
+  border: 1px solid #ccc; /* ThĂªm viá»n */
   border-radius: 5px;
   padding: 15px;
   }
   
   .order-box{
-    width: 100%;
-    display: flex;
+    width: 90rem;
     justify-content: space-evenly;
-    flex-direction: column;
 }
-
 
   
   /* Individual box styling */
@@ -38,7 +35,7 @@
   /* Styling for the images within the image container */
  .order-overlay img {
     display: block;
-    width: 100px;
+    width: 350px;
     height: auto;
     border-radius: 10px;
     transition: transform 0.3s ease; /* Smooth transition for the zoom effect */
@@ -67,7 +64,7 @@
     transform: scale(1.05);
   } */
 .order-details{
-  display: flex;  /* Sắp xếp nội dung trong thẻ 'box' theo chiều ngang */
+  display: flex;  /* Sáº¯p xáº¿p ná»™i dung trong tháº» 'box' theo chiá»u ngang */
   align-items: center;
 }  
   
@@ -84,18 +81,29 @@
   padding: 30px;
   width: max-content;
 }
-.order-authors, .order-totals{
-  margin-left: 80px;
-  margin-right: 80px;
-  width: max-content;
-  font-size: 16px;
+.order-authors {
+  margin-left: 37px;
+  margin-right: 133px;
+  width: 165px;
+  font-size: 25px;
   color: black;
 }
-.order-titles{
+ .order-totals {
   margin-left: 80px;
+  margin-right: 125px;
+  width: max-content;
+  font-size: 30px;
+  text-decoration: underline;
+  font-weight: bold;
+  color: black;
+}
+
+
+.order-titles{
+  margin-left: 33px;
   margin-right: 80px;
-  width: 150px;
-  font-size: 16px;
+  width: 360px;
+  font-size: 25px;
   color: black;
   text-align: left;
 
@@ -110,7 +118,7 @@
   /* margin-right: 55px; */
 }
 .order-atwork-mau{
-  margin-left: 20px;
+  margin-left: 81px;
   margin-right: 55px;
   width: max-content;
 }
@@ -120,23 +128,28 @@
   width: max-content;
 }
 .atwork-order-mau1{
+  font-size: 20px;
+  gap: 110px;
   display:flex;
   border: 1px solid #ccc;
   border-radius: 5px;
   padding: 15px;
   margin-bottom: 15px;
 }
-.order-confirm-button{
+.order-confirm-button {
   display: inline-block;
     text-decoration: none;
+    font-size: x-large;
     background-color: rgb(0, 0, 0);
     color: rgb(255, 255, 255);
     border: 2px solid black;
     padding: 12px 20px;
     border-radius: 15px;
-    width: 100px;
+    margin-left: 440px;
+    margin-top: 40px;
+    width: 500px;
 }
 .order-confirm-button:hover{
-  background-color: rgb(255, 254, 254);
+  background-color: rgb(117, 117, 117);
   color: rgb(0, 0, 0);
 }

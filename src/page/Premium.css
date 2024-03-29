@@ -2,10 +2,13 @@
 
 .premium {
     max-width: 600px;
-    margin: 0 auto;
+    height: 480px;
+    margin: 20px;
+    margin-left: 33%;
     padding: 20px;
     border: 1px solid #ccc;
     border-radius: 8px;
+    line-height: 2.5;
     background-color: #fff;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   }

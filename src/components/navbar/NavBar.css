@@ -22,16 +22,18 @@ nav {
 .icons, .nav-list {
   color: black;
   display: flex;
+  gap: 35px;
   align-items: center;
   width: 100%; /* Đặt chiều rộng của .icons và .nav-list là 100% */
 }
 
 .icons img {
-  height: 30px;
-  width: 40px;
+  height: 61px;
+  width: 90px;
   cursor: pointer;
-  margin-left: 30px;
-  margin-right: 10px; 
+  margin-left: 17px;
+  margin-right: -20px;
+  margin-bottom: 10px;
   transition: transform 0.3s ease;
 }
 
@@ -73,16 +75,17 @@ nav {
   gap: 30px;
   list-style: none;
   padding: 0;
-  display: flex;
+  display: block;
   flex-direction: row; /* Giữ nguyên kiểu hiển thị dọc */
   flex-wrap: wrap; /* Cho phép các mục xuống dòng khi không đủ không gian */
   justify-content: flex-start; /* Canh giữa theo chiều ngang */
   align-self: flex-start; /* Đặt align-self là flex-start để .nav-list nằm sát bên trái */
-  width: 50%; /* Đặt chiều rộng của ul là 100% */
+  width: 30%; /* Đặt chiều rộng của ul là 100% */
 }
 
 .nav-list li {
   margin-bottom: 10px; /* Khoảng cách giữa các dòng */
+  padding-top: 10px;
   margin-left: 35px; /* Khoảng cách giữa các mục */
 }
 
@@ -131,12 +134,9 @@ a:active::after {
   transform: scale(1.2);
 }
 
-.filter-section {
-  margin-left: 600px;
-}
-
 .nav-list li span {
   position: relative; /* Cần có vị trí tương đối để đặt dòng kẻ */
+  margin-left: -371px;
 }
 .nav-list li span::after {
     color: black;
@@ -177,3 +177,9 @@ a:active::after {
 .nav-list li:hover .dropdown {
   display: block; /* Hiển thị dropdown khi di chuột vào */
 }
+
+/* .sidebar-nav {
+  width: 200px;
+  height: 100%;
+  background-color: gray;
+} */

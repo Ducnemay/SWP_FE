@@ -63,10 +63,13 @@ import Insight from "./page/Insight";
 import Transfer from "./page/rolepage/moderatorPage/components/Transfer";
 import PaymentBank from "./page/PaymentBank";
 import Send from "./page/rolepage/moderatorPage/components/Send";
+import HistoryPage from "./page/rolepage/moderatorPage/components/HistoryOfModerate";
 import PaymentPremium from "./page/PaymentPremium";
 
 
 import React, { useState } from 'react';
+// import Manager from "./page/topBXH/Manager";
+// import BXHLike from "./page/topBXH/BXHLike";
 
 
 
@@ -153,7 +156,9 @@ const App = () => {
         <Route path="/orderprumium-info/:orderPremiumId" element={<PaymentPremium />} />
         <Route path="/paymentbank/:userId/:artworkUserId/:orderId" element={<PaymentBank />} />
         <Route path="/detail/:artworkId" element={<Detailpage />} />
-      <Route path="/artreport/:artworkId" element={<Artreport />} />
+        <Route path="/artreport/:artworkId" element={<Artreport />} />
+        {/* <Route path="/top-authors" element={<Manager/>} />
+        <Route path="/top-like" element={<BXHLike/>} /> */}
         
        
       
@@ -255,7 +260,7 @@ const App = () => {
         <Route path="/productPageDetail/:productId" element={<ProductPageDetail />} />
         <Route path="/transfer" element={<Transfer />}/>
         <Route path="/send" element={<Send />}/> 
-        
+        <Route path="/history" element={<HistoryPage />}/>
 
         </Route>
         {/* </Route> */}

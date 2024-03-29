@@ -6,7 +6,7 @@
   color: transparent; /* Đặt màu văn bản thành trong suốt */
   font-size: 100px;
   border-bottom: 1px solid #888;
-  padding-bottom: 8px;
+  padding-bottom: 70px;
   width: 100%;
   background-image: url('https://static.vinwonders.com/2022/12/rung-viet-nam-0.jpg'); 
   background-size: cover;
@@ -20,6 +20,7 @@
   flex-wrap: wrap;
   justify-content: space-between;
   padding: 20px;
+  margin-left: 135px;
   box-sizing: border-box;
 }
 
@@ -80,7 +81,8 @@
 
 .product-prices {
   text-align: left; /* Căn chữ giá tiền sang lề trái */
-  padding: 1rem 0;
+  padding-left: 10px;
+  padding-top: 20px;
   color: black;
   font-size: 1rem;
   
@@ -103,7 +105,7 @@
 }
 
 .pagination li {
-  display: inline-block;
+  display: flex;
   margin: 0 5px;
   cursor: pointer;
 }
@@ -221,4 +223,56 @@
   87% {
     box-shadow: .2em -.2em 0 0 currentcolor;
   }
+}
+
+.box-filter {
+  width: 100%;
+  height: auto;
+}
+.filter-button {
+  display: flex;
+  font-size: 20px;
+  /* width: 50px; */
+  height: 42px;
+  padding-left: 60px;
+  gap: 10px;
+}
+
+.right-side-box {
+  /* position: absolute; */
+  display: flex;
+  gap: 50px;
+  background-color: rgb(185, 185, 185);
+  border: 1px solid #ddd;
+  padding: 20px;
+  width: 100%;
+  height: 130px;
+  margin-right: -20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Thêm hiệu ứng bóng */
+}
+
+.right-side-box .labels {
+  margin-bottom: 10px; /* Khoảng cách giữa các label và giá trị */
+}
+
+.right-side-box .labels label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.right-side-box .values span {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.select-filter {
+  display: flex;
+  gap: 200px;
+  margin-top: 30px;
+}
+
+.filter-section {
+  font-size: 20px;
+  width: 300px;
 }

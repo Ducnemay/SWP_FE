@@ -1,5 +1,6 @@
 .send-page {
     padding: 50px;
+    margin-top: 135px;
   }
   
   /* .history-item {
@@ -9,7 +10,10 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     width: calc(33.33% - 20px);
   } */ 
-  
+  h1 {
+    padding-bottom: 35px;
+    margin-top: 10px;
+  }
 
   .send-list {
     display: flex; /* Cho phép các thẻ con sắp xếp ngang */
@@ -28,12 +32,14 @@
   }
   .send-product-infos1 {
     display: flex;  /* Sắp xếp nội dung trong thẻ 'box' theo chiều ngang */
+    gap: 160px;
     align-items: center; /* Căn giữa các thẻ con theo chiều dọc */
     border: 1px solid #ccc; /* Thêm viền */
-  border-radius: 10px;
-height: 50px;
-
-justify-content: center;
+    border-radius: 5px;
+    height: 50px;
+    margin: -35px;
+    margin-top: 7px;
+    justify-content: center;
     
   }
   

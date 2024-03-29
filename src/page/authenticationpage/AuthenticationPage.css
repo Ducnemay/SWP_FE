@@ -42,12 +42,14 @@
   
   .authentication-container h2 {
     text-align: center;
-    margin-bottom: 20px;
+    margin-bottom: 35px;
     color:white;
   }
   
   .authentication-input-container {
     position: relative;
+    color: rgb(235, 235, 235);
+    padding-bottom: 30px;
     
   }
   
@@ -68,7 +70,7 @@
   }
   
   .authentication-input-container-label {
-    color: #999;
+    color: #dddddd;
     font-size: 18px;
     font-weight: normal;
     position: absolute;
@@ -89,7 +91,7 @@
   
   .log-in-password-toggle-button {
     position: absolute;
-    top: 50%;
+    top: 25%;
     right: 10px;
     transform: translateY(-50%);
     background: none;
@@ -183,4 +185,11 @@
      width: 0;
      background: transparent;
     }
-   }   
+   }  
+
+   .authentication-input:focus + .authentication-input-container-label,
+.authentication-input:not(:placeholder-shown) + .authentication-input-container-label {
+  top: -20px;
+  font-size: 14px;
+  color: #5264AE;
+}
