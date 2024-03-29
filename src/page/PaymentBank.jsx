@@ -141,12 +141,12 @@ const PaymentBank = () => {
         <div className="paymentbank-blog-page">
             
             <div className="paymentbank-product-info">
-            <h2 className="paymentbank-info-title">Xác nhận chuyển Tranh</h2>
+            <h2 className="paymentbank-info-title">Confirmation of artwork transfer</h2>
                 <img src={productInfo.imageUrl} alt="Sản phẩm" className="paymentbank-product-image" />
                 <div className="paymentbank-info-item">{userArtworkInfo.username}</div>
                 <div className="paymentbank-info-item">{productInfo.name}</div>
                 
-                Chuyển tới:<div className="paymentbank-info-itemss">{userInfo.username}</div>
+                Transfer to:<div className="paymentbank-info-itemss">{userInfo.username}</div>
                 
                 <div className='position-button'>
                 <Link to={`/transfer`}>
@@ -160,8 +160,8 @@ const PaymentBank = () => {
                        </div>
             </div>
             <div className="paymentbank-user-info">
-                <h2 className="paymentbank-info-title">Xác Nhận Chuyển Tiền</h2>
-                Chuyển tới:<div className="paymentbank-info-itemss"> {userArtworkInfo.username}</div>
+                <h2 className="paymentbank-info-title">Money Transfer Confirmation</h2>
+                Transfer to:<div className="paymentbank-info-itemss"> {userArtworkInfo.username}</div>
                 <h1 className="paymentbank-info-item">{productInfo.price}</h1>
                 <div className='height200'></div>
                 

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { FaHeart, FaRegHeart } from "react-icons/fa";
+import { FaHeart, FaRegHeart, FaVirusSlash } from "react-icons/fa";
 import ReactPaginate from 'react-paginate';
+
 import { Link, useNavigate } from 'react-router-dom';
 import api from "../components/utils/requestAPI"; // Import the api module
 import useAuth from "../hooks/useAuth";
@@ -16,8 +17,11 @@ const HomePage = () => {
   const [artworkList, setArtworkList] = useState(null);
   const [userMap, setUserMap] = useState({}); // State để lưu thông tin người dùng
   const { auth } = useAuth();
-  const [products, setProducts] = useState(null);
   const navigate = useNavigate(); // Sử dụng useNavigate để chuyển hướng
+
+  $(function() {
+    $('.product-imagee').watermark();
+  });
 
   useEffect(() => {
     const fetchArtworks = async () => {
@@ -25,13 +29,19 @@ const HomePage = () => {
       try {
         const response = await api.get(url);
         const extractedArtworks = response.data.$values || [];
+        
+        // Lọc các userId không hợp lệ (null)
+        const validUserIds = extractedArtworks
+          .map(product => product.userId)  // Lấy ra mảng các userId
+          .filter(userId => userId !== null);  // Loại bỏ userId null
+    
         setArtworkList(extractedArtworks);
-        const userIds = extractedArtworks.map(product => product.userId);
-        fetchUsers(userIds);
+        fetchUsers(validUserIds);
       } catch (error) {
         console.error('Error fetching artwork data:', error);
       }
     };
+    
 
     fetchArtworks();
   }, []);
@@ -60,7 +70,7 @@ const HomePage = () => {
   const fetchUsers = async (userIds) => {
     try {
       const promises = userIds.map(userId =>
-        api.post("https://localhost:7227/api/User/get-by-id", { id: userId })
+        api.post("https://localhost:7227/api/User/get-by-id", { userID: userId })
       );
       const responses = await Promise.all(promises);
       const userMap = {};
@@ -83,9 +93,9 @@ const HomePage = () => {
   }, [artworkList]);
 
   if (!artworkList || !Array.isArray(artworkList)) {
-    return <span class="loader"></span>
-   }
-   
+    return <span className="loader"></span>
+  }
+
   const handlePageChange = ({ selected }) => {
     setCurrentPage(selected);
   };
@@ -109,26 +119,34 @@ const HomePage = () => {
     }
   
     try {
-      const isLiked = !isProductLiked(id); // Xác định hành động là "love" hay "unlove"
+      const isLiked = !isProductLiked(id);
       const requestData = {
         userId: auth.user.userId,
         artworkId: id,
-        time: new Date().toISOString() // Thêm trường thời gian
+        time: new Date().toISOString()
       };
   
       if (isLiked) {
         await api.post(`https://localhost:7227/api/LikeCollection/Love`, requestData);
         setSavedProducts(prevSavedProducts => [...prevSavedProducts, id]);
-        setShowNotification(true); // Hiển thị thông báo
+        // Cập nhật số lượt thích của sản phẩm ngay khi được thích
+        setArtworkList(prevArtworkList => 
+          prevArtworkList.map(item => item.artworkId === id ? { ...item, likeTimes: item.likeTimes + 1 } : item)
+        );
+        setShowNotification(true);
         setTimeout(() => {
-          setShowNotification(false); // Ẩn thông báo sau 3 giây
+          setShowNotification(false);
         }, 3000);
       } else {
-        await api.delete(`https://localhost:7227/api/LikeCollection/Un-Love`, { data: { userId: auth.user.userId, artworkId: id }});
+        await api.delete(`https://localhost:7227/api/LikeCollection/Un-Love`, { data: { userId: auth.user.userId, artworkId: id } });
         setSavedProducts(prevSavedProducts => prevSavedProducts.filter(productId => productId !== id));
-        setShowRemoveNotification(true); // Hiển thị thông báo khi unlove
+        // Cập nhật số lượt thích của sản phẩm ngay khi bỏ thích
+        setArtworkList(prevArtworkList => 
+          prevArtworkList.map(item => item.artworkId === id ? { ...item, likeTimes: item.likeTimes - 1 } : item)
+        );
+        setShowRemoveNotification(true);
         setTimeout(() => {
-          setShowRemoveNotification(false); // Ẩn thông báo sau 3 giây
+          setShowRemoveNotification(false);
         }, 3000);
       }
     } catch (error) {
@@ -136,6 +154,7 @@ const HomePage = () => {
     }
   };
   
+
   const handleReportSelect = (event, productId) => {
     const { value } = event.target;
     setProducts(prevProducts =>
@@ -147,33 +166,35 @@ const HomePage = () => {
 
   return (
     <div className="product-page">
-      <h1>Collect art and design online</h1>
+      <h1 className="main-tieude">Collect art and design online</h1>
       <div className="product-list">
         {currentProducts.map((product) => (
-          product.statusProcessing &&
+           product.statusProcessing &&
           <div key={product.artworkId} className="product-itemm">
-              <div className="product-card">
+            <div className="product-card">
               <Link to={`/detail/${product.artworkId}`} className="product-link" key={product.artworkId}>
                 <div className="product-images">
                   <img src={product.imageUrl} alt={product.title} className="product-imagee" />
                 </div>
-                </Link>
-                <div className="product-content">
-                  <p>Tác giả: {userMap[product.userId]?.username}</p>
-                  <h3 className="product-title">{product.title}</h3>
-                  <p>Giá: {product.price}</p>
-                  <div className="button-heart">
-                  <button onClick={(event) => handleLikeToggle(event, product.artworkId, product.userId)} className={`like-button ${isProductLiked(product.artworkId) ? 'liked' : ''}`}>
-                      {isProductLiked(product.artworkId) ? <FaHeart /> : <FaRegHeart />}
-                    </button>
-                    <button value={product.reporting} onChange={(e) => handleReportSelect(e, product.id)}>
-                      <Link to={`/artreport/${product.artworkId}`}>
-                      Report
-                      </Link>
-                    </button>
-                  </div>
+              </Link>
+              <div className="product-content">
+                <p> {userMap[product.userId]?.username}</p>
+                <h3 className="product-title">{product.title}</h3>
+                <p className="product-prices">Giá: {product.price}</p>
+                <div className="button-heart">
+                    <p className="product-liketimes">{product.likeTimes}</p>
+                   <button onClick={(event) => handleLikeToggle(event, product.artworkId, product.userId)} className={`like-button ${isProductLiked(product.artworkId) ? 'liked' : ''}`}>
+                    {isProductLiked(product.artworkId) ? <FaHeart /> : <FaRegHeart />}
+                  </button>
+
+                  <button className="Report-button" value={product.reporting} onChange={(e) => handleReportSelect(e, product.id)}>
+                    <Link to={`/artreport/${product.artworkId}`}>
+                      <FaVirusSlash /> {/* Thay thế bằng icon FaVirus */}
+                    </Link>
+                  </button>
                 </div>
               </div>
+            </div>
           </div>
         ))}
       </div>
@@ -187,7 +208,7 @@ const HomePage = () => {
         containerClassName={'pagination'}
         activeClassName={'active'}
       />
-       {showNotification && ( // Hiển thị thông báo nếu showNotification là true
+      {showNotification && ( // Hiển thị thông báo nếu showNotification là true
         <div className="notification">
           Artwork Saved
         </div>

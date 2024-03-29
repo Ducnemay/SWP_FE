@@ -106,17 +106,18 @@ const LogInPage = () => {
                 <h2>Đăng nhập</h2>
                 <form onSubmit={handleSubmit}>
                     <div className="authentication-input-container">
-                        <input type="text" id="email" name="email" className='authentication-input' required onChange={(event) => setUsername(event.target.value)} />
-                        <label htmlFor="email" className='authentication-input-container-label'>Email</label>
+                        <input type="text" id="email" name="email" className='authentication-input' required placeholder="..." onChange={(event) => setUsername(event.target.value)} />
+                       
+                        <label htmlFor="email" className='authentication-input-container-label'>Tên đăng nhập</label>
                     </div>
                     <div className="authentication-input-container">
-                        <input type={showPassword ? "text" : "password"} id="password" name="password" className='authentication-input' required onChange={(event) => setPassword(event.target.value)} />
+                   
+                        <input type={showPassword ? "text" : "password"} id="password" name="password" className='authentication-input' required placeholder="..." onChange={(event) => setPassword(event.target.value)} />
                         <label htmlFor="password" className='authentication-input-container-label'>Mật khẩu</label>
                         <button type="button" className="log-in-password-toggle-button" onClick={togglePasswordVisibility}>
                             {showPassword ? <FaEyeSlash /> : <FaEye />}
                         </button>
                     </div>
-                    <a href='/question' className='forgot-password-link'>Quên mật khẩu?</a>
                     <button type="submit" className='authentication-button'>Đăng nhập</button>
                 </form>
                 <p>Chưa có tài khoản đăng nhập? <a href='/sign-up'>Đăng ký</a></p>

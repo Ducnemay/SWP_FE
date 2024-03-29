@@ -65,6 +65,9 @@ import Send from "./page/rolepage/moderatorPage/components/Send";
 import PaymentPremium from "./page/PaymentPremium";
 import HistoryPage from "./page/rolepage/moderatorPage/components/HistoryOfModerate";
 import Artreport from "./page/Artreport";
+import Refund from "./page/rolepage/moderatorPage/components/Refund";
+import Artistpage from "./page/Artistpage";
+import Toplikepage from "./page/Toplikepage";
 
 
 
@@ -73,6 +76,18 @@ import React, { useState } from 'react';
 
 
 const App = () => {
+
+  // $(function() {
+  //   $('.product-imagee').watermark({
+  //     text: 'GOOGLE.COM',
+  //     textWidth: 1000,
+  //     gravity: 'w',
+  //     opacity: 1,
+  //     margin: 12
+  //   });
+  // });
+
+
   
   const [savedProducts, setSavedProducts] = useState([
     {
@@ -146,6 +161,7 @@ const App = () => {
         <Route path="/custom-products-size" element={<SizePage />} />
         <Route path="/custom-products-material" element={<MaterialPage />} />
         <Route path="/custom-products-color" element={<ColorPage />} />
+        
         <Route path="/custom-products-end" element={<TotalPage />} />
         <Route path="/order-confirm" element={<ConfirmPage />} />
         <Route path="/order-waiting" element={<WaitingOrderPage />} />
@@ -172,6 +188,9 @@ const App = () => {
       <Route element={<RequireAuth allowedRoles={["1"]} />}>
         <Route element={<Layout />}>
         <Route path="/home" element={<HomePage />} />
+        <Route path="/edit" element={<Editpage />} />
+        <Route path="/top-likes" element={<Toplikepage />} />
+        <Route path="/artist/:userId" element={<Artistpage />} />
           <Route path="/products/cages" element={<CagePage />} />
           <Route path="/products/food" element={<FoodPage />} />
           <Route path="/pre" element={<Premium />} />
@@ -185,6 +204,7 @@ const App = () => {
           <Route path="/about-us" element={<AboutPage />} />
           <Route path="/cart" element={<CartPage />} />
           <Route path="/save" element={<SavePage savedProducts={savedProducts} />} />
+          <Route path="/saves" element={<SavePage savedProducts={savedProducts} />} />
           <Route path="/transHis" element={<TransactionHistory/>} />
           <Route path="/page-m" element={<Cpage />} />
           <Route path="/na" element={<Napage />} />
@@ -256,6 +276,7 @@ const App = () => {
         <Route path="/productPageDetail/:productId" element={<ProductPageDetail />} />
         <Route path="/transfer" element={<Transfer />}/>
         <Route path="/send" element={<Send />}/>
+        <Route path="/refund" element={<Refund />}/>
         <Route path="/history" element={<HistoryPage />}/>
         
 

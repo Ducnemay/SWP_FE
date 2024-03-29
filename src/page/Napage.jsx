@@ -7,7 +7,6 @@ import api from "../components/utils/requestAPI";
 const NavPage = () => {
   const { auth } = useAuth();
   const [user, setUser] = useState(null);
- 
 
   useEffect(() => {
     const fetchUserData = async () => {
@@ -15,8 +14,7 @@ const NavPage = () => {
         if (auth.user) { // Kiểm tra xem auth.user đã được định nghĩa chưa
           const response = await api.post("https://localhost:7227/api/User/get-by-id", { userId: auth.user.userId });
           setUser(response.data);
-          
-    }
+        }
       } catch (error) {
         console.error('Error fetching user data or premium order:', error);
       }
@@ -24,7 +22,6 @@ const NavPage = () => {
 
     fetchUserData();
   }, [auth]);
-
   return (
     <div className="navbar-container">
       {user && (
@@ -32,24 +29,26 @@ const NavPage = () => {
           <div className="user-infos">
             <div
               className="user-image"
-              style={{ backgroundImage:`url("${user.imageUrl}")`, width: '50px', height: '50px', backgroundSize: 'cover', backgroundPosition: 'center', borderRadius: '50%', overflow: 'hidden' }}
+              style={{ backgroundImage: `url("${user.imageUrl}")`, width: '50px', height: '50px', backgroundSize: 'cover', backgroundPosition: 'center', borderRadius: '50%', overflow: 'hidden' }}
             ></div>
             <div className="user-details">
               <h2>{user.username}</h2>
               <p>{user.address}</p>
             </div>
             <div className='user-premium'>
-            {user.premiumId ? (
-                <p>User has premium</p>
+              {user.premiumId ? (
+                <p style={{
+                    fontSize: "25px"
+                }}
+                ><i class="fa-solid fa-crown"></i>&nbsp;<i class="fa-solid fa-crown"></i>&nbsp;<i class="fa-solid fa-crown"></i></p>
               ) : (
                 <p>User does not have premium</p>
               )}
             </div>
           </div>
-          <a href="/edit" className="settings-button">Settings</a>
+          
         </div>
       )}
-
       <nav className="nav-container">
         <ul className="sub-nav-list">
           <li>

@@ -52,9 +52,11 @@ export default function Cpage() {
         <Link to="/page-c">
           <button className="upload-image">Upload image</button>
         </Link>
+        {auth.user && auth.user.premiumId === null && (
         <Link to="/pre">
           <button className="to-pre"> Update to Premium</button>
         </Link>
+        )}
       </div>
       <div className='my-collection'>
         {artworkList.map((artwork) => (
@@ -63,7 +65,7 @@ export default function Cpage() {
               <img src={artwork.imageUrl} alt="artwork-image"
                 className={artwork.statusProcessing ? '' : 'processing-false'}
               />
-              {!artwork.statusProcessing && <div className="waiting-text">Chờ duyệt</div>}
+              {!artwork.statusProcessing && <div className="waiting-text">Wating</div>}
 
             </div>
             <div className="details">

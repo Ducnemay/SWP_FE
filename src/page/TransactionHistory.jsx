@@ -1,10 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import Na from "./Napage";
-import api from "../components/utils/requestAPI"; 
+import api from "../components/utils/requestAPI";
 import useAuth from "../hooks/useAuth";
- const TransactionHistory = () => {
-  const [transactions, setTransactions] = useState([]);
+import "./TransactionHistory.css"
+
+
+const TransactionHistory = () => {
   const { auth } = useAuth();
+  const [transactions, setTransactions] = useState([]);
+
+
   useEffect(() => {
     const fetchUserData = async () => {
       try {
@@ -12,10 +17,10 @@ import useAuth from "../hooks/useAuth";
           const response = await api.post("https://localhost:7227/api/User/get-by-id", { userId: auth.user.userId });
           const userOrdersResponse = await api.get("https://localhost:7227/api/Order/get-all");
           const allOrders = userOrdersResponse.data.$values;
-
+          const userOrders = allOrders.filter(order => order.userId === auth.user.userId);
           const transactionsData = [];
 
-          for (const order of allOrders) {
+          for (const order of userOrders) {
             try {
               const paymentResponse = await api.get(`https://localhost:7227/api/Payment/get-payment-by-order-id?id=${order.orderId}`);
               const paymentData = paymentResponse.data;
@@ -27,6 +32,11 @@ import useAuth from "../hooks/useAuth";
             }
           }
 
+
+          // Sort transactions by date and time
+          transactionsData.sort((a, b) => new Date(b.createDate) - new Date(a.createDate));
+
+
           setTransactions(transactionsData);
         }
       } catch (error) {
@@ -34,6 +44,7 @@ import useAuth from "../hooks/useAuth";
         // Handle the error (e.g., log it, display a message to the user)
       }
     };
+
 
     fetchUserData();
   }, [auth]);
@@ -59,7 +70,7 @@ import useAuth from "../hooks/useAuth";
                 <td>{transaction.orderId}</td>
                 <td>{new Date(transaction.createDate).toLocaleString()}</td>
                 <td>{transaction.amount}</td>
-                <td>{transaction.status ? 'Success' : 'Fail'}</td>
+                <td>{transaction.status ? 'Success' : 'Waiting'}</td>
               </tr>
             ))}
           </tbody>

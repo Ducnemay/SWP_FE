@@ -1,11 +1,13 @@
+
 import React, { useState, useEffect } from 'react';
 import './Paymentblogpage.css'; // Import CSS file for styling
 import api from '../components/utils/requestAPI';
-import { useParams } from 'react-router-dom';
-import { Link, useNavigate } from 'react-router-dom';
+import { useParams,useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import useAuth from '../hooks/useAuth';
 
 const Paymentblogpage = () => {
+    const navigate = useNavigate();
     const {orderId} = useParams();
     const { auth } = useAuth();
     const [user, setUser] = useState(null);
@@ -14,7 +16,7 @@ const Paymentblogpage = () => {
     const [userInfo, setUserInfo] = useState(null);
     const [userNowInfo, setUserNowInfo] = useState(null);
     const [approved, setApproved] = useState(false);
-    const navigate = useNavigate();
+    let deletePayment = false;
     // const orderId = "O2037b1"; // Đặt orderId vào đây
 
     useEffect(() => {
@@ -79,33 +81,6 @@ const Paymentblogpage = () => {
 
     const handleConfirmPayment = async () => {
         try {
-    //         try {
-    //         // Gọi API lấy thông tin payment từ orderId
-    //         const paymentFromOrderId = await api.get(`https://localhost:7227/api/Payment/get-payment-by-order-id?id=${orderId}`);
-    //         const paymentInfo = paymentFromOrderId.data.paymentId; 
-
-    //         // Gọi API payment cập nhât status thành true 
-    //         await api.post(`https://localhost:7227/api/Payment/update-payment?id=${paymentInfo}`);
-
-    //          // Nếu cập nhật status của payment thành công
-    //         paymentUpdated = true;
-    //         } catch (error) {
-    // console.error('Error updating payment status:', error);
-    //         }
-            
-    //         if (paymentUpdated) {
-    //             try {
-    //         // Gọi API orderId cập nhât status thành true 
-    //         //
-    //         await api.post(`https://localhost:7227/api/Order/update-order?order=${orderId}`);
-    //         // Nếu cập nhật status của order thành công
-    //         orderUpdated = true;
-    //         } catch (error) {
-    //         console.error('Error updating order status:', error);
-    //         // Xử lý lỗi khi có lỗi xảy ra trong quá trình cập nhật status của orderId
-    //             }
-    //         }
-
            
             // Thông tin truyền vào POST để cập nhật số tiền của người sở hữu tranh
             const data_userArtwok = {
@@ -134,6 +109,29 @@ const Paymentblogpage = () => {
         }
     }
 
+    const handleCancelPayment = async () => {
+        try {
+            // Gửi yêu cầu POST lấy payment từ orderId
+            const payment_ID = await api.get(`https://localhost:7227/api/Payment/get-payment-by-order-id?id=${orderId}`);
+            const pId = payment_ID.data.paymentId
+            // Gửi yêu cầu POST để xóa payment
+            await api.delete(`https://localhost:7227/api/Payment/delete-payment-complete?id=${pId}`);
+            deletePayment = true;
+            // Gửi yêu cầu POST để xóa order
+            if(deletePayment){
+            await api.delete(`https://localhost:7227/api/Order/delete-order-success?id=${orderId}`);}
+            
+            setApproved(true);
+            alert('You canceled the order');
+            navigate(`/home`);
+            
+        
+        } catch (error) {
+            console.error('Error cancel order and payment:', error);
+            // Xử lý lỗi khi có lỗi xảy ra trong quá trình xử lý thanh toán
+        }
+    }
+
     if (!productInfo || !userInfo) {
         return <div>Loading...</div>;
     }
@@ -142,19 +140,24 @@ const Paymentblogpage = () => {
         <div className="payment-blog-page">
             <div className="payment-product-info">
                 <img src={productInfo.imageUrl} alt="Sản phẩm" className="payment-product-image" />
-                <h2 className="payment-info-title">Thông tin sản phẩm</h2>
-                <div className="payment-info-item">Tên sản phẩm: {productInfo.name}</div>
-                <div className="payment-info-item">Giá: {productInfo.price}</div>
+                <h2 className="payment-info-title">Product Information</h2>
+                <div className="payment-info-item">Product: {productInfo.name}</div>
+                <div className="payment-info-item">Price: {productInfo.price}</div>
             </div>
             <div className="payment-user-info">
-                <h2 className="payment-info-title">Thông tin người dùng</h2>
-                <div className="payment-info-item">Tên người dùng: {userInfo.username}</div>
-                
-                <div><button onClick={() => handleConfirmPayment()} className="payment-blog-button-cofirm">CONFIRM</button>
-                       </div>
+                <h2 className="payment-info-title">User Information</h2>
+                <div className="payment-info-item">User Name: {userInfo.username}</div>
+                <div className='button-paymentsssss'>
+                <button onClick={() => handleCancelPayment()}className="payment-blog-button-cancle">CANCLE</button>
                        
-                
-                
+                <button onClick={() => handleConfirmPayment()}
+                    className="payment-blog-button-cofirm"
+                    // style={{
+                        
+                    // }}
+                    >CONFIRM</button>
+                       
+                       </div>
             </div>
         </div>
     );

@@ -1,5 +1,6 @@
 .history-page {
-  padding: 50px;
+  margin-top: 170px;
+  padding: 15px;
 }
 
 /* .history-item {
@@ -65,15 +66,26 @@
 }
 .history-product-infos1 {
   display: flex;  /* Sắp xếp nội dung trong thẻ 'box' theo chiều ngang */
+  gap: 168px;
   align-items: center; /* Căn giữa các thẻ con theo chiều dọc */
-
-  
+  justify-content: center;
+  border: 1px solid #ccc;
+  margin-bottom: 20px;
+  padding: 15px;
+  border-radius: 5px;
+  font-size: 20px;
 }
 
 .history-product-info { 
   margin-left: 20px; /* Tạo khoảng cách với hình ảnh */
   flex: 1;  /* Cho phép 'product-info' chiếm toàn bộ chiều ngang còn lại */
-  
+  display: flex;
+  border: 1px solid #ccc;;
+  gap: 168px;
+  padding-left: 163px;
+  align-content: center;
+  height: 50px;
+  background-color: rgb(236, 236, 236);
 }
 .history-name, .history-time, .history-status, .history-titleR, .history-NameAtwork, .history-Actor, .history-TimeApprove, .history-StatusApprove{
   margin-left: 80px;

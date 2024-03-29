@@ -13,6 +13,7 @@ function Send() {
     const { auth } = useAuth();
     const [user, setUser] = useState(null);
     const [artworkList, setArtworkList] = useState([]);
+    const [orderList, setOrderList] = useState([]);
     const [approved, setApproved] = useState(false);
     const currentDate = new Date();
     const isoString = currentDate.toISOString();
@@ -24,15 +25,15 @@ function Send() {
                 // Gọi API để lấy thông tin payment
                 const paymentResponse = await api.get(`https://localhost:7227/api/Payment/get-payments`);
                 // const paymentData = paymentResponse.data.$values;
-                const paymentData = paymentResponse.data
-
+                const paymentData = paymentResponse.data.$values;
+                paymentData.sort((a, b) => new Date(b.createDate) - new Date(a.createDate));
                 // Lấy thông tin orderId thông qua paymentId
                 const order_Id = paymentData.orderId
 
                 //Lấy thông tin artworkId thông qua orderId
                 
                 // Cập nhật state với thông tin sản phẩm và người dùng
-                setPayment(paymentData.$values);
+                setPayment(paymentData);
             } catch (error) {
                 console.error('Error fetching payment data:', error);
             }
@@ -114,6 +115,26 @@ function Send() {
           }
         }, [orders]);
 
+        useEffect(() => {
+        const fetchOrderData = async () => {
+          try {
+            const artworkPromises = payment.map(item => api.get(`https://localhost:7227/api/Order/get-by-id?id=${item.orderId}`));
+            const artworks = await Promise.all(artworkPromises);
+            const artworkList = artworks.reduce((acc, artwork, index) => {
+              acc[payment[index].orderId] = artwork.data;
+              return acc;
+            }, {});
+        
+            setOrderList(artworkList);
+          } catch (error) {
+            console.error('Error fetching artwork data:', error);
+          }
+            };
+          if (payment.length > 0) {
+                fetchOrderData();
+              }
+            }, [payment]);
+
   return (
     <LayoutMorder>
     <div className="send-page">
@@ -128,8 +149,7 @@ function Send() {
                         </div>
       <div className="send-list">
         {payment.map((item) => (
-          orders.map((ord) => (
-            artworkList[ord.artworkId] && 
+            orderList[item.orderId] && artworkList[orderList[item.orderId].artworkId] && 
             // userNameMap[item.userId] &&
           <div key={item.$id} className="send-product-info">
             {/* <img src={artworkList[item.artworkId].imageUrl} alt="Product" /> */}
@@ -137,17 +157,17 @@ function Send() {
                         {/* <div className="product-info"> */}
                         {/* <div className="name">{item.orderId}</div> */}
                         <div className="send-name">{item.paymentId}</div>
-                            <div className="send-name">{artworkList[ord.artworkId].userName}  </div>
+                            <div className="send-name">{ artworkList[orderList[item.orderId].artworkId].userName}  </div>
                             {/* <div className="send-name">{item.orderId}  </div> */}
                             {/* <div className="name">{userNameMap[item.(artworkList[item.artworkId].userId)]}  </div> */}
                             <div  className="send-titleR">-{item.amount}</div>   
                             <div className="send-time">{item.createDate}</div> 
                             
-                            <div className="send-status">{item.status ? "Thành công" : "Đang chờ"}</div>
+                            <div className="send-status">{item.status ? "Success" : "Waiting"}</div>
                            
                         </div>
         //   </div>
-          ))
+    
         ))}
       </div>
     </div>

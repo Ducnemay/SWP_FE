@@ -2,10 +2,12 @@ import React, { useState, useEffect } from "react";
 import api from "../components/utils/requestAPI";
 import useAuth from "../hooks/useAuth";
 import "./Page.css"
-import { Link } from "react-router-dom";
+import { Link} from "react-router-dom";
+import { useParams, useNavigate } from 'react-router-dom';
+
 
 const Page = () => {
-  
+ 
   const { auth } = useAuth();
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -15,6 +17,8 @@ const Page = () => {
   const [imageUrl2, setImageUrl2] = useState("");
   const [reason, setReason] = useState("");
   const [genreList, setGenreList] = useState([]);
+  const navigate = useNavigate();
+
 
   useEffect(() => {
     // Fetch genre list
@@ -28,6 +32,7 @@ const Page = () => {
       }
     };
 
+
     fetchGenres();
   }, []);
   const setNumericPrice = (value) => {
@@ -40,54 +45,57 @@ const Page = () => {
   const handleImageChange = (event) => {
     const file = event.target.files[0]; // Lấy file từ sự kiện onChange
 
+
     // Tạo một đối tượng FileReader
     const reader = new FileReader();
 
+
     // Đọc file như một chuỗi dạng data URL
     reader.readAsDataURL(file);
+
 
     // Được gọi khi quá trình đọc file hoàn thành
     reader.onload = () => {
       const imageUrl = reader.result; // Nhận kết quả dạng base64
       setImageUrl(imageUrl); // Cập nhật state imageUrl với đường dẫn mới
-      
+     
     };
   };
+
 
   const handleImageChange2 = (event) => {
     const file = event.target.files[0]; // Lấy file từ sự kiện onChange
 
+
     // Tạo một đối tượng FileReader
     const reader = new FileReader();
+
 
     // Đọc file như một chuỗi dạng data URL
     reader.readAsDataURL(file);
 
+
     // Được gọi khi quá trình đọc file hoàn thành
     reader.onload = () => {
-      
+     
       const imageUrl2 = reader.result;
       setImageUrl2(imageUrl2);
     };
   };
+  const UserAllowtoPost=auth.user.statusPost ===true || auth.user.premiumId !==null;
   const handleSubmit = async (event) => {
     event.preventDefault();
-
-    // Check if the user's status is already 0
-    if (auth.user.status === "0") {
-      window.alert("You have to upgrade to premium.");
-      return;
-    }
-    if (auth.user.premiumId === null) {
-      window.alert("You have to upgrade to premium.");
-      return;
-    }
-
+   
+   
     if (!imageUrl && !imageUrl2) {
       window.alert("Please upload both images before submitting.");
       return;
     }
-    
+    if(!UserAllowtoPost){
+      window.alert("Please upgrade your account to premium.");
+      navigate("/page-m");
+      return;
+    }
     const artworkData = {
       userID:auth.user.userId,
       title: title,
@@ -98,17 +106,17 @@ const Page = () => {
       imageUrl2: imageUrl2,
       reason: reason,
     };
-  
+ 
     try {
       const headers = {
         "Content-Type": "application/json",
       };
-      
+     
       // Check if auth.token exists before adding Authorization header
       if (auth && auth.token) {
         headers.Authorization = `Bearer ${auth.token}`;
       }
-      
+     
       // Create the artwork
       const createArtworkResponse = await api.post(
         `https://localhost:7227/api/Artwork/create-new-artwork?userID=${auth.user.userId}`,
@@ -116,7 +124,9 @@ const Page = () => {
         { headers }
       );
 
+
       console.log("Artwork created successfully:", createArtworkResponse.data);
+
 
       // Update the status of the user's post
       const updateStatusResponse = await api.post(
@@ -125,24 +135,27 @@ const Page = () => {
         { headers }
       );
 
+
       console.log("User post status updated successfully:", updateStatusResponse.data);
+
 
       // Handle success here, e.g., redirect user to another page
       window.alert("Artwork created successfully!");
+      navigate("/page-m"); // Redirect to the specified page upon success
 
     } catch (error) {
       console.error("Error creating artwork:", error);
       // Handle error here, e.g., show error message to the user
-      window.alert("Error creating artwork. Please try again.");
+      window.alert("Error creating artwork. Please upgrade your account to premium.");
+      navigate("/page-m"); // Redirect to the specified page upon unsuccess
     }
   };
  
-
   return (
     <div className="add-artwork-form">
-      <Link to ="/"><button className="cus-submit-button">Back to home</button></Link>
-      <h1 className="cus-form-title">Create Artwork</h1>
-      
+      <Link to ="/page-m"><button className="cus-submit-button">Back to home</button></Link>
+      <h1 className="cus-form-title">CREATE ARTWORK</h1>
+
       <form onSubmit={handleSubmit}>
 
         <label className="cus-form-label">
@@ -212,7 +225,7 @@ const Page = () => {
               className="cus-form-select"
             />
           </label>
-        
+       
         {/* Hiển thị hình ảnh */}
         {imageUrl && (
           <img src={imageUrl} alt="Artwork" style={{ maxWidth: "100px", maxHeight: "100px" }} />
@@ -233,11 +246,12 @@ const Page = () => {
           <img src={imageUrl2} alt="Artwork" style={{ maxWidth: "100px", maxHeight: "100px" }} />
         )}
         <br />
-        
+       
         <button type="submit" className="cus-submit-button">Add Artwork</button>
       </form>
     </div>
   );
 };
+
 
 export default Page;

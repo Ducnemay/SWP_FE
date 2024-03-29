@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { NavLink, useNavigate, Link } from 'react-router-dom';
 import "./NavBar.css";
@@ -13,6 +14,11 @@ const NavBar = () => {
   const [searchInput, setSearchInput] = useState('');
   const [searchResults, setSearchResults] = useState([]);
   const [showSubNav, setShowSubNav] = useState(false); // State để kiểm soát hiển thị của subnavitem
+  const [showDropdown, setShowDropdown] = useState(false);
+  const [priceFilter, setPriceFilter] = useState('');
+  const [dateFilter, setDateFilter] = useState('');
+  const [purchaseFilter, setPurchaseFilter] = useState('');
+  const [showFilters, setShowFilters] = useState(false); // Trạng thái để xác định liệu nên hiển thị bộ lọc hay không
 
   const handleInputChange = (event) => {
     const inputValue = event.target.value;
@@ -36,6 +42,17 @@ const NavBar = () => {
       throw new Error(error.response.data);
     }
   };
+  const searchArtistByName = async (name) => {
+    try {
+      const response = await api.get(`https://localhost:7227/api/User/search-by-name?user=${name}`);
+      // Trả về danh sách các artwork từ response API hoặc một mảng rỗng nếu không có kết quả
+      return response.data.$values || [];
+    } catch (error) {
+      throw new Error(error.response.data);
+    }
+  };
+
+
 
   const handleSearch = async (searchType) => {
     try {
@@ -44,6 +61,7 @@ const NavBar = () => {
         searchResults = await searchArtworkByName(searchInput);
       } else if (searchType === 'artist') {
         // Gọi hàm tìm kiếm nghệ sĩ ở đây nếu cần
+        searchResults = await searchArtistByName(searchInput);
       }
       setSearchResults(searchResults);
     } catch (error) {
@@ -60,6 +78,30 @@ const NavBar = () => {
     auth.user = null;
     () => window.location.reload(false);
     navigate("/home");
+  };
+
+  const toggleDropdown = () => {
+    setShowDropdown(showDropdown);
+  };
+
+  const toggleDropUp = () => {
+    setShowDropdown(!showDropdown);
+  };
+
+  const handlePriceFilterChange = (event) => {
+    setPriceFilter(event.target.value);
+  };
+
+  const handleDateFilterChange = (event) => {
+    setDateFilter(event.target.value);
+  };
+
+  const handlePurchaseFilterChange = (event) => {
+    setPurchaseFilter(event.target.value);
+  };
+
+  const handleApplyFilters = () => {
+    setShowFilters(true); // Hiển thị bộ lọc khi người dùng nhấp vào nút "Filter"
   };
 
   return (
@@ -123,16 +165,84 @@ const NavBar = () => {
           )}
         </div>
       )}
+  {searchInput.trim() !== '' && (
+        <div className="search-results">
+          {searchResults && searchResults.length > 0 ? (
+            searchResults.map((result, index) => (
+              <div key={index} className="search-result-item">
+                <div className="image-wrapper" onClick={() => navigate(`/artist/${result.userId}`)}>
+                  <img src={result.imageUrl} alt={result.title} />
+                </div>
+                <div className="result-details">
+                  <h3>{result.username}</h3>
+                 
+                </div>
+              </div>
+            ))
+          ) : (
+            <p></p>
+          )}
+        </div>
+      )}
+
       <div className="nav-list">
-        <ul className="main-nav-list">
-          <li><NavLink to="/artist" className="nav-link">Artist</NavLink></li>
-          <li><NavLink to="/artworks" className="nav-link">Artworks</NavLink></li>
-          <li><NavLink to="/auction" className="nav-link">Auction</NavLink></li>
-          <li><NavLink to="/viewing-room" className="nav-link">Viewing Room</NavLink></li>
-          <li><NavLink to="/galleries" className="nav-link">Galleries</NavLink></li>
-          <li><NavLink to="/fairs-shows" className="nav-link">Fairs Shows</NavLink></li>
-          <li><NavLink to="/museums" className="nav-link">Museums</NavLink></li>
+        <ul>
+          <li><NavLink to="/home" className="Nav_link" style={{  textDecoration:"none"}}>Artworks</NavLink></li>
+          <li><NavLink to="/home"className="Nav_link" style={{  textDecoration:"none"}}>Auction</NavLink></li>
+          <li><NavLink to="/home"className="Nav_link" style={{  textDecoration:"none"}}>Viewing Room</NavLink></li>
+          <li><NavLink to="/home"className="Nav_link" style={{  textDecoration:"none"}}>Galleries</NavLink></li>
+          <li><NavLink to="/home"className="Nav_link" style={{  textDecoration:"none"}}>Fairs Shows</NavLink></li>
+          <li onMouseEnter={toggleDropUp} onMouseLeave={toggleDropdown}>
+            <span style={{
+              color: "black",
+              }}>Top Ratings</span>
+            {showDropdown && (
+              <ul className="dropdown" 
+                style={{ display: showDropdown ? 'block' : 'none' }}>
+                <li><NavLink to="/top-likes" 
+                    style={{ color: "black", textDecoration:"none"}}
+                    >Top Likes</NavLink>
+                    </li>
+                <li><NavLink to="/top-authors" 
+                    style={{ color: "black", textDecoration:"none"}}
+                    >Top Authors</NavLink>
+                    </li>
+              </ul>
+            )}
+          </li>
         </ul>
+              {/* Bộ lọc */}
+          {/* <div className="filter-section">
+            <button onClick={handleApplyFilters}>Filter</button>
+          </div>
+          {showFilters && (
+            <>
+              <div className="filter-section">
+                <label htmlFor="price-filter">Price:</label>
+                <select id="price-filter" style={{ color: "black" }} value={priceFilter} onChange={handlePriceFilterChange}>
+                  <option value="">All</option>
+                  <option value="low-to-high">Low to High</option>
+                  <option value="high-to-low">High to Low</option>
+                </select>
+              </div>
+              <div className="filter-section">
+                <label htmlFor="date-filter" style={{ color: "black" }}>Date:</label>
+                <select id="date-filter" value={dateFilter} onChange={handleDateFilterChange}>
+                  <option value="">All</option>
+                  <option value="newest-first">Newest First</option>
+                  <option value="oldest-first">Oldest First</option>
+                </select>
+              </div>
+              <div className="filter-section">
+                <label htmlFor="purchase-filter" style={{ color: "black" }}>Purchase:</label>
+                <select id="purchase-filter" value={purchaseFilter} onChange={handlePurchaseFilterChange}>
+                  <option value="">All</option>
+                  <option value="most-purchased">Most Purchased</option>
+                  <option value="least-purchased">Least Purchased</option>
+                </select>
+              </div>
+            </>
+          )} */}
       </div>
     </nav>
   );

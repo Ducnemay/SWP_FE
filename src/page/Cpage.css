@@ -14,7 +14,7 @@
   grid-template-columns: repeat(4, 1fr);
   gap: 20px;
   padding: 20px;
-  margin-top: 20px;
+  margin-top: -15px;
   align-items: start;
 }
 
@@ -101,7 +101,10 @@ transform: translate(-50%, -50%);
   display: flex;
   justify-content: flex-end;
   align-items: center;
-
+  margin-right: 145px;
+  margin-bottom: 185px;
+  margin-top: -144px;
+  gap: 8px;
   /* position: absolute;  */
   /* left: 0; 
   top: 20px; Điều chỉnh khoảng cách từ trên xuống */

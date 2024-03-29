@@ -8,7 +8,7 @@ import useAuth from '../hooks/useAuth';
 export default function Artreport() {
   const [product, setProduct] = useState(null);
   const [des, setdes] = useState(null);
-  const [cartBtn, setCartBtn] = useState("confirmation Reports");
+  const [cartBtn, setCartBtn] = useState("Confirmation Reports");
   const [userMap, setUserMap] = useState({});
   const { auth } = useAuth(); // Lấy thông tin người dùng từ hook useAuth
   const navigate = useNavigate(); // Sử dụng useNavigate để chuyển hướng
@@ -78,16 +78,16 @@ export default function Artreport() {
       await api.post(`https://localhost:7227/api/Report/create-new-report?UserId=${auth.user.userId}`, orderData);
 
       // Cập nhật trạng thái nút Purchase sau khi thành công
-      setCartBtn("confirmation Report");
+      setCartBtn("Confirmation Report");
 
       // Hiển thị thông báo thành công
-      alert('report created successfully!');
+      alert('Report created successfully!');
 
       // Chuyển hướng sang trang order-detail
       navigate('/home');
     } catch (error) {
       console.error('Error creating new report:', error);
-      setCartBtn("confirmation Report"); // Đặt lại nút Purchase nếu có lỗi xảy ra
+      setCartBtn("Confirmation Report"); // Đặt lại nút Purchase nếu có lỗi xảy ra
     }
   };
 
@@ -96,8 +96,8 @@ export default function Artreport() {
   }
 
   return (
-    <div className="container my-5 py-3">
-      <div className="row">
+    // <div className="container my-5 py-3">
+      <div className="row-report">
         <div className="col-md-6">
           <div className="d-flex justify-content-center mx-auto product">
             <img src={product.imageUrl} alt={product.title} height="400px" style={{ margin: '4em' }} />
@@ -106,30 +106,51 @@ export default function Artreport() {
 
         <div className="col-md-6">
           <div className="d-flex flex-column justify-content-between h-100">
-            <div>
-              <h1 className="display-5 fw-bold text-underline" style={{ fontSize: '4em', marginTop: '0.5em'}}>{product.title}</h1>
+            <div className="title-report">
+              <h1 className="display-5 fw-bold text-underline" style={{ fontSize: '40px', marginTop: '0.5em', marginLeft: "60px"}}>{product.title}</h1>
               <p className="lead" style={{ fontSize: '1.4em', marginTop: '0', marginRight: '10em' }}>{product.desc}</p>
-              <p className="lead" style={{ fontSize: '1.5em', marginRight: '11em', position: 'relative' }}>{userMap[product.userId]?.username}
-                <div className="line"></div>
+              <p className="lead" href="" style={{ fontSize: '1.5em', marginRight: '-2.5em', position: 'relative' }}>{userMap[product.userId]?.username}
+                <div className="line"
+                style={{width:"738px"}}></div>
               </p>
-            </div>
+           
             <div className="d-flex flex-column align-items-start">
               <h2 className="my-4" style={{ fontSize: '3em', marginTop: '0', marginRight: '5em' }}>${product.price}</h2>
-              <button onClick={handleReport} className="btn btn-outline-primary" style={{ fontSize: '1.8rem', background: 'black', color: 'white', width: '450px' }}>{cartBtn}</button>
-            </div>
-            <select
-            value={des}
-            onChange={(e) => setdes(e.target.value)}
-          >
-            <option style={{marginTop:'1em'}}>choose reason of report<>&nbsp;&nbsp;&nbsp;&nbsp;</></option> 
-            <option>Violation of copyright regulations<>&nbsp;&nbsp;&nbsp;&nbsp;</></option> 
-            <option>Offensive or inappropriate<>&nbsp;&nbsp;&nbsp;&nbsp;</></option>
-            <option>Violating ethical or moral standards<>&nbsp;&nbsp;&nbsp;&nbsp;</></option>
-            </select>
+              </div>
+              
+              <div className="cofirm-form-report">
+              <select
+                  value={des}
+                  onChange={(e) => setdes(e.target.value)}
+                  style={{
+                    marginBottom:"50px",
+                    height:"40px",
+                    fontSize:"20px",
+                    width:"350px",
+                    marginLeft:"85px"
+                  }}
+                >
+                  <option style={{marginTop:'1em'}}>Choose reason of report<>&nbsp;&nbsp;&nbsp;&nbsp;</></option> 
+                  <option>Violation of copyright regulations<>&nbsp;&nbsp;&nbsp;&nbsp;</></option> 
+                  <option>Offensive or inappropriate<>&nbsp;&nbsp;&nbsp;&nbsp;</></option>
+                  <option>Violating ethical or moral standards<>&nbsp;&nbsp;&nbsp;&nbsp;</></option>
+                </select>
+              </div>
+              <button onClick={handleReport} className="btn btn-outline-primary" 
+                style={{ 
+                  fontSize: '1.4rem', 
+                  background: 'black', 
+                  color: 'white', 
+                  width: '350px',
+                  marginLeft:"90px",
+                  marginLeft: "390px",
+                  marginTop:"-166px"
+                  }}>{cartBtn}</button>
 
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    // </div>
   );
 }

@@ -84,7 +84,7 @@ const PaymentPremium = () => {
                 await api.post(updatePremiumIdUrl);
 
                 alert('Chuyển Tiền Thành Công');
-                navigate(`/home`);
+                navigate(`/page-m`);
             }
         } catch (error) {
             console.error('Error confirming payment:', error);
@@ -98,13 +98,20 @@ const PaymentPremium = () => {
     return (
         <div className="paymentpremium-blog-page">
             <div className="paymentpremium-user-info">
-                <h2 className="paymentpremium-info-title">Xác Nhận Chuyển Tiền</h2>
-                Chuyển tới:<div className="paymentpremium-info-itemss"> {userArtworkInfo.username}</div>
-                <h1 className="paymentpremium-info-item">{productInfo.total}</h1>
+                <h2 className="paymentpremium-info-title">Confirm Payment Premium</h2>
+                <div className="paymentpremium-info-itemss">Transfer to: ARTWORK SHOP</div>
+                <h1 
+                    style={{
+                        fontFamily:"-moz-initial",
+                        color:"black",
+                        paddingTop:"30px",
+                        fontSize:"100px"
+                }}
+                    className="paymentpremium-info-item">${productInfo.total}</h1>
                 <div className='paymentpremium-position-button'>
                     <Link to={`/pre`}>
                         <div>
-                            <button className="paymentpremium-blog-button-cancle">CANCLE</button>
+                            <button className="paymentpremium-blog-button-cancle">CANCEL</button>
                         </div>
                     </Link>
                     <div>

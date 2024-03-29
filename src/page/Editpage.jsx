@@ -14,6 +14,8 @@ const Editpage = () => {
     phone: '',
     gender: '',
     address: '',
+    bannk: '', // New field
+    bankAccount: '', // New field
   });
   const [successMessage, setSuccessMessage] = useState('');
 
@@ -32,6 +34,8 @@ const Editpage = () => {
             gender: userData.sex || '',
             address: userData.address || '',
             imgURL: userData.imageUrl || null,
+            bannk: userData.bank || '', // New field
+            bankAccount: userData.bankAccount || '', // New field
           });
         }
       } catch (error) {
@@ -40,7 +44,7 @@ const Editpage = () => {
     };
 
     fetchUserData();
-  }, [auth]);
+  }, [auth.user.userId]);
 
   const handleSave = async () => {
     try {
@@ -153,6 +157,31 @@ const Editpage = () => {
           required
         />
         <label htmlFor="address" className='input-label'>Address</label>
+      </div>
+
+      {/* New fields */}
+      <div className="form-group">
+        <input
+          type="text"
+          id="bank"
+          className="input-field"
+          value={formData.bannk}
+          onChange={(e) => handleChange('bannk', e.target.value)}
+          required
+        />
+        <label htmlFor="bank" className='input-label'>Bank</label>
+      </div>
+
+      <div className="form-group">
+        <input
+          type="text"
+          id="bankAccount"
+          className="input-field"
+          value={formData.bankAccount}
+          onChange={(e) => handleChange('bankAccount', e.target.value)}
+          required
+        />
+        <label htmlFor="bankAccount" className='input-label'>Bank Account</label>
       </div>
 
       <button className="save-button" onClick={handleSave}>Save</button>

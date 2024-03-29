@@ -7,12 +7,15 @@ function ReportPage() {
   const [report, setReport] = useState([]);
   const [artworkList, setArtworkList] = useState([]);
   const [user, setUser] = useState([]);
+  const [representativeReports, setRepresentativeReports] = useState({});
+  const [artworkIdCount, setArtworkIdCount] = useState({});
+
   useEffect(() => {
     async function fetchHistory() {
       try {
         const response = await api.get(`https://localhost:7227/api/Report/get-all`);
         const allReport = response.data.$values
-
+        allReport.sort((a, b) => new Date(b.reportDate) - new Date(a.reportDate));
         setReport(allReport);
       } catch (error) {
         console.error('Error fetching report:', error);
@@ -85,12 +88,40 @@ function ReportPage() {
             }
           }, [report]);
 
+          useEffect(() => {
+            const findRepresentativeReports = () => {
+              const representativeReportsObject = {};
+              report.forEach(rep => {
+                if (!representativeReportsObject[rep.artworkId]) {
+                  representativeReportsObject[rep.artworkId] = rep;
+                } else {
+                  if (new Date(rep.reportDate) < new Date(representativeReportsObject[rep.artworkId].reportDate)) {
+                    representativeReportsObject[rep.artworkId] = rep;
+                  }
+                }
+              });
+              setRepresentativeReports(representativeReportsObject);
+            };
+            findRepresentativeReports();
+          }, [report]);
+
+          useEffect(() => {
+            const countArtworkIds = () => {
+              const counts = {};
+              report.forEach(rep => {
+                counts[rep.artworkId] = (counts[rep.artworkId] || 0) + 1;
+              });
+              setArtworkIdCount(counts);
+            };
+            countArtworkIds();
+          }, [report]);
+
   return (
     <LayoutMorder>
     <div className="report-page">
       {/* <h1>History</h1> */}
       <div className="report-list">
-        {report.map((item) => (
+      {Object.values(representativeReports).map((item) => (
           artworkList[item.artworkId] && user[item.userId] &&
           <div key={item.$id} className="report-boxR">
             <div className="report-image-box">
@@ -103,19 +134,9 @@ function ReportPage() {
                             <div  className="report-titleR">Name of reporter: {user[item.userId].username}</div>   
                             <div className="report-time">Content of report: {item.description}</div> 
                             <div className="report-status">Time: {item.reportDate}</div>
+                            <div>Count: {artworkIdCount[item.artworkId]}</div>
                             
                         </div>
-            {/* <div className="history-info">
-              <div className="history-detail">
-            <div className="history-nameArtwork">Artwork: {item.description}</div>
-            <div className="history-status">Status: {item.statusProcessing}</div>
-            <div className="history-time">Time: {item.timeProcessing}</div>
-            </div>
-              <img src={item.imageUrl} alt="Product" /> 
-            </div> */}
-            {/* <div className="history-action">
-              <button>View Details</button>
-            </div> */}
           </div>
         ))}
       </div>

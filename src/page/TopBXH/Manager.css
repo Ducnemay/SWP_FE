@@ -1,0 +1,87 @@
+.search-top-container {
+    margin-bottom: 20px;
+    display: flex;
+    gap: 10px;
+}
+
+.container {
+    display: flex;
+    gap: 50px;
+    color: white;
+    margin: 0 auto;
+    z-index: 5;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.table th,
+.table td {
+    border: 1px solid #ddd;
+    padding: 30px;
+    text-align: center;
+    justify-content: center;
+}
+
+.table th {
+    background-color: #f2f2f2;
+    text-align: center;
+}
+
+.actions {
+    display: flex;
+    gap: 5px;
+}
+
+.add-container {
+    margin-bottom: 20px;
+    display: flex;
+    gap: 10px;
+}
+
+.MuiTextField-root {
+    margin-right: 10px;
+}
+
+.sidebar {
+    background-color: gray;
+    width: 300px;
+    margin-left: -80px;
+    height: 100%;
+}
+
+.fa-crown {
+    font-size: 100px;
+    margin-top: 30px;
+    margin-bottom: 20px;
+}
+
+h1 {
+    color: rgb(93, 92, 92);
+    background-color: rgb(194, 194, 194);
+    margin-left: -10px;
+    margin-right: -10px;
+}
+
+.line-top {
+    height: 2px;
+    background-color: rgb(212, 212, 212);
+}
+
+p {
+    color: white;
+    font-size: larger;
+    line-height: 3;
+}
+
+p:hover {
+    background-color: rgb(179, 179, 179);
+}
+
+.foot-sidebar {
+    font-size: 13px;
+    margin-top: 100px;
+}

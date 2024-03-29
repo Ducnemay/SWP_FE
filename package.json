@@ -15,6 +15,7 @@
     "@vitejs/plugin-react": "^4.1.0",
     "axios": "^1.5.1",
     "bootstrap": "^5.3.3",
+    "express": "^4.19.2",
     "firebase": "^10.5.0",
     "jwt-decode": "^3.1.2",
     "moment": "^2.29.4",
@@ -26,9 +27,11 @@
     "react-paginate": "^8.2.0",
     "react-responsive-carousel": "^3.2.23",
     "react-router-dom": "^6.22.0",
+    "react-watermark-component": "^2.2.1",
     "sass": "^1.69.4",
     "scss": "^0.2.4",
-    "styled-components": "^5.3.10"
+    "styled-components": "^5.3.10",
+    "watermark": "^1.0.2"
   },
   "devDependencies": {
     "@types/react": "^18.2.15",

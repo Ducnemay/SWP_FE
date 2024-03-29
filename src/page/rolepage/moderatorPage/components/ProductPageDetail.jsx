@@ -65,13 +65,7 @@ export default function ProductPage (){
       console.log(processingResponse.data);
       console.log("Product Approved");
   
-      const updateImageUrl = `https://localhost:7227/api/Artwork/update-artwork-image?artworkId=${productId}`;
-      const imageData = {
-        imageUrl: approveImgurl        
-      };
-      const imageResponse = await api.post(updateImageUrl, imageData);
-      console.log(imageResponse.data);
-      console.log("Image Uploaded");
+      
   
       setApproved(true);
       navigate("/content");
@@ -105,9 +99,7 @@ export default function ProductPage (){
     setIsNotificationVisible(!isNotificationVisible);
   };
 
-  const handleEditImage = () => {
-    window.open(CANVA_URL, '_blank');
-  };
+ 
   return ( 
     <LayoutMorder>
     <div className="productdetail-page">
@@ -137,19 +129,6 @@ export default function ProductPage (){
             </div>
           </div>
           <div className="actions">
-          {showUploadForm && (
-            
-  <div className="upload-form">
-    <button onClick={handleEditImage}className="edit-image-button">Edit Image</button> 
-    {/* < className='upload-form'> */}
-    <input placeholder="Input link of image after edited " className='button-upload'
-    value={approveImgurl}
-            onChange={(f) => setApproveImgurl(f.target.value)}>  
-    </input>
-    <button onClick={() => {setShowUploadForm(false);setShowButtons(true);}} className='Back-to-approve'>Back</button>
-    <button onClick={handleApprove}className="show-approve-button">CONFIRM</button> 
-  </div>
-)}
           {showRejectReason && (
             <div className='showReason'>
             <textarea placeholder="Lý do " className="reject-reason"
@@ -167,9 +146,8 @@ export default function ProductPage (){
             <button onClick={() =>{ setShowRejectReason(true);
             setShowButtons(false); }               
             }className="reject-button">UNAPPROVE</button>
-            <div className="posting-time">Thời gian đăng: {product.time}</div>
-            <button onClick={() =>{ setShowButtons(false);
-            setShowUploadForm(true); } }className="approve-button">APPROVE</button>
+            <div className="posting-time">Time post: {product.time}</div>
+            <button onClick={handleApprove}className="approve-button">APPROVE</button>
             </div>
             )}
           </div>
@@ -179,4 +157,3 @@ export default function ProductPage (){
       </LayoutMorder>
   );
 }
-

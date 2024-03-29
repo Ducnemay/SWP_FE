@@ -49,25 +49,20 @@
     background-color: rgb(0, 0, 0);
     color: rgb(255, 255, 255);
     border: 2px solid black;
-    padding: 12px 20px;
-    border-radius: 15px;
-    position: absolute;
-   
-  width: 130px;
-    bottom: 15px;
+    padding: 10px 20px;
+    border-radius: 5px;
+    width: 130px;
+    
 }
 .payment-blog-button-cancle{
-  display: inline-block;
-  text-decoration: none;
-  background-color: rgb(0, 0, 0);
-  color: rgb(255, 255, 255);
-  border: 2px solid black;
-  padding: 12px 20px;
-  border-radius: 15px;
-  position: absolute;
-  right: 15px;
-  width: 130px;
-  top: 65px;
+    display: inline-block;
+    text-decoration: none;
+    background-color: rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
+    border: 2px solid black;
+    padding: 10px 20px;
+    border-radius: 5px;
+    width: 130px;
 
 }
 .payment-blog-button-cofirm:hover, .payment-blog-button-cancle:hover{
@@ -78,4 +73,9 @@
   display: flex;
   height: 200px;
   position: relative;
+}
+.button-paymentsssss{
+    display: flex;
+    gap: 20px;
+    margin-top: 100px;
 }

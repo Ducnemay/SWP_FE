@@ -34,7 +34,7 @@
   .authentication-container {
     width: 400px;
     padding: 20px;
-    background-color: rgba(244, 244, 244, 0.8); /* Use an rgba background color with some transparency */
+    background-color: rgb(255, 254, 254); /* Use an rgba background color with some transparency */
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     backdrop-filter: blur(10px); /* Apply a blur effect with a 10px radius */
@@ -42,61 +42,63 @@
   
   .authentication-container h2 {
     text-align: center;
-    margin-bottom: 20px;
-    color:#333;
+    margin-bottom: 35px;
+    color:rgb(0, 0, 0);
   }
   
   .authentication-input-container {
     position: relative;
-    margin-bottom: 20px;
+    color: rgb(235, 235, 235);
+    padding-bottom: 30px;
+    
   }
   
   .authentication-input {
-    width: calc(100% - 20px); 
-    padding: 10px;
-    font-size: 16px;
-    border: 1px solid black;
-    border-radius: 4px;
-    outline: none;
-    transition: border-color 0.3s;
-    background-color: transparent;
-    color: #333;
+   font-size: 16px;
+ padding: 10px 10px 10px 5px;
+ display: block;
+ width: 200px;
+ border: none;
+ border-bottom: 1px solid #515151;
+ background: transparent;
   }
   
   
   .authentication-input:focus,
   .authentication-input:valid {
-    border-color: white; /* Green color on focus or valid input */
+    outline: none; /* Green color on focus or valid input */
   }
   
   .authentication-input-container-label {
+    color: #dddddd;
+    font-size: 18px;
+    font-weight: normal;
     position: absolute;
-    top: 50%;
-    left: 10px;
-    transform: translateY(-50%);
-    font-size: 14px;
-    color:#333;
     pointer-events: none;
-    transition: transform 0.3s, font-size 0.3s;
+    left: 5px;
+    top: 10px;
+    transition: 0.2s ease all;
+    -moz-transition: 0.2s ease all;
+    -webkit-transition: 0.2s ease all;
   }
   
   .authentication-input:focus + .authentication-input-container-label,
   .authentication-input:valid + .authentication-input-container-label {
-    transform: translateY(-150%) scale(0.8);
-  background-color: #f4f4f454;
-  display: inline-block;
+    top: -20px;
+    font-size: 14px;
+    color: #5264AE;
   }
   
   .log-in-password-toggle-button {
     position: absolute;
-    top: 50%;
+    top: 25%;
     right: 10px;
     transform: translateY(-50%);
     background: none;
     border: none;
     cursor: pointer;
     outline: none;
-    color: black;
+    color: white;
   }
   
   .forgot-password-link {
@@ -137,3 +139,57 @@
     outline: none;
     color: black;
   }
+  .bar:before, .bar:after {
+    content: '';
+    height: 2px;
+    width: 0;
+    bottom: 1px;
+    position: absolute;
+    background: #5264AE;
+    transition: 0.2s ease all;
+    -moz-transition: 0.2s ease all;
+    -webkit-transition: 0.2s ease all;
+   }
+   
+   .bar:before {
+    left: 50%;
+   }
+   
+   .bar:after {
+    right: 50%;
+   }
+   
+   .input:focus ~ .bar:before, .input:focus ~ .bar:after {
+    width: 50%;
+   }
+   
+   .highlight {
+    position: absolute;
+    height: 60%;
+    width: 100px;
+    top: 25%;
+    left: 0;
+    pointer-events: none;
+    opacity: 0.5;
+   }
+   .authentication-input:focus ~ .highlight {
+    animation: inputHighlighter 0.3s ease;
+   }
+   
+   @keyframes inputHighlighter {
+    from {
+     background: #5264AE;
+    }
+   
+    to {
+     width: 0;
+     background: transparent;
+    }
+   }  
+
+   .authentication-input:focus + .authentication-input-container-label,
+.authentication-input:not(:placeholder-shown) + .authentication-input-container-label {
+  top: -20px;
+  font-size: 14px;
+  color: #5264AE;
+}

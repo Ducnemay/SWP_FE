@@ -1,97 +1,97 @@
 .report-page {
-    padding: 50px;
-  }
-  
-  /* .report-item {
-    background-color: #f9f9f9;
-    border-radius: 8px;
-    padding: 20px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    width: calc(33.33% - 20px);
-  } */
-  .report-info {
-    background-color: #f9f9f9;
-    border-radius: 8px;
-    padding: 20px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    width: calc(33.33% - 20px);
-  }
-  
-  .report-info h3 {
-    margin-top: 0;
-  }
-  
-  .report-action button {
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    padding: 8px 16px;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  .report-action button:hover {
-    background-color: #0056b3;
-  }
-  
-  .report-info{
-    position: relative;
-      display: flex;
-  }
-  
-  .report-detail{
-    flex: 1;
-    padding: 20px 20px 20px 100px;
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
-  .report-list {
-    display: flex; /* Cho phép các thẻ con sắp xếp ngang */
-    flex-wrap: wrap; /* Cho phép thẻ xuống dòng nếu không đủ khoảng trống chiều ngang*/
-    gap: 20px;
-    flex-direction: column;
-  }
-  
-  .report-boxR{
-    display: flex;  /* Sắp xếp nội dung trong thẻ 'box' theo chiều ngang */
-    border: 1px solid #ccc; /* Thêm viền */
-    border-radius: 5px;
-    width: 900px;
-    margin-left: 260px;
-    
-  }
-  .report-product-infos1 {
-    display: flex;  /* Sắp xếp nội dung trong thẻ 'box' theo chiều ngang */
-    align-items: center; /* Căn giữa các thẻ con theo chiều dọc */
-  
-    
-  }
-  
-  .report-product-info { 
-    margin-left: 20px; /* Tạo khoảng cách với hình ảnh */
-    flex: 1;  /* Cho phép 'product-info' chiếm toàn bộ chiều ngang còn lại */
-    margin-top: 8px;
+  padding: 50px;
+}
 
-    
-  }
-  .report-time, .report-status, .report-titleR{
-    /* margin-left: 80px;
-    margin-right: 80px; */
-    width: max-content;
-    margin-top :10px;
-    font-size: 20px;
-  font-weight: bold;
-  }
-  .report-boxR img{
-    width: 200px;
-  }
-  .report-image-box{
-    width: 200px;
-    
-  }
-  .report-image-name{
-    text-align: left;
-    margin-left: 10px;
-  }
+/* .report-item {
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: calc(33.33% - 20px);
+} */
+.report-info {
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: calc(33.33% - 20px);
+}
+
+.report-info h3 {
+  margin-top: 0;
+}
+
+.report-action button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.report-action button:hover {
+  background-color: #0056b3;
+}
+
+.report-info{
+  position: relative;
+    display: flex;
+}
+
+.report-detail{
+  flex: 1;
+  padding: 20px 20px 20px 100px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.report-list {
+  display: flex; /* Cho phép các thẻ con sắp xếp ngang */
+  flex-wrap: wrap; /* Cho phép thẻ xuống dòng nếu không đủ khoảng trống chiều ngang*/
+  gap: 20px;
+  flex-direction: column;
+}
+
+.report-boxR{
+  display: flex;  /* Sắp xếp nội dung trong thẻ 'box' theo chiều ngang */
+  border: 1px solid #ccc; /* Thêm viền */
+  border-radius: 5px;
+  width: 900px;
+  margin-left: 260px;
+  
+}
+.report-product-infos1 {
+  display: flex;  /* Sắp xếp nội dung trong thẻ 'box' theo chiều ngang */
+  align-items: center; /* Căn giữa các thẻ con theo chiều dọc */
+
+  
+}
+
+.report-product-info { 
+  margin-left: 20px; /* Tạo khoảng cách với hình ảnh */
+  flex: 1;  /* Cho phép 'product-info' chiếm toàn bộ chiều ngang còn lại */
+  margin-top: 8px;
+
+  
+}
+.report-time, .report-status, .report-titleR{
+  /* margin-left: 80px;
+  margin-right: 80px; */
+  width: max-content;
+  margin-top :10px;
+  font-size: 20px;
+font-weight: bold;
+}
+.report-boxR img{
+  width: 200px;
+}
+.report-image-box{
+  width: 200px;
+  
+}
+.report-image-name{
+  text-align: left;
+  margin-left: 10px;
+}
