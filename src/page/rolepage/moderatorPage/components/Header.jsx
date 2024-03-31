@@ -56,7 +56,7 @@ export default function Header(){
                      textDecoration: "underline",
                      textDecorationThickness: "1px"
           }} 
-            ><i class="fa-solid fa-wallet"></i>&nbsp;WALLET : {user?.money}</div>
+            ><i class="fa-solid fa-wallet"></i>&nbsp;WALLET : ${user?.money}</div>
       </div>
       <div className="bottom-section">
         <div className="menu-item"><Link to ="/content">CONTENT</Link> </div>

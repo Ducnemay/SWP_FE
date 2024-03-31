@@ -65,7 +65,7 @@ export default function Cpage() {
               <img src={artwork.imageUrl} alt="artwork-image"
                 className={artwork.statusProcessing ? '' : 'processing-false'}
               />
-              {!artwork.statusProcessing && <div className="waiting-text">Wating</div>}
+              {!artwork.statusProcessing && <div className="waiting-text">Waiting</div>}
 
             </div>
             <div className="details">

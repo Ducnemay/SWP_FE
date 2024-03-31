@@ -42,7 +42,7 @@ const NavPage = () => {
                 }}
                 ><i class="fa-solid fa-crown"></i>&nbsp;<i class="fa-solid fa-crown"></i>&nbsp;<i class="fa-solid fa-crown"></i></p>
               ) : (
-                <p>User does not have premium</p>
+                <p></p>
               )}
             </div>
           </div>

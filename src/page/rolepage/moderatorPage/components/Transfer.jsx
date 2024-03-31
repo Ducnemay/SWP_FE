@@ -189,7 +189,7 @@ function Transfer() {
                             <div  className="recieve-titleR">{orderList[item.orderId].userName}</div>   
                             {/* <div  className="recieve-titleR">{item.userId}</div>    */}
                             <div className="recieve-time">{item.createDate}</div> 
-                            <div className="recieve-status">+{item.total}</div>
+                            <div className="recieve-status">+ ${item.total}</div>
                             <div className="recieve-status">{item.status ? "Success" : "Waiting"}</div>
                             {!item.status && ( 
                             <button onClick={() => handleConfirmOrder(auth.user.userId,artworkList[item.artworkId].userId,item.orderId)}><div className="recieve-StatusApprove">Confirm</div></button>
@@ -203,7 +203,7 @@ function Transfer() {
     
     <div className="recieve-history-page">
       <h1>Receiving Premium History</h1>
-      <div className="recieve-product-infos1">
+      <div className="recieve-product-infos1" style={{display:"flex", gap:"450px"}}>
                             {/* <div className="recieve-Atwork">PremiumId</div> */}
                             {/* <div className="recieve-Actor">Artist</div>  */}
                             <div  className="recieve-NameAtwork">Buyer</div>   
@@ -213,20 +213,20 @@ function Transfer() {
                             <div className="recieve-StatusApprove">Status</div>
                             {/* <div className="recieve-StatusApprove">Action</div> */}
                         </div>
-      <div className="recieve-history-list">
+      <div  className="recieve-history-list">
         {premium.map((item) => (
               userName[item.userId] && 
             // userNameMap[item.userId] &&
           <div key={item.$id} className="recieve-boxR">
             {/* <img src={artworkList[item.artworkId].imageUrl} alt="Product" /> */}
-                        <div className="recieve-product-info">
+                        <div  className="recieve-product-info1">
                         {/* <div className="name">{item.orderId}</div> */}
                             <div className="recieve-name">{userName[item.userId].username}  </div>
                             {/* <div className="name">{userNameMap[item.(artworkList[item.artworkId].userId)]}  </div> */}
                             {/* <div  className="recieve-titleR">{orderList[item.orderId].userName}</div>    */}
                             {/* <div  className="recieve-titleR">{item.userId}</div>    */}
                             <div className="recieve-time">{item.orderDate}</div> 
-                            <div className="recieve-status">+{item.total}</div>
+                            <div className="recieve-status">+ ${item.total}</div>
                             <div className="recieve-status">{item.status ? "Success" : "Waiting"}</div>
                             </div>
           </div>

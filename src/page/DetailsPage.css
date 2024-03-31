@@ -69,6 +69,9 @@
   padding-left: 250px;
   margin-top: -15px;
 }
+.comment img {
+ width: 100px;
+}
 .comment-list {
   display: grid;
   gap: 60px;

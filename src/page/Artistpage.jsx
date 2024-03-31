@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import api from '../components/utils/requestAPI';
-import './HomePage.css';
+import './Artispage.css';
 import useAuth from '../hooks/useAuth';
 import { Link, useNavigate } from 'react-router-dom';
 import { FaHeart, FaRegHeart, FaVirusSlash } from "react-icons/fa";

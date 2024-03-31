@@ -1,0 +1,334 @@
+/* HomePage.css */
+
+
+
+.main-tieude {
+    color: transparent; /* Đặt màu văn bản thành trong suốt */
+    font-size: 100px;
+    border-bottom: 1px solid #888;
+    padding-bottom: 8px;
+    width: 100%;
+    background-image: url('https://static.vinwonders.com/2022/12/rung-viet-nam-0.jpg'); 
+    background-size: cover;
+    -webkit-background-clip: text; /* Cho phép chèn hình ảnh vào văn bản */
+    background-clip: text;
+  }
+  
+  
+  .product-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 20px;
+    box-sizing: border-box;
+  }
+  
+  .product-itemm {
+    width: calc(33.33% - 20px); /* Chiều rộng của mỗi sản phẩm trong một hàng */
+    margin-bottom: 20px; /* Khoảng cách dưới giữa các sản phẩm */
+  }
+  
+  .product-card {
+    width: 25rem;
+    height: auto;
+    background: #fff;
+    border-radius: 1.5rem;
+    padding: 1.5rem;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Thay đổi box shadow khi hover */
+  }
+  
+  .product-card:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Thay đổi box shadow khi hover */
+  }
+  
+  
+  .product-images {
+    overflow: hidden;
+  
+    width: 100%;
+    height: auto;
+    position: relative;
+  }
+  
+  .product-imagee {
+    width: 100%;
+    height: auto;
+    max-height: 15rem;
+    object-fit: cover;
+    border-radius: 1.5rem;
+    transition: transform 0.3s ease;
+  }
+  
+  .product-itemm:hover .product-imagee {
+    transform: scale(1.2);
+  }
+  
+  .product-content {
+    padding: 10px;
+  }
+  .product-content p{
+    text-align: left;
+    padding: 1rem 0;
+    color: black;
+    font-size: 1rem;
+  }
+  
+  .product-title {
+    text-align: left;
+    padding: 1rem 0;
+    color: #22215B80;
+    font-size: 1rem;
+  }
+  
+  
+  
+  .product-prices {
+    text-align: left; /* Căn chữ giá tiền sang lề trái */
+    padding: 1rem 0;
+    color: black;
+    font-size: 1rem;
+    
+  }
+  .button-heart .Report-button{
+    color: black; /* Đảm bảo màu của icon là đen */
+    background: none;
+    border: none;
+    padding: 0;
+    outline: none;
+    margin-left: 2vh;
+  }
+  
+  .pagination {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    padding: 0;
+    margin: 20px 0;
+  }
+  
+  .pagination li {
+    display: inline-block;
+    margin: 0 5px;
+    cursor: pointer;
+  }
+  
+  .pagination li.active {
+    font-weight: bold;
+  }
+  
+  .pagination li a {
+    text-decoration: none;
+    color: #333;
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .pagination li a:hover {
+    background-color: #f2f2f2;
+  }
+  .button-heart {
+    text-align: right;
+  }
+  
+  .button-heart button.liked {
+    color: red;
+  }
+  
+  .button-heart .like-button {
+    color: black;
+    background: none;
+    border: none;
+    padding: 0;
+    outline: none;
+  }
+  .notification {
+    position: fixed;
+    bottom: 10px; 
+    left: 50%; 
+    transform: translateX(-50%); 
+    background-color: rgba(46, 204, 113, 0.8); 
+    color: black; 
+    padding: 10px 150px; 
+    border-radius: 5px; 
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); 
+    z-index: 9999; 
+  }
+  .notification-remove {
+    position: fixed;
+    bottom: 10px; 
+    left: 50%; 
+    transform: translateX(-50%); 
+    background-color: #000; 
+    color: #fff; 
+    padding: 10px 20px; 
+    border-radius: 5px; 
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); 
+    z-index: 9999;
+  }
+  
+  
+  .product-card {
+    position: relative; 
+  }
+  .artist-card{
+    position: relative; 
+  }
+  .button-heart {
+    position: absolute; 
+    bottom: 2vh; /* Đặt vị trí từ trên xuống */
+    right: 2vh; /* Đặt vị trí từ phải qua */
+    display: flex; /* Sử dụng flexbox */
+    align-items: center; /* Căn chỉnh các phần tử theo chiều dọc */
+  }
+  
+  .product-liketimes {
+    color: black;
+    margin-right: 10px; 
+  }
+  
+  
+  .loader {
+    position: fixed; /* Đảm bảo loader luôn hiển thị ở trên cùng */
+    top: 17%; /* Đặt top ở giữa màn hình */
+    left: 50%; /* Đặt left ở giữa màn hình */
+    transform: translate(-50%, -50%); /* Dịch chuyển loader ngược lại 50% của kích thước của nó để căn giữa */
+    perspective: 1000px;
+    border-radius: 50%;
+    width: 48px;
+    height: 48px;
+    color: black;
+  }
+  
+  .loader:before,
+  .loader:after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: inherit;
+    height: inherit;
+    border-radius: 50%;
+    transform: rotateX(70deg);
+    animation: 1s spin linear infinite;
+  }
+  
+  .loader:after {
+    color: #FF3D00;
+    transform: rotateY(70deg);
+    animation-delay: .4s;
+  }
+  
+  @keyframes spin {
+    0%,
+    100% {
+      box-shadow: .2em 0px 0 0px currentcolor;
+    }
+    12% {
+      box-shadow: .2em .2em 0 0 currentcolor;
+    }
+    25% {
+      box-shadow: 0 .2em 0 0px currentcolor;
+    }
+    37% {
+      box-shadow: -.2em .2em 0 0 currentcolor;
+    }
+    50% {
+      box-shadow: -.2em 0 0 0 currentcolor;
+    }
+    62% {
+      box-shadow: -.2em -.2em 0 0 currentcolor;
+    }
+    75% {
+      box-shadow: 0px -.2em 0 0 currentcolor;
+    }
+    87% {
+      box-shadow: .2em -.2em 0 0 currentcolor;
+    }
+  }
+  
+  .artist-info-container {
+    display: flex;
+    justify-content: center; /* Dịch chuyển artist-info ra giữa */
+  }
+  
+  .artist-info {
+    display: flex;
+    align-items: center;
+  }
+  
+  .artist-image {
+    border-radius: 50%;
+    width:20vh;
+    margin-right: 10px; /* Add margin to create space between image and details */
+  }
+  
+  .artist-detail {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* Set the width for each card, considering margins */
+  .artist-card {
+    flex: 0 1 calc(20% - 14px);
+    margin-bottom: 20px;
+    overflow: hidden;
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  /* Ensure the last card in each row doesn't have a right margin */
+  .artist-card:nth-child(5n) {
+    margin-right: 0;
+  }
+  
+  .artist-card:hover {
+    transform: translateY(-5px);
+  }
+  
+  /* Set specific margins for the first and fifth cards */
+  .artist-card:nth-child(5n - 4),
+  .artist-card:nth-child(5n) {
+    margin-left: 8px; /* Adjust as needed */
+    margin-right: 8px; /* Adjust as needed */
+  }
+  
+  .artist-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-left: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border: 1px solid #ccc;
+    border-radius: 10px;
+  }
+  
+  .artist-card img {
+    width: 100%;
+    max-width: 200px;
+    height: auto;
+  }
+  
+  .artist-details {
+    padding: 20px;
+  }
+  
+  .artist-artwork-title {
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-size: 18px;
+    font-weight: bold;
+  }
+  
+  .artist-artwork-price {
+    margin: 0;
+    font-size: 16px;
+  }
+  .artist-artwork {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }

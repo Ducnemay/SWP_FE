@@ -96,9 +96,9 @@ const UpdateInformationPage = () => {
                     </div>
                     <div className="authentication-input-container">
                         <label htmlFor="dateOfBirth" className='authentication-input-container-label'></label>
-                        <input type="date" id="dateOfBirth" name="dateOfBirth" className='authentication-input' required
+                        <input style={{color:'black'}} type="date" id="dateOfBirth" name="dateOfBirth" className='authentication-input' required
                             value={dateOfBirth}
-                            // placeholder="Date of Birth"
+                            placeholder="Date of Birth"
                             onChange={(event) => setDateOfBirth(event.target.value)} />
                     </div>
                     <div className="authentication-input-container">

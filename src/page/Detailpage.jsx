@@ -215,9 +215,10 @@ export default function Detailpage() {
             <div>
               <h1 className="display-5 fw-bold text-underline" style={{ fontSize: '40px', marginTop: '0.5em', textAlign:"left", marginLeft: "224px"}}>{product.title}</h1>
               <p className="lead" style={{ fontSize: '1.4em', marginTop: '0', marginRight: '10em' }}>{product.desc}</p>
-              <Link to={`/artist/${product.userId}`} className="lead" style={{ fontSize: '1.5em', marginRight: '11em', position: 'relative' }}>{userMap[product.userId]?.username}
-                <div className="line"></div>
+              <Link to={`/artist/${product.userId}`} className="lead" style={{ fontSize: '1.5em', marginRight: '11em', position: 'relative',textDecoration:'none', color:'black' }}>{userMap[product.userId]?.username}
+              
                 </Link>
+                <div className="line"></div>
             </div>
             <div className="d-flex flex-column align-items-start">
               <h2 className="my-4" style={{ fontSize: '4em', marginTop: '0', marginRight: '5em', color:"black" }}>$&nbsp;{product.price}</h2>
@@ -249,7 +250,7 @@ export default function Detailpage() {
                   {comments.map((comment, index) => (
                     <div key={index} className="comment">
                       {comment.imageUrl && (
-                        <img src={comment.imageUrl} alt="User Avatar" className="user-avatar" />
+                        <img  src={comment.imageUrl} alt="User Avatar" className="user-avatar" />
                       )}
                       <p>{comment.fullname}</p>
                       <div className="text-comment">

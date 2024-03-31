@@ -48,16 +48,16 @@
   justify-content: space-between;
 }
 .recieve-history-list {
-  display: flex; /* Cho phép các thẻ con sắp xếp ngang */
+  display: inline-flex; /* Cho phép các thẻ con sắp xếp ngang */
   flex-wrap: wrap; /* Cho phép thẻ xuống dòng nếu không đủ khoảng trống chiều ngang*/
-  gap: 20px;
+  gap: 35px;
   flex-direction: column;
 }
 
 .recieve-boxR{
   display: flex;  /* Sắp xếp nội dung trong thẻ 'box' theo chiều ngang */
   align-items: center; /* Căn giữa các thẻ con theo chiều dọc */
-  border: 1px solid #ccc; /* Thêm viền */
+  /* border: 1px solid #ccc;  */
   border-radius: 5px;
   padding: 15px;
   width: calc(15% - 30px); /* Giả định mỗi thẻ chiếm khoảng 25% chiều ngang */
@@ -65,11 +65,12 @@
 }
 .recieve-product-infos1 {
   display: flex;  /* Sắp xếp nội dung trong thẻ 'box' theo chiều ngang */
-  gap: 60px;
+  gap: 128px;
   align-items: center; /* Căn giữa các thẻ con theo chiều dọc */
   border: 1px solid #ccc; /* Thêm viền */
   height: 50px;
   margin: 20px;
+  font-weight: bold;
   margin-bottom: 10px;
   justify-content: center;
 }
@@ -80,7 +81,18 @@
   flex: 1;  /* Cho phép 'product-info' chiếm toàn bộ chiều ngang còn lại */
   display: flex;  /* Sắp xếp nội dung trong thẻ 'box' theo chiều ngang */
   align-items: center; /* Căn giữa các thẻ con theo chiều dọc */
-  padding: 15px;
+  gap: 131px;
+    margin: -10px;
+    margin-left: 116px;
+}
+.recieve-product-info1 {
+  display: flex;  /* Sắp xếp nội dung trong thẻ 'box' theo chiều ngang */
+  gap: 445px;
+  align-items: center; /* Căn giữa các thẻ con theo chiều dọc */
+  height: 50px;
+  margin: 20px;
+  margin-bottom: 10px;
+  justify-content: center;
 }
 .recieve-name, .recieve-time, .recieve-status, .recieve-itleR, .recieve-NameAtwork, .recieve-Actor, .recieve-TimeApprove, .recieve-StatusApprove{
   margin-left: 80px;
@@ -92,6 +104,6 @@
   margin-right: 100px;
   width: max-content;
 }
-.recieve-boxR img{
+/* .recieve-boxR img{
   max-width: 100%;
-}
+} */

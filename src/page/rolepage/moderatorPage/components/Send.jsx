@@ -160,7 +160,7 @@ function Send() {
                             <div className="send-name">{ artworkList[orderList[item.orderId].artworkId].userName}  </div>
                             {/* <div className="send-name">{item.orderId}  </div> */}
                             {/* <div className="name">{userNameMap[item.(artworkList[item.artworkId].userId)]}  </div> */}
-                            <div  className="send-titleR">-{item.amount}</div>   
+                            <div  className="send-titleR">- ${item.amount}</div>   
                             <div className="send-time">{item.createDate}</div> 
                             
                             <div className="send-status">{item.status ? "Success" : "Waiting"}</div>

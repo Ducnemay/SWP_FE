@@ -78,19 +78,19 @@ const SignUpPage = () => {
         <h2>Đăng ký</h2>
         <form onSubmit={handleSubmit}>
           <div className="authentication-input-container">
-            <input type="text" id="username" name="username" className='authentication-input' required placeholder="..." value={formData.username} onChange={handleInputChange} />
+            <input type="text" id="username" name="username" className='authentication-input' required placeholder="" value={formData.username} onChange={handleInputChange} />
             <label htmlFor="username" className='authentication-input-container-label'>Tên đăng nhập</label>
           </div>
           {error && <p className="error-message">{error}</p>} {/* Hiển thị thông báo lỗi nếu có */}
           <div className="authentication-input-container">
-            <input placeholder="..." type={showPassword ? "text" : "password"} id="password" name="password" className='authentication-input' required value={formData.password} onChange={handleInputChange} />
+            <input placeholder="" type={showPassword ? "text" : "password"} id="password" name="password" className='authentication-input' required value={formData.password} onChange={handleInputChange} />
             <label htmlFor="password" className='authentication-input-container-label'>Mật khẩu</label>
-            <button type="button" className="log-in-password-toggle-button" onClick={togglePasswordVisibility}>
+            <button type="button" className="confirm-password-toggle-button" onClick={togglePasswordVisibility}>
               {showPassword ? <FaEyeSlash /> : <FaEye />}
             </button>
           </div>
           <div className="authentication-input-container">
-            <input placeholder="..." type={showConfirmPassword ? "text" : "password"} id="confirmPassword" name="confirmPassword" className='authentication-input' required value={formData.confirmPassword} onChange={handleInputChange} />
+            <input placeholder="" type={showConfirmPassword ? "text" : "password"} id="confirmPassword" name="confirmPassword" className='authentication-input' required value={formData.confirmPassword} onChange={handleInputChange} />
             <label htmlFor="confirmPassword" className='authentication-input-container-label'>Xác nhận mật khẩu</label>
             <button type="button" className="confirm-password-toggle-button" onClick={toggleConfirmPasswordVisibility}>
               {showConfirmPassword ? <FaEyeSlash /> : <FaEye />}
