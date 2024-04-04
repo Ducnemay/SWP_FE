@@ -137,40 +137,42 @@ function Send() {
 
   return (
     <LayoutMorder>
-    <div className="send-page">
-      <h1>Sending Money History</h1>
-      <div className="send-product-infos1">
-                            <div className='send-AtworkS'><div className="Atwork">PaymentId</div></div>
-                            <div className="send-Actor">Recieve Person</div> 
-                            <div className="send-TimeApprove">Amout</div>
-                            <div className="send-TimeApprove">Create Transfer</div>
-                            <div className="send-StatusApprove">Status</div>
-                            
-                        </div>
-      <div className="send-list">
-        {payment.map((item) => (
-            orderList[item.orderId] && artworkList[orderList[item.orderId].artworkId] && 
-            // userNameMap[item.userId] &&
-          <div key={item.$id} className="send-product-info">
-            {/* <img src={artworkList[item.artworkId].imageUrl} alt="Product" /> */}
-
-                        {/* <div className="product-info"> */}
-                        {/* <div className="name">{item.orderId}</div> */}
-                        <div className="send-name">{item.paymentId}</div>
-                            <div className="send-name">{ artworkList[orderList[item.orderId].artworkId].userName}  </div>
-                            {/* <div className="send-name">{item.orderId}  </div> */}
-                            {/* <div className="name">{userNameMap[item.(artworkList[item.artworkId].userId)]}  </div> */}
-                            <div  className="send-titleR">- ${item.amount}</div>   
-                            <div className="send-time">{item.createDate}</div> 
-                            
-                            <div className="send-status">{item.status ? "Success" : "Waiting"}</div>
-                           
-                        </div>
-        //   </div>
-    
-        ))}
-      </div>
+        <div className="send-page">
+        <h1>Sending Money History</h1>
+        <table className="send-product-table">
+            <thead>
+                <tr>
+                    <th>PaymentId</th>
+                    <th>Recieve Person</th>
+                    <th>Amount</th>
+                    <th>Create Transfer</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                {payment.map((item) => (
+                    orderList[item.orderId] && artworkList[orderList[item.orderId].artworkId] &&
+                    <tr key={item.$id}>
+                        <td>{item.paymentId}</td>
+                        <td>{artworkList[orderList[item.orderId].artworkId].userName}</td>
+                        <td>- ${item.amount}</td>
+                        <td>{item.createDate}</td>
+                        <td style={{
+                          // fontWeight:"bold",
+                          // textDecoration:"underline",
+                          fontStyle:"italic"
+                            }}>{item.status ? "Success" : "Waiting"}</td>
+                    </tr>
+                ))}
+            </tbody>
+        </table>
+        <><p
+          style={{
+            paddingTop:"20px",
+          }}
+          className="foot-sidebar">Copyright &copy; 2024 ArtWorks</p></>
     </div>
+
     </LayoutMorder>
   );
 }

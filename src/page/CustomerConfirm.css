@@ -1,0 +1,44 @@
+.response-list {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .response-list h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  .response-list ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .response-list li {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+  
+  .response-list li div {
+    margin-bottom: 5px;
+  }
+  
+  .response-list button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+  }
+  
+  .response-list button:hover {
+    background-color: #0056b3;
+  }
+  
+  .response-list div.confirmed {
+    color: green;
+    font-weight: bold;
+  }
+  

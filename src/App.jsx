@@ -2,7 +2,9 @@ import { Navigate, Routes, Route } from "react-router-dom";
 import Header from "./page/rolepage/moderatorPage/components/Header";
 import { Outlet } from "react-router-dom";
 import Body from "./page/rolepage/moderatorPage/components/Body";
+import RequestPageDetail from "./page/rolepage/moderatorPage/components/Requestpagedetail"
 import ProductPageDetail from "./page/rolepage/moderatorPage/components/ProductPageDetail";
+import RequestPage from "./page/rolepage/moderatorPage/components/Requestpage";
 import ReportPage from "./page/rolepage/moderatorPage/components/Report";
 import RequireAuth from "./components/ReqAuth/RequireAuth";
 import Layout from "./components/layout/Layout";
@@ -72,6 +74,9 @@ import Toplikepage from "./page/Toplikepage";
 
 
 import React, { useState } from 'react';
+import CustomerRequire from "./page/CustomerRequire";
+import ConfirmationPage from "./page/CreatorConfirm";
+import ResponseCustomerPage from "./page/CustomerConfirm";
 
 
 
@@ -172,6 +177,10 @@ const App = () => {
         <Route path="/paymentbank/:userId/:artworkUserId/:orderId" element={<PaymentBank />} />
         <Route path="/artreport/:artworkId" element={<Artreport />} />
         <Route path="/detail/:artworkId" element={<Detailpage />} />
+        <Route path="/customer-require" element={<CustomerRequire />} />
+        <Route path="/creator-confirm" element={<ConfirmationPage />} />
+        <Route path="/customer-confirm" element={<ResponseCustomerPage />} />
+
         
         
        
@@ -278,7 +287,10 @@ const App = () => {
         <Route path="/send" element={<Send />}/>
         <Route path="/refund" element={<Refund />}/>
         <Route path="/history" element={<HistoryPage />}/>
-        
+        <Route path="/req-content" element={<RequestPageDetail />}/>
+        <Route path="/req-detail" element={<RequestPage />}/>
+
+
 
         </Route>
         {/* </Route> */}

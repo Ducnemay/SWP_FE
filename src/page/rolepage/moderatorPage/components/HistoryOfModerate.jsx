@@ -68,43 +68,41 @@ function HistoryPage() {
   return (
     <LayoutMorder>
     <div className="history-page">
-      <h1>History</h1>
-      <div className="history-product-infos1">
-                           <div className="history-Atwork">Artwork</div>
-                            <div  className="history-NameAtwork">Name</div>   
-                            <div className="history-Actor">Actor</div> 
-                            <div className="history-TimeApprove">Time Approve</div>
-                            <div className="history-StatusApprove">Status</div>
-                            
-                        </div>
-      <div className="history-list">
-        {history.map((item) => (
-          artworks[item.artworkId] &&
-          <div key={item.$id} className="history-boxR">
-            <img src={item.imageUrl} alt="Product" />
-                        <div className="history-product-info">
-                            <div className="history-name">{artworks[item.artworkId].userName}</div>
-                            <div className="history-titleR">{item.title}</div>   
-                            <div className="history-time"
-                              >{item.timeProcessing}</div> 
-                            <div className="history-status"
-                              >{item.statusProcessing ? "Success" : "Waiting"}</div>
-                        </div>
-            {/* <div className="history-info">
-              <div className="history-detail">
-            <div className="history-nameArtwork">Artwork: {item.description}</div>
-            <div className="history-status">Status: {item.statusProcessing}</div>
-            <div className="history-time">Time: {item.timeProcessing}</div>
-            </div>
-              <img src={item.imageUrl} alt="Product" /> 
-            </div> */}
-            {/* <div className="history-action">
-              <button>View Details</button>
-            </div> */}
-          </div>
-        ))}
-      </div>
-    </div>
+    <h1>History</h1>
+    <table className="history-product-table">
+        <thead>
+            <tr>
+                <th>Artwork</th>
+                <th>Name</th>
+                <th>Actor</th>
+                <th>Time Approve</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            {history.map((item) => (
+                artworks[item.artworkId] &&
+                <tr key={item.$id}>
+                    <td className="img-his"><img src={item.imageUrl} alt="Product" /></td>
+                    <td>{artworks[item.artworkId].userName}</td>
+                    <td>{item.title}</td>
+                    <td>{item.timeProcessing}</td>
+                    <td style={{
+                          // fontWeight:"bold",
+                          // textDecoration:"underline",
+                          fontStyle:"italic"
+                            }}>{item.statusProcessing ? "Success" : "Waiting"}</td>
+                </tr>
+            ))}
+        </tbody>
+    </table>
+    <><p
+          style={{
+            paddingTop:"20px"
+          }}
+          className="foot-sidebar">Copyright &copy; 2024 AtWorks</p></>
+</div>
+
     </LayoutMorder>
   );
 }

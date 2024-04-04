@@ -118,29 +118,41 @@ function ReportPage() {
 
   return (
     <LayoutMorder>
-    <div className="report-page">
-      {/* <h1>History</h1> */}
-      <div className="report-list">
-      {Object.values(representativeReports).map((item) => (
-          artworkList[item.artworkId] && user[item.userId] &&
-          <div key={item.$id} className="report-boxR">
-            <div className="report-image-box">
-            <img src={artworkList[item.artworkId].imageUrl} alt="Product" />
-                        
-                            <div className="report-image-name">{artworkList[item.artworkId].userName}</div>
-                            <div className="report-image-name">{artworkList[item.artworkId].title}</div>
-                            </div>
-                            <div className="report-product-info">
-                            <div  className="report-titleR">Name of reporter: {user[item.userId].username}</div>   
-                            <div className="report-time">Content of report: {item.description}</div> 
-                            <div className="report-status">Time: {item.reportDate}</div>
-                            <div>Count: {artworkIdCount[item.artworkId]}</div>
-                            
-                        </div>
-          </div>
-        ))}
-      </div>
+        <div className="report-page">
+        <table className="report-product-table">
+            <thead>
+                <tr>
+                    <th>Artwork Image</th>
+                    <th>Artwork Owner</th>
+                    <th>Artwork Title</th>
+                    <th>Reporter Name</th>
+                    <th>Report Content</th>
+                    <th>Report Time</th>
+                    <th>Report Count</th>
+                </tr>
+            </thead>
+            <tbody>
+                {Object.values(representativeReports).map((item) => (
+                    artworkList[item.artworkId] && user[item.userId] &&
+                    <tr key={item.$id}>
+                        <td className="img-report"><img src={artworkList[item.artworkId].imageUrl} alt="Product" /></td>
+                        <td>{artworkList[item.artworkId].userName}</td>
+                        <td>{artworkList[item.artworkId].title}</td>
+                        <td>{user[item.userId].username}</td>
+                        <td>{item.description}</td>
+                        <td>{item.reportDate}</td>
+                        <td>{artworkIdCount[item.artworkId]}</td>
+                    </tr>
+                ))}
+            </tbody>
+        </table>
+        <><p
+          style={{
+            paddingTop:"20px"
+          }}
+          className="foot-sidebar">Copyright &copy; 2024 ArtWorks</p></>
     </div>
+
     </LayoutMorder>
   );
 }

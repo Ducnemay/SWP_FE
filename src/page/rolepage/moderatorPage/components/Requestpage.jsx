@@ -12,27 +12,23 @@ import useAuth from '../../../../hooks/useAuth';
 
 
 // eslint-disable-next-line no-unused-vars, react/prop-types
-export default function ProductPage (){
+export default function RequestPage (){
   const {productId} = useParams();
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
   const [rejectReason, setRejectReason] = useState('');
-  const [approveImgurl, setApproveImgurl] = useState('');
   const [approved, setApproved] = useState(false);
-  const [notificationContent, setNotificationContent] = useState('');
   const [isNotificationVisible, setIsNotificationVisible] = useState(false);
   const navigate = useNavigate();
   const [showRejectReason, setShowRejectReason] = useState(false);
   const [showButtons, setShowButtons] = useState(true);
-  const [showUploadForm, setShowUploadForm] = useState(false);
   const { auth } = useAuth();
-  const [user, setUser] = useState(null);
-  const CANVA_URL = 'https://www.canva.com/design/DAF4nuGQopE/gXZjUMsbqAWaoGKkg_S8Dw/edit';
+
   // const history = useHistory();
 
   useEffect(() => {
     async function fetchDataProduct() {
-      const url = `https://localhost:7227/api/Artwork/get-by-id?id=${productId}`;
+      const url = `https://localhost:7227/api/ArtCustome/get-custome-artwork-by-id?id=${productId}`;
       try {
         const response = await api.get(url);
         setProduct(response.data);
@@ -57,7 +53,7 @@ export default function ProductPage (){
 
   const handleApprove = async () => {
     try {
-      const updateProcessingUrl = `https://localhost:7227/api/Artwork/update-artwork-proccessing?artworkId=${productId}`;
+      const updateProcessingUrl = `https://localhost:7227/api/ArtCustome/update-status?userid=${productId}`;
       const updateImageData = {
         reason: rejectReason        
       };
@@ -78,7 +74,7 @@ export default function ProductPage (){
   const handleUnApprove = async () => {
     try {
       // if (auth.user) {
-      const url = `https://localhost:7227/api/Artwork/delete-artwork?id=${productId}`;
+      const url = `https://localhost:7227/api/ArtCustome/delete?userid=${productId}`;
       const data = {
           reason: rejectReason        
       };
@@ -105,8 +101,7 @@ export default function ProductPage (){
     <div className="productdetail-page">
       <div className="body1">
      
-          <img src={product.imageUrl} alt="Product" />
-          <img src={product.imageUrl2} alt="Product" />
+          <img src={product.image} alt="Product" />
         <div className="info-container">
         {/* <div className='Box-notification'>
         <div className="notification-icon" >

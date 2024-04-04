@@ -43,7 +43,7 @@ const Paymentblogpage = () => {
                const userIdModer = userIdsWithRoleId.map(user => user.userId);
                
                console.log(userIdModer);
-                const userId_artwork_Respone = await api.post(`https://localhost:7227/api/User/get-by-id`, { userID: userIdModer[1] });
+                const userId_artwork_Respone = await api.post(`https://localhost:7227/api/User/get-by-id`, { userID: userIdModer[0] });
                 const userId_artwork_data = userId_artwork_Respone.data
                 
 

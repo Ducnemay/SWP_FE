@@ -47,18 +47,19 @@ export default function Header(){
         <div className="img-admin"> 
           <img src="/public/logoAdmin.png" alt="logoAdmin"></img>
         </div>
-        MODERATOR  PAGE
-
+       
+        <div>MODERATOR  PAGE</div>
         <div 
             style={{ paddingLeft:"700px",
-                     fontSize: "40px",
+                     fontSize: "30px",
                      paddingTop:"40px",
-                     textDecoration: "underline",
+                    //  textDecoration: "underline",
                      textDecorationThickness: "1px"
           }} 
-            ><i class="fa-solid fa-wallet"></i>&nbsp;WALLET : ${user?.money}</div>
+            ><i class="fa-solid fa-sack-dollar"></i>&nbsp;WALLET : ${user?.money}</div>
       </div>
       <div className="bottom-section">
+      <div className="menu-item"><Link to ="/req-content">REQUEST CONTENT</Link> </div>
         <div className="menu-item"><Link to ="/content">CONTENT</Link> </div>
         <div className="menu-item"><Link to ="/history">MORDERATE HISTORY</Link></div>
         <div 

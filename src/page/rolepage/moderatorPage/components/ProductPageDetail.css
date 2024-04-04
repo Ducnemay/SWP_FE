@@ -1,6 +1,6 @@
 /* src/components/ProductPage.css */
 .productdetail-page {
-  display: flex;
+  /* display: flex; */
   justify-content: center;
   height: 100vh;
   align-items: flex-start;
@@ -37,7 +37,7 @@ img {
 
 .info-container {
   flex: 1;
-  padding: 20px 20px 20px 100px;
+  /* padding: 20px 20px 20px 100px; */
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
@@ -47,13 +47,14 @@ img {
 .details {
   margin-bottom: 0px;
   padding-left: 15px;
-  text-align: left;
+  /* text-align: left; */
 }
 
 .author { 
   font-weight: bold;
-  font-size: 30px;
+  font-size: 40px;
   margin-bottom: 10px;
+  margin-left: 20px;
   
 }
 .title {
@@ -75,10 +76,11 @@ img {
 }
 
 .actions{
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 578px;
+    margin-right: -80px;
 }
 .showReason, .upload-form {
   display: flex;
@@ -125,7 +127,7 @@ border-radius: 10px;
   color: #000000;
   padding: 8px;
   border: 1px solid rgb(0, 0, 0);
-  border-radius: 10px;
+  border-radius: 5px;
   cursor: pointer;
   margin-top: 10px;
   width: 50%;
@@ -177,6 +179,11 @@ border-radius: 10px;
 .edit-image-button:hover{
   background-color: rgb(255, 250, 250);
   color: #000000;
+}
+
+.img-his img {
+  padding-left: 35px;
+  margin-right: -185px;
 }
 
 /* .back-button {

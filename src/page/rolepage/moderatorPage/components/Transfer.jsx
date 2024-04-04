@@ -166,74 +166,88 @@ function Transfer() {
     <div className='recieve-history-page-both'>
     <div className="recieve-history-page">
       <h1>Receiving Money History</h1>
-      <div className="recieve-product-infos1">
-                            <div className="recieve-Atwork">Artwork</div>
-                            <div className="recieve-Actor">Artist</div> 
-                            <div  className="recieve-NameAtwork">Buyer</div>   
-                            
-                            <div className="recieve-TimeApprove">Time Transfer</div>
-                            <div className="recieve-TimeApprove">Total</div>
-                            <div className="recieve-StatusApprove">Status</div>
-                            <div className="recieve-StatusApprove">Action</div>
-                        </div>
-      <div className="recieve-history-list">
-        {orders.map((item) => (
-              artworkList[item.artworkId] && orderList[item.orderId] &&
-            // userNameMap[item.userId] &&
-          <div key={item.$id} className="recieve-boxR">
-            <img src={artworkList[item.artworkId].imageUrl} alt="Product" />
-                        <div className="recieve-product-info">
-                        {/* <div className="name">{item.orderId}</div> */}
-                            <div className="recieve-name">{artworkList[item.artworkId].userName}  </div>
-                            {/* <div className="name">{userNameMap[item.(artworkList[item.artworkId].userId)]}  </div> */}
-                            <div  className="recieve-titleR">{orderList[item.orderId].userName}</div>   
-                            {/* <div  className="recieve-titleR">{item.userId}</div>    */}
-                            <div className="recieve-time">{item.createDate}</div> 
-                            <div className="recieve-status">+ ${item.total}</div>
-                            <div className="recieve-status">{item.status ? "Success" : "Waiting"}</div>
-                            {!item.status && ( 
-                            <button onClick={() => handleConfirmOrder(auth.user.userId,artworkList[item.artworkId].userId,item.orderId)}><div className="recieve-StatusApprove">Confirm</div></button>
-                            )}
-                            </div>
-          </div>
-          
-        ))}
-      </div>
+      <table className="recieve-history-table">
+                        <thead>
+                            <tr>
+                                <th>Artwork</th>
+                                <th>Artist</th>
+                                <th>Buyer</th>
+                                <th>Time Transfer</th>
+                                <th>Total</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {orders.map((item) => (
+                                artworkList[item.artworkId] && orderList[item.orderId] &&
+                                <tr key={item.$id}>
+                                    <td><img src={artworkList[item.artworkId].imageUrl} alt="Product" /></td>
+                                    <td>{artworkList[item.artworkId].userName}</td>
+                                    <td>{orderList[item.orderId].userName}</td>
+                                    <td>{item.createDate}</td>
+                                    <td>{item.total}</td>
+                                    <td style={{
+                                      // fontWeight:"bold",
+                                      // textDecoration:"underline",
+                                      fontStyle:"italic"
+                                        }}>{item.status ? "Success" : "Waiting"}</td>
+                                    <td>
+                                        {!item.status && (
+                                            <button style={{
+                                              width:"70%"
+                                            }} onClick={() => handleConfirmOrder(auth.user.userId, artworkList[item.artworkId].userId, item.orderId)}>
+                                                Confirm
+                                            </button>
+                                        )}
+                                    </td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
     </div>
     
-    <div className="recieve-history-page">
-      <h1>Receiving Premium History</h1>
-      <div className="recieve-product-infos1" style={{display:"flex", gap:"450px"}}>
-                            {/* <div className="recieve-Atwork">PremiumId</div> */}
-                            {/* <div className="recieve-Actor">Artist</div>  */}
-                            <div  className="recieve-NameAtwork">Buyer</div>   
-                            
-                            <div className="recieve-TimeApprove">Order Date</div>
-                            <div className="recieve-TimeApprove">Total</div>
-                            <div className="recieve-StatusApprove">Status</div>
-                            {/* <div className="recieve-StatusApprove">Action</div> */}
-                        </div>
-      <div  className="recieve-history-list">
-        {premium.map((item) => (
-              userName[item.userId] && 
-            // userNameMap[item.userId] &&
-          <div key={item.$id} className="recieve-boxR">
-            {/* <img src={artworkList[item.artworkId].imageUrl} alt="Product" /> */}
-                        <div  className="recieve-product-info1">
-                        {/* <div className="name">{item.orderId}</div> */}
-                            <div className="recieve-name">{userName[item.userId].username}  </div>
-                            {/* <div className="name">{userNameMap[item.(artworkList[item.artworkId].userId)]}  </div> */}
-                            {/* <div  className="recieve-titleR">{orderList[item.orderId].userName}</div>    */}
-                            {/* <div  className="recieve-titleR">{item.userId}</div>    */}
-                            <div className="recieve-time">{item.orderDate}</div> 
-                            <div className="recieve-status">+ ${item.total}</div>
-                            <div className="recieve-status">{item.status ? "Success" : "Waiting"}</div>
-                            </div>
-          </div>
-          
-        ))}
-      </div>
+        <div className="recieve-history-page2">
+        <h1>Receiving Premium History</h1>
+        <table className="recieve-product-table">
+            <thead>
+                <tr>
+                    {/* <th className="recieve-Atwork">PremiumId</th> */}
+                    {/* <th className="recieve-Actor">Artist</th> */}
+                    <th className="recieve-NameAtwork">Buyer</th>
+                    <th className="recieve-TimeApprove">Order Date</th>
+                    <th className="recieve-TimeApprove">Total</th>
+                    <th className="recieve-StatusApprove">Status</th>
+                    {/* <th className="recieve-StatusApprove">Action</th> */}
+                </tr>
+            </thead>
+            <tbody>
+                {premium.map((item) => (
+                    userName[item.userId] && 
+                    // userNameMap[item.userId] &&
+                    <tr key={item.$id}>
+                        {/* <img src={artworkList[item.artworkId].imageUrl} alt="Product" /> */}
+                        <td className="recieve-name">{userName[item.userId].username}</td>
+                        {/* <td className="recieve-titleR">{userNameMap[item.userId]}</td> */}
+                        {/* <td className="recieve-titleR">{orderList[item.orderId].userName}</td> */}
+                        {/* <td className="recieve-titleR">{item.userId}</td> */}
+                        <td className="recieve-time">{item.orderDate}</td>
+                        <td className="recieve-status">+ ${item.total}</td>
+                        <td style={{
+                          // fontWeight:"bold",
+                          // textDecoration:"underline",
+                          fontStyle:"italic"
+                            }} className="recieve-status">{item.status ? "Success" : "Waiting"}</td>
+                    </tr>
+                ))}
+            </tbody>
+        </table>
     </div>
+      <><p
+          style={{
+            paddingTop:"20px"
+          }}
+          className="foot-sidebar">Copyright &copy; 2024 ArtWorks</p></>
     </div>
     </LayoutMorder>
   );

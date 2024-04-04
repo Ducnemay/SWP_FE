@@ -1,5 +1,6 @@
 .report-page {
-  padding: 50px;
+  padding: 40px;
+  margin-top: 180px;
 }
 
 /* .report-item {
@@ -94,4 +95,8 @@ font-weight: bold;
 .report-image-name{
   text-align: left;
   margin-left: 10px;
+}
+
+.img-report img {
+  margin-left: 1px;
 }

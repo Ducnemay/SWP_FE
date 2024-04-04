@@ -11,12 +11,12 @@ import LayoutMorder from "../../../../components/layout/LayoutMorder";
 
 
 // eslint-disable-next-line react/prop-types, no-unused-vars
-export default function Body() {
+export default function Requestpagedetail() {
   // const products = getProduct();
   const [products, setProducts] = useState([]);
 
   const fetchData = async () => {
-    const url = "https://localhost:7227/api/Artwork/get-all";
+    const url = "https://localhost:7227/api/ArtCustome/get-all";
     try {
       const response = await api.get(url);
       console.log(response.data);
@@ -39,15 +39,15 @@ export default function Body() {
           {products.map((ins) => (
             !ins.statusProcessing &&
           <div key={ins.artworkId} className="box">
-            <Link to={`/productPageDetail/${ins.artworkId}`}>
+            <Link to={`//req-detail/${ins.artworkId}`}>
               <div className="overlay">
-              <img src={ins.imageUrl} alt="artwork-image" />
+              <img src={ins.image} alt="artwork-image" />
               </div>
               {/* <img src={image?.imageUrl} alt="" /> */}
             </Link> 
                       <div className="details">
                       <div className="authors">{ins.description}</div>
-                      <div  className="titles">{ins.title}</div>   
+                      <div  className="titles">{ins.deadlineDate}</div>   
                        </div>
                     </div>  
                                       
@@ -58,7 +58,7 @@ export default function Body() {
           </div> 
           <><p
           style={{
-            paddingTop:"20px",
+            paddingTop:"20px"
           }}
           className="foot-sidebar">Copyright &copy; 2024 ArtWorks</p></>
           </LayoutMorder>  

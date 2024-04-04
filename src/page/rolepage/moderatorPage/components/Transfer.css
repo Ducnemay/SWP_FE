@@ -1,5 +1,14 @@
 .recieve-history-page {
-  margin-top: 195px;
+  margin-top: 250px;
+  /* margin-bottom: -130px; */
+}
+
+.recieve-history-page2 {
+  padding-top: 100px;
+}
+
+.recieve-history-page-both {
+  margin: 20px;
 }
 
 /* .history-item {
@@ -65,7 +74,7 @@
 }
 .recieve-product-infos1 {
   display: flex;  /* Sắp xếp nội dung trong thẻ 'box' theo chiều ngang */
-  gap: 128px;
+  gap: 52px;
   align-items: center; /* Căn giữa các thẻ con theo chiều dọc */
   border: 1px solid #ccc; /* Thêm viền */
   height: 50px;
@@ -107,3 +116,22 @@
 /* .recieve-boxR img{
   max-width: 100%;
 } */
+
+.recieve-StatusApprove2 {
+  width: 100px;
+}
+
+tbody img {
+  width: 230px;
+  height: 230px;
+  margin-right: -170px;
+  margin-left: 40px;
+}
+
+tbody tr td {
+  border: 0.5px solid gray;
+}
+
+tbody button {
+  width: 100px;
+}
