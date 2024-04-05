@@ -180,7 +180,7 @@ const App = () => {
         <Route path="/detail/:artworkId" element={<Detailpage />} />
         <Route path="/customer-require" element={<CustomerRequire />} />
         <Route path="/creator-confirm" element={<ConfirmationPage />} />
-        <Route path="/customer-confirm" element={<ResponseCustomerPage />} />
+        <Route path="/customer-confirm/:artworkCustomeId" element={<ResponseCustomerPage />} />
         <Route path="/manager-require" element={<ManagementRequire />} />
 
 

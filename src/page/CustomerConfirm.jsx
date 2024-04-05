@@ -1,40 +1,24 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { Link } from 'react-router-dom';
 import './CustomerConfirm.css';
-
-function ResponseCustomerPage() {
-  // Giả sử danh sách các response được lấy từ API hoặc được truyền vào từ props
-  const [responseList, setResponseList] = useState([
-    { id: 1, creator: 'Creator 1', response: 'Response 1', confirmed: false },
-    { id: 2, creator: 'Creator 2', response: 'Response 2', confirmed: false },
-    { id: 3, creator: 'Creator 3', response: 'Response 3', confirmed: false },
-  ]);
-
-  const handleConfirm = (id) => {
-    // Xác nhận một response dựa trên id
-    setResponseList((prevList) =>
-      prevList.map((response) =>
-        response.id === id ? { ...response, confirmed: true } : response
-      )
-    );
-  };
-
+import { useParams, useNavigate } from 'react-router-dom';
+const CustomerConfirm = ({ authorName, price, description }) => {
+  const { artworkCustomeId } = useParams();
   return (
-    <div className="response-require-list">
-      <h2>Response List</h2>
-      <ul>
-        {responseList.map((response) => (
-          <li key={response.id}>
-            <div>Creator: {response.creator}</div>
-            <div>Response: {response.response}</div>
-            {!response.confirmed && (
-              <button onClick={() => handleConfirm(response.id)}>Confirm</button>
-            )}
-            {response.confirmed && <div>Confirmed</div>}
-          </li>
-        ))}
-      </ul>
+    <div className="customer-confirm">
+        <Link><ol><i class="fa-solid fa-backward"></i> Back</ol></Link>
+      <h2>INFORMATION</h2>
+      <div className="author-info">
+        <p><strong>Author:</strong> {authorName}</p>
+      </div>
+      {/* <div className="product-info">
+        <p><strong>Price:</strong> {price}</p>
+        <p><strong>Description:</strong> {description}</p>
+      </div> */}
+      <nav>Accept</nav>
+      <nav>Reject</nav>
     </div>
   );
 }
 
-export default ResponseCustomerPage;
+export default CustomerConfirm;
