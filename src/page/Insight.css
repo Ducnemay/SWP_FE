@@ -2,6 +2,7 @@
 
 /* Grid container for the body */
 .insight-image-collection {
+  width: 360px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -38,7 +39,7 @@
 .insight-order-overlay img {
   display: block;
   max-width: 100%;
-  height: 300px;
+  height: 500px;
   border-radius: 10px;
   transition: transform 0.3s ease; /* Smooth transition for the zoom effect */
 }
@@ -73,6 +74,7 @@
 .insight-order-details{
   text-align: left;
   padding: 10px;
+  margin-top: -30px;
 }  
 .insight-image-collection .insight-order-overlay img.processing-false {
 filter: brightness(10%);
@@ -90,7 +92,62 @@ font-size: 20px;
 padding-bottom: 10px;
 }
 
-.refund-button {
+/* .refund-button {
 padding: 15px;
-padding-left: 289px;
+padding-left: 266px;
+} */
+.refund-button{
+  background-color: rgb(0, 0, 0);
+  color: rgb(255, 255, 255);
+  border: 2px solid black;
+  padding: 10px 20px;
+  border-radius: 5px;
+  margin-left: 185px;
+}
+.refund-button:hover{
+  background-color: rgb(255, 254, 254);
+  color: rgb(0, 0, 0);
+}
+.refund-button1{
+  background-color: rgb(0, 0, 0);
+  color: rgb(255, 255, 255);
+  border: 2px solid black;
+  padding: 10px 20px;
+  border-radius: 5px;
+  
+}
+.refund-button2{
+  background-color: rgb(0, 0, 0);
+  color: rgb(255, 255, 255);
+  border: 2px solid black;
+  padding: 10px 20px;
+  border-radius: 5px;
+  margin-left: 185px;
+}
+.refund-button1:hover , .refund-button2:hover{
+  background-color: rgb(255, 254, 254);
+  color: rgb(0, 0, 0);
+}
+.refund-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Màu nền đen với độ mờ 50% */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.refund-confirmation {
+  background-color: white;
+  padding: 20px;
+  border-radius: 5px;
+  text-align: center;
+}
+
+/* Áp dụng filter cho nền khi hiển thị thông báo */
+body.show-confirmation {
+  filter: brightness(10%);
 }

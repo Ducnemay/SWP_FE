@@ -19,6 +19,9 @@ function Transfer() {
     const currentDate = new Date();
     const isoString = currentDate.toISOString();
     const navigate = useNavigate();
+    const [status, setStatus] = useState([]);
+    const [paymentUrl, setPaymentUrl] = useState('');
+
 
   useEffect(() => {
     const fetchUserData = async () => {
@@ -133,6 +136,26 @@ function Transfer() {
       }, [orders]);
 
       useEffect(() => {
+        const fetchPaymentData = async () => {
+          try {
+            const artworkPromises = orders.map(ord => api.get(`https://localhost:7227/api/Payment/get-payment-by-order-id?id=${ord.orderId}`));
+            const artworks = await Promise.all(artworkPromises);
+            const artworkList = artworks.reduce((acc, artwork, index) => {
+              acc[orders[index].orderId] = artwork.data;
+              return acc;
+            }, {});
+            setStatus(artworkList);
+          } catch (error) {
+            console.error('Error fetching artwork data:', error);
+          }
+        };
+    
+        if (orders.length > 0) {
+          fetchPaymentData();
+        }
+      }, [orders]);
+
+      useEffect(() => {
       const fetchUserData = async () => {
         try {
           const artworkPromises = premium.map(item => api.post('https://localhost:7227/api/User/get-by-id', { userID : item.userId }));
@@ -154,13 +177,33 @@ function Transfer() {
   
   
 
-  const handleConfirmOrder = async (userId,artworkUserId, orderId) => {
-    try {
-        navigate(`/paymentbank/${userId}/${artworkUserId}/${orderId}`);
-    } catch (error) {
-      console.error('Error confirming order:', error);
-    }
-  };
+  // const handleConfirmOrder = async (userId,artworkUserId, orderId) => {
+  //   try {
+  //       navigate(`/paymentbank/${userId}/${artworkUserId}/${orderId}`);
+  //   } catch (error) {
+  //     console.error('Error confirming order:', error);
+  //   }
+    const createPayment = async (orderId) => {
+      try {
+        const paymentData = {
+          orderId: orderId
+        };
+        const response = await api.post(`https://localhost:7227/api/Payment/create-new-payment?id=${orderId}`, paymentData);
+        const paymentaway = response.data.paymentId; // Return the paymentId from the response
+        try{
+          await api.post(`https://localhost:7227/api/Order/update-order?order=${orderId}`);
+        const responseVNpay = await api.get(`https://localhost:7227/api/VNPay?PaymentID=${paymentaway}`);
+        // setPaymentUrl(responseVNpay.data);
+        // await setPaymentUrl(responseVNpay.dat
+        window.location.href = responseVNpay.data;
+      }catch (error) {
+        console.error('Error creating payment1:', error);
+      }   
+      } catch (error) {
+        console.error('Error creating payment2:', error);
+      }
+    };
+  
   return (
     <LayoutMorder>
     <div className='recieve-history-page-both'>
@@ -178,7 +221,7 @@ function Transfer() {
                         </div>
       <div className="recieve-history-list">
         {orders.map((item) => (
-              artworkList[item.artworkId] && orderList[item.orderId] &&
+              artworkList[item.artworkId] && orderList[item.orderId] && status[item.orderId].statusCancle &&
             // userNameMap[item.userId] &&
           <div key={item.$id} className="recieve-boxR">
             <img src={artworkList[item.artworkId].imageUrl} alt="Product" />
@@ -190,9 +233,9 @@ function Transfer() {
                             {/* <div  className="recieve-titleR">{item.userId}</div>    */}
                             <div className="recieve-time">{item.createDate}</div> 
                             <div className="recieve-status">+{item.total}</div>
-                            <div className="recieve-status">{item.status ? "Success" : "Waiting"}</div>
-                            {!item.status && ( 
-                            <button onClick={() => handleConfirmOrder(auth.user.userId,artworkList[item.artworkId].userId,item.orderId)}><div className="recieve-StatusApprove">Confirm</div></button>
+                            <div className="recieve-status">{item.statusProccessing ? "Success" : "Waiting"}</div>
+                            {!item.statusProccessing && ( 
+                            <button onClick={() => createPayment(item.orderId)}><div className="recieve-StatusApprove">Confirm</div></button>
                             )}
                             </div>
           </div>

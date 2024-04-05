@@ -1,5 +1,5 @@
 .history-page {
-  margin-top: 170px;
+  margin-top: 240px;
   padding: 15px;
 }
 
@@ -66,7 +66,7 @@
 }
 .history-product-infos1 {
   display: flex;  /* Sắp xếp nội dung trong thẻ 'box' theo chiều ngang */
-  gap: 168px;
+  gap: 144px;
   align-items: center; /* Căn giữa các thẻ con theo chiều dọc */
   justify-content: center;
   border: 1px solid #ccc;
@@ -81,7 +81,7 @@
   flex: 1;  /* Cho phép 'product-info' chiếm toàn bộ chiều ngang còn lại */
   display: flex;
   border: 1px solid #ccc;;
-  gap: 168px;
+  gap: 161px;
   padding-left: 163px;
   align-content: center;
   height: 50px;

@@ -59,7 +59,7 @@ export default function ProductPage (){
     try {
       const updateProcessingUrl = `https://localhost:7227/api/Artwork/update-artwork-proccessing?artworkId=${productId}`;
       const updateImageData = {
-        reason: rejectReason        
+        reason: "Approve"        
       };
       const processingResponse = await api.post(updateProcessingUrl, updateImageData);
       console.log(processingResponse.data);
@@ -78,13 +78,20 @@ export default function ProductPage (){
   const handleUnApprove = async () => {
     try {
       // if (auth.user) {
-      const url = `https://localhost:7227/api/Artwork/delete-artwork?id=${productId}`;
+      const url = `https://localhost:7227/api/Artwork/update-artwork?artworkId=${productId}`;
       const data = {
-          reason: rejectReason        
+        title: product.title,
+        description: product.description,
+        price: product.price,
+        imageUrl: product.imageUrl,
+        imageUrl2: product.imageUrl2,
+          // reason: rejectReason,
+          reason: rejectReason,
+          genreId : product.genreId       
       };
-      const response = await api.delete(url,data);
+      const response = await api.post(url, data);
       console.log(response.data);
-      console.log("Product are delete");
+      console.log("Product are unApprove");
       navigate("/content");
      
       localStorage.setItem(`notification_${auth.user.userId}`, `Tranh của bạn không được duyệt với lý do: ${rejectReason}`);
@@ -131,11 +138,13 @@ export default function ProductPage (){
           <div className="actions">
           {showRejectReason && (
             <div className='showReason'>
-            <textarea placeholder="Lý do " className="reject-reason"
-            value={rejectReason}
-            onChange={(e) => setRejectReason(e.target.value)}
-            >
-            </textarea>
+                <select className="reject-reason" value={rejectReason} onChange={(e) => setRejectReason(e.target.value)}>
+      <option value="">Choose Reason</option>
+      <option value={"Missing Signature"}>Missing Signature</option>
+      <option value={"Copying Artwork"}>Copying Artwork</option>
+      <option value={"18+ Artwork is not allowed"}>18+ Artwork is not allowed</option>
+      
+    </select>
             <button onClick={() =>{ setShowRejectReason(false);
             setShowButtons(true); } } className="Back-to-approve">BACK</button>
             <button onClick={handleUnApprove}className="show-reject-button">CONFIRM</button> 

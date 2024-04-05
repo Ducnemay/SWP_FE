@@ -75,6 +75,9 @@ export default function Header(){
             <div className="menu-subitem">
               <Link to="/send">Send</Link>
             </div>
+            <div className="menu-subitem">
+              <Link to="/refund">Refund</Link>
+            </div>
           </div>
         )}
         </div>

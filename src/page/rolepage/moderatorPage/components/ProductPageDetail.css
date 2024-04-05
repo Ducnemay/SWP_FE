@@ -4,7 +4,7 @@
   justify-content: center;
   height: 100vh;
   align-items: flex-start;
-  padding: 50px;
+  padding: 230px;
 }
 
 
@@ -36,7 +36,8 @@ img {
 
 .info-container {
   flex: 1;
-  padding: 20px 20px 20px 100px;
+  padding: 20px 44px 20px 26px;
+
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
@@ -78,6 +79,7 @@ img {
   flex-direction: column;
   align-items: flex-end;
   width: 100%;
+  margin-bottom: 100px;
 }
 .showReason, .upload-form {
   display: flex;
@@ -109,8 +111,10 @@ border-radius: 10px;
 
 .reject-reason {
   
-  margin-top: 10px;
   padding: 5px;
+  width: 370px;
+  margin-bottom: 110px;
+  margin-top: 25px;
 }
 
 .posting-time {

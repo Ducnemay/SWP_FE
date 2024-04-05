@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import useAuth from '../../../../hooks/useAuth';
 import api from '../../../../components/utils/requestAPI';
-import'./Send.css';
+import'./Refund.css';
 import LayoutMorder from "../../../../components/layout/LayoutMorder";
 import { useNavigate } from 'react-router-dom';
 
@@ -17,10 +17,12 @@ function Refund() {
     const [artworkList, setArtworkList] = useState([]);
     const [orderList, setOrderList] = useState([]);
     const [approved, setApproved] = useState(false);
+    const [isapproved, setIsApproved] = useState(false);
     const currentDate = new Date();
     const isoString = currentDate.toISOString();
     const navigate = useNavigate();
     let orderUpdated = false;
+    const [paymentUrl, setPaymentUrl] = useState('');
 
     useEffect(() => {
         const fetchData = async () => {
@@ -168,7 +170,7 @@ function Refund() {
                   fetchOrderData2();
                 }
               }, [orders]);
-    const handleRefund = async (ord) => {
+    const handleRefund = async (ord,pay) => {
                 try {
                   // Gọi API để lấy thông tin đơn hàng dựa trên orderId
                   const orderResponse = await api.get(`https://localhost:7227/api/Order/get-by-id?id=${ord}`);
@@ -202,54 +204,61 @@ function Refund() {
             
                     // Gửi yêu cầu POST để cập nhật số tiền của người đang đăng nhập
                     await api.post(`https://localhost:7227/api/User/update-money?id=${userInfo.userId}`, data_userNow);
-                    alert(`You have successfully refunded the money `);
-                    navigate("/content");
+                    setApproved(true);
+                   
+                      await api.post(`https://localhost:7227/api/Order/delete-order?id=${ord}`);
+ 
+                    
+                    // alert(`You have successfully refunded the money `);
+                    // navigate("/content");
                   }
-            
-                  // const paymentResponse = await api.get(`https://localhost:7227/api/Payment/get-payments`);
-                  // const allPayment = paymentResponse.data.$values;
-                  // const userPayment = allPayment.filter(order => order.orderId === ord);    
-                  //     setPayment(userPayment);
+                  try{                    
+                    const responseVNpay = await api.get(`https://localhost:7227/api/VNPay?PaymentID=${pay}`);
+                      window.location.href = responseVNpay.data;
+                  
+                  }catch (error) {
+                    console.error('Error refund1:', error);
+                  }
                 } catch (error) {
-                  console.error('Error refund:', error);
+                  console.error('Error refund2:', error);
                 }
               };
 
 
   return (
     <LayoutMorder>
-    <div className="send-page">
-      <h1>Sending Money History</h1>
-      <div className="send-product-infos1">
-      <div className="recieve-Atwork">Artwork</div>
-                            <div className="recieve-Actor">Artist</div> 
-                            <div  className="recieve-NameAtwork">Buyer</div>   
+    <div className="refund-page">
+      <h1>refunding Money History</h1>
+      <div className="refund-product-infos1">
+      <div className="refund-Atwork">Artwork</div>
+                            <div className="refund-Actor">Artist</div> 
+                            <div  className="refund-NameAtwork">Buyer</div>   
                             
-                            <div className="recieve-TimeApprove">Time Transfer</div>
-                            <div className="recieve-TimeApprove">Total</div>
-                            <div className="recieve-StatusApprove">Status</div>
-                            <div className="recieve-StatusApprove">Action</div>
+                            <div className="refund-TimeApprove">Time Transfer</div>
+                            <div className="refund-TimeApprove">Total</div>
+                            <div className="refund-StatusApprove">Status</div>
+                            <div className="refund-StatusApprove">Action</div>
                             
                         </div>
-      <div className="recieve-history-list">
+      <div className="refund-history-list">
         {payment.map((item) => (
             !item.statusCancle && userOrder[item.orderId] &&
             orderList[item.orderId] && artworkList[orderList[item.orderId].artworkId] && 
             // userNameMap[item.userId] &&
-          <div key={item.$id} className="recieve-boxR">
+          <div key={item.$id} className="refund-boxR">
             <img src={artworkList[orderList[item.orderId].artworkId].imageUrl} alt="Product" />
 
                         {/* <div className="product-info"> */}
                         {/* <div className="name">{item.orderId}</div> */}
-                            <div className="send-name">{ artworkList[orderList[item.orderId].artworkId].userName}  </div>
-                            <div  className="send-name">{userOrder[item.orderId].userName}</div>   
-                            {/* <div className="send-name">{item.orderId}  </div> */}
+                            <div className="refund-name">{ artworkList[orderList[item.orderId].artworkId].userName}  </div>
+                            <div  className="refund-name">{userOrder[item.orderId].userName}</div>   
+                            {/* <div className="refund-name">{item.orderId}  </div> */}
                             {/* <div className="name">{userNameMap[item.(artworkList[item.artworkId].userId)]}  </div> */}
-                            <div className="send-time">{item.createDate}</div> 
-                            <div  className="send-titleR">{item.amount}</div>   
-                            <div className="send-status">{orderList[item.orderId].statusCancel ? "Waiting" : "Canceled"}</div>
+                            <div className="refund-time">{item.createDate}</div> 
+                            <div  className="refund-titleR">{item.amount}</div>   
+                            <div className="refund-status">{orderList[item.orderId].statusCancel ? "Waiting" : "Canceled"}</div>
                             {orderList[item.orderId].statusCancel && ( 
-                            <button onClick={() => handleRefund(item.orderId)}><div className="recieve-StatusApprove">Confirm</div></button>
+                            <button onClick={() => handleRefund(item.orderId, item.paymentId)}><div className="refund-action">Confirm</div></button>
                             )}
                         </div>
         //   </div>

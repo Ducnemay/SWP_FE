@@ -12,6 +12,7 @@ const Premium = () => {
   const [approved, setApproved] = useState(false);
   const { auth } = useAuth();
   const [user, setUser] = useState(null);
+  const [paymentUrl, setPaymentUrl] = useState('');
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -61,11 +62,20 @@ const Premium = () => {
     
       const response = await api.post(`https://localhost:7227/api/OrderPremium/add-new-order-premeium`, premiumData);
       const orderPremiumId = response.data.orderPremiumId; // Return the paymentId from the response
+      //create-new-Premium-log
+      const responsePaymentLog = await api.post(`https://localhost:7227/api/OrderPremiumLog/create-new-Premium-log?id=${orderPremiumId}`);
+      const orderPremiumLogId = responsePaymentLog.data.orderPremiumLogId;
 
-      const PremiumLogResponse = await api.post(`https://localhost:7227/api/OrderPremiumLog/create-new-Premium-log?id=${orderPremiumId}`);
+      const PremiumLogResponse = await api.get(`https://localhost:7227/api/VNPay/get-payment-order-premium-log?OrderPremiumIDLog=${orderPremiumLogId}`);
       
       setApproved(true);
-        navigate(`/orderprumium-info/${orderPremiumId}`);
+      setPaymentUrl(PremiumLogResponse.data);
+      // window.location.href = paymentUrl;
+      if(paymentUrl){
+      //  window.open(paymentUrl);
+       window.location.href = paymentUrl;
+      }
+        // navigate(`/orderprumium-info/${orderPremiumId}`);
     } catch (error) {
       console.error('Error creating payment Premium:', error);
       // console.log(auth.user.userId,new Date().toISOString());

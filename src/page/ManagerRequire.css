@@ -1,0 +1,40 @@
+.management-container {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+  }
+  
+  .sample-list {
+    width: 45%;
+  }
+  
+  .sample-list h2 {
+    margin-top: 0;
+  }
+  
+  .sample-list ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .sample-list li {
+    padding: 10px;
+    border: 1px solid #ccc;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .sample-list button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+  }
+  
+  .sample-list button:hover {
+    background-color: #0056b3;
+  }
+  

@@ -188,29 +188,25 @@ const NavBar = () => {
       <div className="nav-list">
         <ul>
           <li><NavLink to="/home" className="Nav_link" style={{  textDecoration:"none"}}>Artworks</NavLink></li>
-          <li><NavLink to="/home"className="Nav_link" style={{  textDecoration:"none"}}>Auction</NavLink></li>
-          <li><NavLink to="/home"className="Nav_link" style={{  textDecoration:"none"}}>Viewing Room</NavLink></li>
-          <li><NavLink to="/home"className="Nav_link" style={{  textDecoration:"none"}}>Galleries</NavLink></li>
-          <li><NavLink to="/home"className="Nav_link" style={{  textDecoration:"none"}}>Fairs Shows</NavLink></li>
-          <li onMouseEnter={toggleDropUp} onMouseLeave={toggleDropdown}>
+          <li><NavLink to="/customer-require" className="Nav_link" style={{  textDecoration:"none"}}>Artwork On Demand</NavLink></li>
+          <li><NavLink to="/creator-confirm" className="Nav_link" style={{  textDecoration:"none"}}>Order Require</NavLink></li>
+
+          {/* <li onMouseEnter={toggleDropUp} onMouseLeave={toggleDropdown}>
             <span style={{
               color: "black",
               }}>Top Ratings</span>
             {showDropdown && (
               <ul className="dropdown" 
-                style={{ display: showDropdown ? 'block' : 'none' }}>
+                style={{ display: showDropdown ? 'block' : 'none' }}> */}
                 <li><NavLink to="/top-likes" 
                     style={{ color: "black", textDecoration:"none"}}
                     >Top Likes</NavLink>
                     </li>
-                <li><NavLink to="/top-authors" 
-                    style={{ color: "black", textDecoration:"none"}}
-                    >Top Authors</NavLink>
-                    </li>
+                
               </ul>
-            )}
-          </li>
-        </ul>
+            {/* )}
+          </li> */}
+        {/* </ul> */}
               {/* Bộ lọc */}
           {/* <div className="filter-section">
             <button onClick={handleApplyFilters}>Filter</button>

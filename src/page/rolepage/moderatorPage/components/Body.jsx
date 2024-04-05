@@ -37,7 +37,7 @@ export default function Body() {
           {/* <div className="image-container"> */}
           <div className="body">
           {products.map((ins) => (
-            !ins.statusProcessing &&
+            !ins.statusProcessing && ins.reason === null && (
           <div key={ins.artworkId} className="box">
             <Link to={`/productPageDetail/${ins.artworkId}`}>
               <div className="overlay">
@@ -50,7 +50,7 @@ export default function Body() {
                       <div  className="titles">{ins.title}</div>   
                        </div>
                     </div>  
-                                      
+          )                              
        ))}
       
           </div>  

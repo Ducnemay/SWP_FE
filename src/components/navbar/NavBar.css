@@ -28,11 +28,12 @@ nav {
 }
 
 .icons img {
-  height: 30px;
-  width: 40px;
+  height: 65px;
+  width: 85px;
   cursor: pointer;
   margin-left: 30px;
   margin-right: 10px; 
+  margin-top: -12px;
   transition: transform 0.3s ease;
 }
 

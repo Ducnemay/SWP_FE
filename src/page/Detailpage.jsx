@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, useNavigate, Link } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import './DetailsPage.css'; // Import your custom styles
 import api from "../components/utils/requestAPI";
 import useAuth from '../hooks/useAuth';
 import { FaRegCommentDots, FaReply } from "react-icons/fa";
+import { Link } from 'react-router-dom';
 
 export default function Detailpage() {
   const [product, setProduct] = useState(null);
@@ -16,11 +17,12 @@ export default function Detailpage() {
   const { auth } = useAuth();
   const navigate = useNavigate();
   const { artworkId } = useParams();
-
+  const [userOrders, setUserOrders] = useState([]);
 
   $(function() {
-    $('.detail-product-imagee').watermark();
+    $('.product-imageessss').watermark();
   });
+
   useEffect(() => {
     const fetchProductById = async () => {
       const url = `https://localhost:7227/api/Artwork/get-by-id?id=${artworkId}`;
@@ -43,6 +45,12 @@ export default function Detailpage() {
       fetchAllComments();
     }
   }, [showComment]);
+
+  useEffect(() => {
+    if (auth && auth.user && auth.user.userId) {
+      getAllOrdersByUserId(auth.user.userId);
+    }
+  }, [auth]);
 
   const fetchUsers = async (userIds) => {
     try {
@@ -77,8 +85,17 @@ export default function Detailpage() {
         return;
       }
 
-      const orderData = {
-        userID: auth.user.userId,
+      // Kiểm tra xem userOrders có tồn tại và là một mảng không
+      if (Array.isArray(userOrders)) {
+        // Kiểm tra xem người dùng đã đặt hàng sản phẩm này chưa
+        const userOrderedProduct = userOrders.some(order => order.artworkId === artworkId);
+        if (userOrderedProduct) {
+          alert('You have already ordered this product.');
+          return;
+        }
+      }
+
+      const orderData = {userID: auth.user.userId,
         artwokID: artworkId,
         createDate: new Date().toISOString()
       };
@@ -88,7 +105,8 @@ export default function Detailpage() {
 
       setCartBtn("Purchased");
       alert('Order created successfully!');
-      navigate(`/order/${orderId}`);
+      navigate('/cart');
+
     } catch (error) {
       console.error('Error creating new order:', error);
       setCartBtn("Purchase");
@@ -148,7 +166,6 @@ export default function Detailpage() {
     window.scrollTo(0, document.body.scrollHeight); // Cuộn đến cuối trang
   };
 
-
   const fetchAllComments = async () => {
     try {
       const url = `https://localhost:7227/api/Comment/get-all-comment-By-Artwork-Id?id=${artworkId}`;
@@ -174,8 +191,7 @@ export default function Detailpage() {
         userResponses.forEach((response, index) => {
           const userData = response.data;
           const userId = userIds[index];
-          userMap[userId] = {
-            fullname: userData.fullname,
+          userMap[userId] = {fullname: userData.fullname,
             imageUrl: userData.imageUrl
           };
         });
@@ -196,46 +212,54 @@ export default function Detailpage() {
     }
   };
 
+  const getAllOrdersByUserId = async () => {
+    try {
+      const url = `https://localhost:7227/api/Order/get-all-order-by-user-id?userID=${auth.user.userId}`;
+      const response = await api.get(url);
+      const ordersData = response.data.$values || [];
+      setUserOrders(ordersData); // Lưu danh sách đơn hàng vào state
+    } catch (error) {
+      console.error('Error fetching user orders:', error);
+    }
+  };
+
   if (!product) {
     return <div>Loading...</div>;
   }
 
+  // Kiểm tra xem người dùng đã đặt hàng sản phẩm này chưa
+  const userOrderedProduct = Array.isArray(userOrders) && userOrders.some(order => order.artworkId === artworkId);
+
   return (
-    <div className="container-custom">
+    <div className="container my-5 py-3">
       <div className="row">
-        <div className="row-detail">
         <div className="col-md-6">
           <div className="d-flex justify-content-center mx-auto product">
-            <img src={product.imageUrl} alt={product.title} className="detail-product-imagee" height="400px" style={{ margin: '20px' }} />
+            <img  className="product-imageessss" src={product.imageUrl} alt={product.title} height="400px" style={{ margin: '4em' }} />
           </div>
         </div>
 
-        <div className="col-md-6" style={{paddingTop:"50px", paddingBottom:"30px", paddingLeft:"100px"}}>
-          <div className="d-flex flex-column justify-content-between h-70">
+        <div className="col-md-6">
+          <div className="d-flex flex-column justify-content-between h-100">
             <div>
-              <h1 className="display-5 fw-bold text-underline" style={{ fontSize: '40px', marginTop: '0.5em', textAlign:"left", marginLeft: "224px"}}>{product.title}</h1>
+              <h1 className="display-5 fw-bold text-underline" style={{ fontSize: '4em', marginTop: '0.5em'}}>{product.title}</h1>
               <p className="lead" style={{ fontSize: '1.4em', marginTop: '0', marginRight: '10em' }}>{product.desc}</p>
-              <Link to={`/artist/${product.userId}`} className="lead" style={{ fontSize: '1.5em', marginRight: '11em', position: 'relative' }}>{userMap[product.userId]?.username}
-                <div className="line"></div>
-                </Link>
+              <Link to={`/artist/${product.userId}`} className="artist-name">{userMap[product.userId]?.username}</Link>
             </div>
             <div className="d-flex flex-column align-items-start">
-              <h2 className="my-4" style={{ fontSize: '4em', marginTop: '0', marginRight: '5em', color:"black" }}>$&nbsp;{product.price}</h2>
-              <button onClick={handlePurchase} className="btn btn-outline-primary" style={{ fontSize: '1.8rem', background: 'black', color: 'white', width: '37.3rem' }}>{cartBtn}</button>
+              <h2 className="my-4" style={{ fontSize: '3em', marginTop: '0', marginRight: '5em' }}>${product.price}</h2>
+              {!userOrderedProduct && (!auth || !auth.user || auth.user.userId !== product.userId) ? (
+                <button onClick={handlePurchase} className="btn btn-outline-primary" style={{ fontSize: '1.8rem', background: 'black', color: 'white', width: '450px' }}>{cartBtn}</button>
+              ) : null}
             </div>
-          </div>
-        </div>
-      </div>
-      </div>
-      <div className="d-flex align-items-center mt-3">
+            <div className="d-flex align-items-center mt-3">
               <FaRegCommentDots onClick={toggleCommentSection} style={{ cursor: 'pointer' }} />
               <span className="ms-2">Comments</span>
             </div>
             {showComment && (
               <div className="mt-3">
                 <div className="comment-input-container">
-                  <input
-                    type="text"
+                  <input type="text"
                     value={commentInput}
                     onChange={(e) => setCommentInput(e.target.value)}
                     placeholder="Write a comment..."
@@ -244,8 +268,8 @@ export default function Detailpage() {
                   <button onClick={() => addComment(replyingTo ? replyingTo.index : null)} className="btn btn-primary send-button">Send</button>
                 </div>
                 {/* Hiển thị danh sách comment */}
-                <h3 className="my-3">Comments</h3>
                 <div className="comment-list">
+                  <h3 className="my-3">Comments</h3>
                   {comments.map((comment, index) => (
                     <div key={index} className="comment">
                       {comment.imageUrl && (
@@ -257,28 +281,19 @@ export default function Detailpage() {
                       </div>
                       {/* Nút reply */}
                       <button onClick={() => handleReply(index)} className="btn btn-sm btn-outline-primary">
-                        <FaReply />
+                        <FaReply /> 
                       </button>
-                      {/* Conditional rendering of reply text box */}
-                      {replyingTo && replyingTo.index === index && (
-                        <div className="reply-text-box">
-                          <input
-                            type="text"
-                            style={{backgroundColor:"white", color:"black"}}
-                            value={commentInput}
-                            onChange={(e) => setCommentInput(e.target.value)}
-                            placeholder="Write a reply..."
-                            className="reply-text"
-                          />
-                          <button onClick={() => addComment(index)} className="btn btn-sm btn-primary">Send</button>
-                        </div>
-                      )}
                     </div>
-
                   ))}
                 </div>
               </div>
             )}
+            {/* <i className="fa-regular fa-heart" style={{marginTop:'1em'}}> Save</i><>&nbsp;&nbsp;&nbsp;&nbsp;</>
+            <i className="fa-regular fa-eye"> View</i><>&nbsp;&nbsp;&nbsp;&nbsp;</>
+            <i className="fa-regular fa-share-from-square"> Share</i> */}
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

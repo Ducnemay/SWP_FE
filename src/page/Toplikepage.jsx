@@ -19,6 +19,10 @@ const Toplikepage = () => {
   const { auth } = useAuth();
   const navigate = useNavigate(); // Sử dụng useNavigate để chuyển hướng
 
+  $(function() {
+    $('.product-imagee').watermark();
+  });
+
   useEffect(() => {
     const fetchArtworks = async () => {
       const url = "https://localhost:7227/api/Artwork/get-top-artwork_like";

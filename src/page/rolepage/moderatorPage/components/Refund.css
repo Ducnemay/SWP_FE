@@ -1,5 +1,6 @@
-.send-page {
+.refund-page {
     padding: 50px;
+    margin-top: 250px;
   }
   
   /* .history-item {
@@ -11,7 +12,7 @@
   } */ 
   
 
-  .send-list {
+  .refund-list {
     display: flex; /* Cho phép các thẻ con sắp xếp ngang */
     flex-wrap: wrap; /* Cho phép thẻ xuống dòng nếu không đủ khoảng trống chiều ngang*/
     gap: 20px;
@@ -19,41 +20,72 @@
     align-content: center;
   }
   
-  .send-product-info{
+  .refund-product-info{
     display: flex;  /* Sắp xếp nội dung trong thẻ 'box' theo chiều ngang */
     align-items: center; /* Căn giữa các thẻ con theo chiều dọc */
     padding: 15px;
+    
     /* width: calc(15% - 30px); Giả định mỗi thẻ chiếm khoảng 25% chiều ngang */
     
   }
-  .send-product-infos1 {
+  .refund-product-infos1 {
     display: flex;  /* Sắp xếp nội dung trong thẻ 'box' theo chiều ngang */
     align-items: center; /* Căn giữa các thẻ con theo chiều dọc */
     border: 1px solid #ccc; /* Thêm viền */
   border-radius: 10px;
 height: 50px;
-
 justify-content: center;
     
   }
-  
-  .send-product-info { 
-    margin-left: 20px; /* Tạo khoảng cách với hình ảnh */
-    flex: 1;  /* Cho phép 'product-info' chiếm toàn bộ chiều ngang còn lại */
-    
-  }
-  .send-name, .send-time, .send-status, .send-titleR{
+
+  .refund-name, .refund-time, .refund-status, .refund-titleR{
     margin-left: 80px;
     margin-right: 80px;
     width: max-content;
   }
-  .send-NameAtwork, .send-TimeApprove, .send-StatusApprove{
+  .refund-NameAtwork, .refund-TimeApprove, .refund-StatusApprove{
     margin-left: 80px;
     margin-right: 80px;
     width: max-content;
   }
-  .send-Actor{
+  .refund-Actor{
     margin-left: 80px;
     margin-right: 80px;
     width: max-content; 
+  }
+  .refund-StatusApprove{
+    width: fit-content;
+  }
+  .refund-history-list {
+    display: flex; /* Cho phép các thẻ con sắp xếp ngang */
+    flex-wrap: wrap; /* Cho phép thẻ xuống dòng nếu không đủ khoảng trống chiều ngang*/
+    gap: 20px;
+    flex-direction: column;
+    margin-top: 10px;
+  }
+  
+  .refund-boxR{
+    display: flex;  /* Sắp xếp nội dung trong thẻ 'box' theo chiều ngang */
+    align-items: center; /* Căn giữa các thẻ con theo chiều dọc */
+    border: 1px solid #ccc; /* Thêm viền */
+    border-radius: 5px;
+    padding: 15px;
+    width: calc(15% - 30px); /* Giả định mỗi thẻ chiếm khoảng 25% chiều ngang */
+    
+  }
+  
+  .refund-name, .refund-time, .refund-status, .refund-itleR, .refund-NameAtwork, .refund-Actor, .refund-TimeApprove, .refund-StatusApprove{
+    margin-left: 80px;
+    margin-right: 80px;
+    width: max-content;
+  }
+  .refund-Atwork{
+    margin-left: 80px;
+    margin-right: 100px;
+    width: max-content;
+  }
+  .refund-action{
+    margin-left: 45px;
+    margin-right: 60px;
+    width: 35px;
   }

@@ -72,7 +72,9 @@ import Toplikepage from "./page/Toplikepage";
 
 
 import React, { useState } from 'react';
-
+import CustomerRequire from "./page/CustomerRequire";
+import ConfirmationPage from "./page/CreatorConfirm";
+import ResponseCustomerPage from "./page/CustomerConfirm";
 
 
 const App = () => {
@@ -136,7 +138,8 @@ const App = () => {
 
     <Routes>
       {/* public routes */}
-     
+      <Route path="/paymentsuccess" element={<Paymentblogpage />} />
+      <Route path="/paymentfail" element={<Order />} />
      <Route element={<Layoutguest />}> 
         <Route path="/" element={<Navigate to="/home" />} />
         {/* <Route path="/order" element={<Order />} /> */}
@@ -166,12 +169,15 @@ const App = () => {
         <Route path="/order-confirm" element={<ConfirmPage />} />
         <Route path="/order-waiting" element={<WaitingOrderPage />} />
         {/* <Route path="/order-info" element={<Paymentblogpage />} /> */}
-        <Route path="/order/:orderId" element={<Order />} />
-        <Route path="/order-info/:orderId" element={<Paymentblogpage />} />
+        
+        <Route path="/paymentsuccess" element={<Paymentblogpage />} />
         <Route path="/orderprumium-info/:orderPremiumId" element={<PaymentPremium />} />
         <Route path="/paymentbank/:userId/:artworkUserId/:orderId" element={<PaymentBank />} />
         <Route path="/artreport/:artworkId" element={<Artreport />} />
         <Route path="/detail/:artworkId" element={<Detailpage />} />
+        <Route path="/customer-require" element={<CustomerRequire />} />
+        <Route path="/creator-confirm" element={<ConfirmationPage />} />
+        <Route path="/customer-confirm/:artworkCustomeId" element={<ResponseCustomerPage />} />
         
         
        

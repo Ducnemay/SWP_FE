@@ -1,0 +1,55 @@
+.creator-confirm-container {
+  max-width: 1300px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+  }
+  
+  .creator-confirm-container form {
+    margin-bottom: 20px;
+  }
+  
+  .creator-confirm-container label {
+    display: block;
+    margin-bottom: 10px;
+  }
+  
+  .creator-confirm-container input {
+    width: 100%;
+    padding: 8px;
+    margin-top: 3px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #007bff;
+    color: #fff;
+    margin-right: 10px;
+  }
+  
+  button:hover {
+    background-color: #0056b3;
+  }
+
+  .creator-confirm-button {
+    margin-bottom: 10px;
+  }
+
+  h2 {
+    margin-top: 0;
+  }
+  tbody img {
+    width: 230px;
+    height: 230px;
+    margin-right: -170px;
+    
+}

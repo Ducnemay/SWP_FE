@@ -6,12 +6,16 @@ import LayoutMorder from "../../../../components/layout/LayoutMorder";
 function HistoryPage() {
   const [history, setHistory] = useState([]);
   const [artworks, setArtwork] = useState([]);
+  const formatCash = (amount) => {
+    return amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  };
 
   useEffect(() => {
     async function fetchHistory() {
       try {
-        const response = await api.get(`https://localhost:7227/api/Artwork/get-history-artwork-true`);
-        const filteredOrders = response.data.$values.filter(order => response.data.$values.map(payment => payment.artworkId).includes(order.artworkId));
+        const response = await api.get(`https://localhost:7227/api/Artwork/get-all`);
+        const filteredOrders = response.data.$values.filter(artwork =>
+          ["Approve", "Missing Signature", "Copying Artwork", "18+ Artwork is not allowed"].includes(artwork.reason));
         setHistory(filteredOrders);
       } catch (error) {
         console.error('Error fetching history:', error);
@@ -71,9 +75,9 @@ function HistoryPage() {
       <h1>History</h1>
       <div className="history-product-infos1">
                            <div className="history-Atwork">Artwork</div>
-                            <div  className="history-NameAtwork">Name</div>   
-                            <div className="history-Actor">Actor</div> 
-                            <div className="history-TimeApprove">Time Approve</div>
+                           <div className="history-Actor">Actor</div> 
+                            <div  className="history-NameAtwork">Unit Price</div>   
+                            <div className="history-TimeApprove">Time Processing</div>
                             <div className="history-StatusApprove">Status</div>
                             
                         </div>
@@ -84,11 +88,11 @@ function HistoryPage() {
             <img src={item.imageUrl} alt="Product" />
                         <div className="history-product-info">
                             <div className="history-name">{artworks[item.artworkId].userName}</div>
-                            <div className="history-titleR">{item.title}</div>   
+                            <div className="history-titleR">₫{formatCash(item.price)}</div>   
                             <div className="history-time"
                               >{item.timeProcessing}</div> 
                             <div className="history-status"
-                              >{item.statusProcessing ? "Success" : "Waiting"}</div>
+                              >{item.statusProcessing ? "Approve" : "Unapprove"}</div>
                         </div>
             {/* <div className="history-info">
               <div className="history-detail">

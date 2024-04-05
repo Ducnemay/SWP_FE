@@ -1,11 +1,12 @@
 .payment-blog-page {
     font-family: Arial, sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: stretch; /* Đảm bảo các phần tử con co giãn để bằng chiều cao của container */
+    border: 1px solid #ccc; /* Thêm viền 1px độ dày và màu xám nhạt */
+    border-radius: 8px;
     height: 50vh;
-    margin-top: -30px ; 
-    margin-bottom:30px  ;
+    margin-top: 100px ; 
+    /* margin-bottom:30px  ; */
+    width: 600px;
+    margin-left: 650px;
 }
 
 .payment-product-info,
@@ -62,7 +63,10 @@
     border: 2px solid black;
     padding: 10px 20px;
     border-radius: 5px;
-    width: 130px;
+    width: 272px;
+    height: 70px;
+    font-size: 20px;
+    margin-top: 20px;
 
 }
 .payment-blog-button-cofirm:hover, .payment-blog-button-cancle:hover{
