@@ -77,6 +77,7 @@ import React, { useState } from 'react';
 import CustomerRequire from "./page/CustomerRequire";
 import ConfirmationPage from "./page/CreatorConfirm";
 import ResponseCustomerPage from "./page/CustomerConfirm";
+import ManagementRequire from "./page/ManagerRequire";
 
 
 
@@ -180,6 +181,9 @@ const App = () => {
         <Route path="/customer-require" element={<CustomerRequire />} />
         <Route path="/creator-confirm" element={<ConfirmationPage />} />
         <Route path="/customer-confirm" element={<ResponseCustomerPage />} />
+        <Route path="/manager-require" element={<ManagementRequire />} />
+
+
 
         
         
@@ -288,7 +292,7 @@ const App = () => {
         <Route path="/refund" element={<Refund />}/>
         <Route path="/history" element={<HistoryPage />}/>
         <Route path="/req-content" element={<RequestPageDetail />}/>
-        <Route path="/req-detail" element={<RequestPage />}/>
+        <Route path="/req-detail/:productId" element={<RequestPage />}/>
 
 
 

@@ -1,5 +1,5 @@
 .creator-confirm-container {
-    max-width: 600px;
+  max-width: 1300px;
     margin: 0 auto;
     padding: 20px;
     border: 1px solid #ccc;
@@ -47,4 +47,9 @@
   h2 {
     margin-top: 0;
   }
-  
+  tbody img {
+    width: 230px;
+    height: 230px;
+    margin-right: -170px;
+    
+}

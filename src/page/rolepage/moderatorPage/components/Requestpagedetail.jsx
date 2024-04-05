@@ -39,7 +39,7 @@ export default function Requestpagedetail() {
           {products.map((ins) => (
             !ins.statusProcessing &&
           <div key={ins.artworkId} className="box">
-            <Link to={`//req-detail/${ins.artworkId}`}>
+            <Link to={`/req-detail/${ins.artworkId}`}>
               <div className="overlay">
               <img src={ins.image} alt="artwork-image" />
               </div>

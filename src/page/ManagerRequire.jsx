@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import './ManagerRequire.css';
-import api from "../components/utils/requestAPI";
-import useAuth from "../hooks/useAuth";
 
-const ManagementRequire=()=> {
+function ManagementRequire() {
   // Tạo danh sách các mẫu đợi được demo
-  
+  const [waitingSamples, setWaitingSamples] = useState([
+    { id: 1, name: 'Mẫu 1', status: 'Process' },
+    { id: 2, name: 'Mẫu 2', status: 'Process' },
+    { id: 3, name: 'Mẫu 3', status: 'Process' }
+  ]);
 
   // Tạo danh sách các mẫu đã hoàn thành
   const [completedSamples, setCompletedSamples] = useState([]);

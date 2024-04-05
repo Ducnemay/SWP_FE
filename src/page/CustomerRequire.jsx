@@ -9,6 +9,7 @@ const CustomerRequire = () => {
   const [description, setDescription] = useState("");
   const [deadlineDate, setDeadlineDate] = useState("");
   const [image, setImage] = useState("");
+  const [money, setPrice] = useState("");
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -42,6 +43,14 @@ const CustomerRequire = () => {
     } 
   };
   
+  const setNumericPrice = (value) => {
+    // Ensure that the entered value is a valid number
+    const numericValue = parseFloat(value);
+    if (!isNaN(numericValue)) {
+      setPrice(numericValue);
+    }
+  };
+
   const UserAllowtoPost = auth && auth.user && (auth.user.statusPost === true || auth.user.premiumId !== null);
 
   const handleSubmit = async (event) => {
@@ -56,7 +65,8 @@ const CustomerRequire = () => {
       userID: auth.user.userId,
       description: description,
       deadlineDate: deadlineDate,
-      image: image
+      image: image,
+      money: money
     };
 
     try {
@@ -81,6 +91,9 @@ const CustomerRequire = () => {
         return;
       } else if (!image) {
         window.alert("Please upload image before send request.");
+        return;
+      }else if (!money) {
+        window.alert("Please write a price that you think that enough before send request.");
         return;
       }
 
@@ -125,6 +138,18 @@ const CustomerRequire = () => {
             value={deadlineDate !== "" ? deadlineDate :""}
             onChange={(e) => setNumberDeadlineDate(e.target.value)}
             className="cus-form-textarea"
+          />
+        </label>
+        <br />
+
+        <br />
+        <label className="cus-form-label">
+          Price That You Expect For The Artwork:
+          <input
+            type="number"
+            value={money}
+            onChange={(e) => setNumericPrice(e.target.value)}
+            className="cus-form-input"
           />
         </label>
         <br />
