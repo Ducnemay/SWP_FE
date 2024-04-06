@@ -37,7 +37,7 @@ export default function Body() {
           {/* <div className="image-container"> */}
           <div className="body">
           {products.map((ins) => (
-            !ins.statusProcessing && ins.reason === null && (
+            !ins.reason && (
           <div key={ins.artworkId} className="box">
             <Link to={`/productPageDetail/${ins.artworkId}`}>
               <div className="overlay">

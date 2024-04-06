@@ -56,6 +56,34 @@ const CustomerConfirm = () => {
     }
   };
 
+  const handleAccept = async (orderId) => {
+    try {
+      const paymentData = {
+        orderRequiredID: orderId
+      };
+      const response = await api.post(`https://localhost:7227/api/OrderCusArt/Create-New-OrderCusArt?ArtwokCustomeID=${artworkCustomeId}`, paymentData);
+      const paymentaway = response.data.orderCusArtId; // Return the paymentId from the response
+      // setApproved(true);
+      const response1 = await api.post(`https://localhost:7227/api/PaymentCusArt/Create-New-Payment-CusArt?OrderCusId=${response.data.orderCusArtId}`);
+      const paymentaway1 = response1.data.paymentCusArtId;
+      //
+      try{
+      const responseVNpay = await api.get(`https://localhost:7227/api/VNPay/get-payment-order-custome?PaymentOrderCustomeID=${paymentaway1}`);
+      // setPaymentUrl(responseVNpay.data);
+      // await setPaymentUrl(responseVNpay.data);
+     
+      window.location.href = responseVNpay.data;
+    
+      // window.open(paymentUrl);
+        // navigate(`/order-info/${paymentUrl}`);
+    } catch (error) {
+      console.error('Error creating payment1:', error);
+    }
+  } catch (error) {
+    console.error('Error creating payment2:', error);
+}
+  }
+
   return (
     <div className="customer-confirm">
       <Link to="/creator-confirm"><ol><i className="fa-solid fa-backward"></i> Back</ol></Link>
@@ -66,7 +94,7 @@ const CustomerConfirm = () => {
           {usersData[order.userId]?.imageUrl && <img src={usersData[order.userId].imageUrl} alt="User Avatar" />}
           <p><strong>Description:</strong> {order.description}</p>
           {/* Thêm các nút button */}
-          <button onClick={() => handleAccept(order)}>Accept</button>
+          <button onClick={() => handleAccept(order.orderRequireId)}>Accept</button>
           <button onClick={() => handleReject(order)}>Reject</button>
         </div>
       ))}

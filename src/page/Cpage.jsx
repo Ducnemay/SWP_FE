@@ -60,12 +60,17 @@ export default function Cpage() {
       </div>
       <div className='my-collection'>
         {artworkList.map((artwork) => (
+           (artwork.reason !== "Missing Signature" &&
+           artwork.reason !== "Copying Artwork" &&
+           artwork.reason !== "18+ Artwork is not allowed" &&
+           !artwork.statusProcessing || artwork.statusProcessing)
+            ? (
           <div key={artwork.$id} className="image-collection">
             <div className="overlay">
               <img src={artwork.imageUrl} alt="artwork-image"
                 className={artwork.statusProcessing ? '' : 'processing-false'}
               />
-              {!artwork.statusProcessing && <div className="waiting-text">Wating</div>}
+              {!artwork.statusProcessing && !artwork.reason && <div className="waiting-text">Wating</div>}
 
             </div>
             <div className="details">
@@ -73,6 +78,8 @@ export default function Cpage() {
               <div className="titles">{artwork.title}</div>
             </div>
           </div>
+          )
+          : null
         ))}
       </div>
     </div>

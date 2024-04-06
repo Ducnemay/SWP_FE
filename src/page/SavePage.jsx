@@ -70,12 +70,12 @@ const SavePage = () => {
     if (confirmed) {
       try {
         await api.delete(`https://localhost:7227/api/LikeCollection/Un-Love`, { data: { userId: auth.user.userId, artworkId: productId }});
-        setSavedProducts(savedProducts.filter(id => id !== productId));
+        setSavedProducts(savedProducts.filter(id => id.artworkId !== productId));
         setShowRemoveNotification(true);
         setTimeout(() => {
           setShowRemoveNotification(false);
         }, 3000);
-        window.location.reload(); 
+        // window.location.reload(); 
         // navigate("/saves");
       } catch (error) {
         console.error('Error removing like:', error);
@@ -94,12 +94,12 @@ const SavePage = () => {
           artworks[productId.artworkId] &&
           <div key={productId} className="product-items">
             {/* Hiển thị thông tin sản phẩm */}
-            <Link to={`/detail/${productId}`}>
-              <img src={ artworks[productId.artworkId].imageUrl} alt={artworks[productId.artworkId].title} className="product-imagess" />
-              <p className="product-names">{artworks[productId.artworkId].title}</p>
-              <p className="product-prices">{artworks[productId.artworkId].price}</p>
+            <Link to={`/detail/${productId.artworkId}`}>
+              <img src={ artworks[productId.artworkId]?.imageUrl} alt={artworks[productId.artworkId]?.title} className="product-imagess" />
+              <p className="product-names">{artworks[productId.artworkId]?.title}</p>
+              <p className="product-prices">{artworks[productId.artworkId]?.price}</p>
             </Link>
-            <FaHeart className="heart-icons" onClick={() => handleUnLove(artworks[productId.artworkId].artworkId, auth.user.userId)} />
+            <FaHeart className="heart-icons" onClick={() => handleUnLove(artworks[productId.artworkId]?.artworkId, auth.user.userId)} />
           </div>
         ))}
          {showRemoveNotification && ( // Hiển thị thông báo nếu showRemoveNotification là true

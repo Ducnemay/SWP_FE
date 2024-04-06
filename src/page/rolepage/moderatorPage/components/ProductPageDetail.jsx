@@ -78,16 +78,9 @@ export default function ProductPage (){
   const handleUnApprove = async () => {
     try {
       // if (auth.user) {
-      const url = `https://localhost:7227/api/Artwork/update-artwork?artworkId=${productId}`;
+      const url = `https://localhost:7227/api/Artwork/update-artwork-proccessing-false?artworkId=${productId}`;
       const data = {
-        title: product.title,
-        description: product.description,
-        price: product.price,
-        imageUrl: product.imageUrl,
-        imageUrl2: product.imageUrl2,
-          // reason: rejectReason,
-          reason: rejectReason,
-          genreId : product.genreId       
+          reason: rejectReason,     
       };
       const response = await api.post(url, data);
       console.log(response.data);

@@ -163,7 +163,7 @@ function Send() {
                             <div  className="send-titleR">-{item.amount}</div>   
                             <div className="send-time">{item.createDate}</div> 
                             
-                            <div className="send-status">{item.status ? "Success" : "Waiting"}</div>
+                            <div className="send-status">{orderList[item.orderId].status ? "Success" : "Waiting"}</div>
                            
                         </div>
         //   </div>

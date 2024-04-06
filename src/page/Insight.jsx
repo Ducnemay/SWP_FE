@@ -20,6 +20,7 @@ export default function Insight() {
   const [artworkList, setArtworkList] = useState([]);
   const [approved, setApproved] = useState(false);
   const [status, setStatus] = useState([]);
+  const [showRemoveNotification, setShowRemoveNotification] = useState(false); 
 
 
   
@@ -112,10 +113,15 @@ export default function Insight() {
         const response = await api.get(`https://localhost:7227/api/Payment/get-payment-by-order-id?id=${orderId}`);
         const paymentaway = response.data.paymentId; // Return the paymentId from the response
         const response1 = await api.post(`https://localhost:7227/api/Payment/delete-payment?id=${paymentaway}`);
+        // setOrders(response.data.$values.filter(id => id.statusCancle !== true));
         setConfirmations(prevState => ({
           ...prevState,
           [orderId]: false
         }));
+        // setShowRemoveNotification(true);
+        // setTimeout(() => {
+        //   setShowRemoveNotification(false);
+        // }, 3000);
     } catch (error) {
         console.error('Error refund payment:', error);
     }
@@ -179,6 +185,11 @@ const handleCancel = (orderId) => {
                 </div>
               </div>
             ))}
+            {/* {showRemoveNotification && ( // Hiển thị thông báo nếu showRemoveNotification là true
+        <div className="notification-remove">
+          Refund Artwork Success
+        </div>
+      )} */}
           </div>
           
         
